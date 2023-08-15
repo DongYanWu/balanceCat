@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
+import ChatIcon from "@mui/icons-material/Chat";
 import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
 
@@ -9,7 +10,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export default function AccountsBox({ isDebit }) {
+export default function AccountsBox({ isDebit, addNewDebitBox }) {
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
   return (
     <div
@@ -23,6 +24,10 @@ export default function AccountsBox({ isDebit }) {
           </div>
 
           <SelectAccount />
+          <ChatIcon
+            onClick={addNewDebitBox}
+            style={{ cursor: "pointer", color: "#3b3534" }}
+          />
         </div>
         <label htmlFor="amoutInput" className={styles.amoutInput}>
           <input type="text" id="amoutInput" />
