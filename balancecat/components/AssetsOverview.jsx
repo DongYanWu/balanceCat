@@ -1,5 +1,6 @@
 // import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 import assets from "../mockdata/getNonExpired";
 import AssetsBar from "./AssetsBar";
 import LiabilityBar from "./LiabilityBar";
@@ -83,6 +84,29 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
+          {assets.map.length <= 3 && (
+            <div className={styles.catBar}>
+              <Image
+                src="/image.png"
+                width={100}
+                height={100}
+                alt="cat"
+                className={styles.cat}
+              />
+              <div className={styles.dialog}>
+                <span className={styles.text}>
+                  最近比較少記帳喵？要多多記帳喔喵嗚嗚嗚～
+                </span>
+                <Image
+                  src="/Container.svg"
+                  width={30}
+                  height={30}
+                  alt="dialog"
+                  className={styles.leg}
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
       {liabilityButton && (
@@ -104,6 +128,29 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
+          {assets.map.length <= 3 && (
+            <div className={styles.catBar}>
+              <Image
+                src="/image.png"
+                width={100}
+                height={100}
+                alt="cat"
+                className={styles.cat}
+              />
+              <div className={styles.dialog}>
+                <span className={styles.text}>
+                  最近比較少記帳喵？要多多記帳喔喵嗚嗚嗚～
+                </span>
+                <Image
+                  src="/Container.svg"
+                  width={30}
+                  height={30}
+                  alt="dialog"
+                  className={styles.leg}
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
       {arButton && (
@@ -125,6 +172,29 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
+          {assets.map.length <= 3 && (
+            <div className={styles.catBar}>
+              <Image
+                src="/image.png"
+                width={100}
+                height={100}
+                alt="cat"
+                className={styles.cat}
+              />
+              <div className={styles.dialog}>
+                <span className={styles.text}>
+                  最近比較少記帳喵？要多多記帳喔喵嗚嗚嗚～
+                </span>
+                <Image
+                  src="/Container.svg"
+                  width={30}
+                  height={30}
+                  alt="dialog"
+                  className={styles.leg}
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
       {apButton && (
@@ -146,6 +216,29 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
+          {assets.map.length <= 3 && (
+            <div className={styles.catBar}>
+              <Image
+                src="/image.png"
+                width={100}
+                height={100}
+                alt="cat"
+                className={styles.cat}
+              />
+              <div className={styles.dialog}>
+                <span className={styles.text}>
+                  最近比較少記帳喵？要多多記帳喔喵嗚嗚嗚～
+                </span>
+                <Image
+                  src="/Container.svg"
+                  width={30}
+                  height={30}
+                  alt="dialog"
+                  className={styles.leg}
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

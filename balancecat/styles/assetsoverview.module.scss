@@ -45,4 +45,23 @@
             }
         }
     }
+    .catBar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .cat {
+            margin-right: 1rem;
+        }
+        .dialog {
+            border-radius: 30px;
+            background-color: #448af7;
+            padding: 1rem 3rem;
+            position: relative;
+            .leg {
+                position:absolute;
+                top: 1.9rem;
+                left: 0;
+            }
+        }
+    }
 }
