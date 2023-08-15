@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
-import styles from "../styles/accountsbox.module.scss";
+import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
 
 const inter = Inter({
@@ -9,24 +9,19 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export default function AccountsBox() {
+export default function AccountsBox({ isDebit }) {
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
-  const [isSelecting, setIsSelecting] = useState(false);
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ background: isDebit ? "#7af98e" : "#CCE8FE" }}
+    >
       <div className={styles.content}>
         <div className={styles.accountSelectBox}>
           <div className={styles.icon}>
             <p>$</p>
           </div>
-          {/* <p className={inter.className}>應收帳款</p>
-          <Image
-            src="/vector.png"
-            onClick={() => setIsSelecting(!isSelecting)}
-            height={12}
-            width={12}
-            style={{ cursor: "pointer" }}
-          /> */}
+
           <SelectAccount />
         </div>
         <label htmlFor="amoutInput" className={styles.amoutInput}>
@@ -35,15 +30,11 @@ export default function AccountsBox() {
 
         <label
           htmlFor="descriptionInput"
-          className={styles.amoutInput}
+          className={styles.descriptionInput}
           style={{ display: isDescriptionVisible ? "block" : "none" }}
         >
           <p>註解</p>
-          <input
-            type="text"
-            id="descriptionInput"
-            className={styles.descriptionInput}
-          />
+          <textarea type="text" id="descriptionInput" />
         </label>
         <div
           className={styles.circle}
