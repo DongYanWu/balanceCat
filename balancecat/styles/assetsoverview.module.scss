@@ -1,0 +1,48 @@
+.wrapper {
+    width: 95%;
+    hr {
+        border: solid 1px #E7EAEE;
+    }
+    .title {
+        overflow: hidden;
+        color: var(--neutral-800, #191D23);
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+
+        button {
+            border: 1px solid #d9d9d9;
+            padding: 0.3rem 1.3rem;
+            border-radius: 15px;
+            background: none;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        .blueButton {
+            background-color: #047857;
+            color: #fff;
+        }
+    }
+    
+    .table {
+        .titleBar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            p {
+                width: 8rem;
+                text-align: center;
+                color: var(--neutral-800, #191D23);
+            }
+            #none {
+                opacity: 0;
+            }
+        }
+    }
+}
