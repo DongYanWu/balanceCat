@@ -4,6 +4,7 @@ import styles from "../styles/navbar.module.scss";
 export default function NavBar() {
   return (
     <div className={styles.wrapper}>
+      {/* <div /> */}
       <div className={styles.leftBar}>
         <Image src="/cat.png" width={50} height={50} className={styles.image} />
         <button type="submit" className={styles.title}>
