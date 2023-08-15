@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
-import ChatIcon from "@mui/icons-material/Chat";
 import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
+import SelectAdd from "./SelectAdd";
 
 const inter = Inter({
   weight: "400",
   subsets: ["latin"],
 });
 
-export default function AccountsBox({ isDebit, addNewDebitBox }) {
+export default function AccountsBox({ isDebit, addBox }) {
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
   return (
     <div
@@ -24,10 +24,6 @@ export default function AccountsBox({ isDebit, addNewDebitBox }) {
           </div>
 
           <SelectAccount />
-          <ChatIcon
-            onClick={addNewDebitBox}
-            style={{ cursor: "pointer", color: "#3b3534" }}
-          />
         </div>
         <label htmlFor="amoutInput" className={styles.amoutInput}>
           <input type="text" id="amoutInput" />
@@ -41,7 +37,7 @@ export default function AccountsBox({ isDebit, addNewDebitBox }) {
           <p>註解</p>
           <textarea type="text" id="descriptionInput" />
         </label>
-        <div
+        {/* <div
           className={styles.circle}
           role="button"
           aria-label="add the input box"
@@ -57,6 +53,12 @@ export default function AccountsBox({ isDebit, addNewDebitBox }) {
               ? "url('/minus.png')"
               : "url('/add.png')",
           }}
+        /> */}
+        <SelectAdd
+          isDebit={isDebit}
+          addBox={addBox}
+          isDescriptionVisible={isDescriptionVisible}
+          setDescriptionVisible={setDescriptionVisible}
         />
       </div>
     </div>

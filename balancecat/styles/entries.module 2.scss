@@ -7,16 +7,8 @@
   .accountboxs {
     display: flex;
     gap: 2rem;
-    .debitboxs {
-      display: flex;
-      flex-direction: column;
-    }
-    .creditboxs {
-      display: flex;
-      flex-direction: column;
-    }
   }
-  .btn {
+  button {
     width: 450px;
     height: 50px;
     margin: auto;
