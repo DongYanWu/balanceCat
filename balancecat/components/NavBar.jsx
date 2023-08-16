@@ -9,7 +9,7 @@ export default function NavBar() {
       <div className={styles.leftBar}>
         <Image src="/cat.png" width={50} height={50} className={styles.image} />
 
-        <Link href="/balancesheet" className={` ${styles.title}`}>
+        <Link href="/" className={` ${styles.title}`}>
           Balance Cat
         </Link>
         <Link href="/balancesheet" className={styles.link}>
