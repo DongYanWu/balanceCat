@@ -280,7 +280,7 @@ export default function SubjectDetail() {
         sx={{
           color: "white",
           "& .Mui-disabled": {
-            color: "#bbb",
+            color: "#ccc",
           },
           backgroundColor: "#212130",
           "& .MuiTablePagination-selectIcon": {
