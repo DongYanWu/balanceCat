@@ -126,8 +126,13 @@ export default function Sheet({ data }) {
   return (
     <TableContainer
       component={Paper}
-      sx={{ width: "60%" }}
-      className={styles.tableContainer}
+      sx={{
+        width: "60%",
+        border: "1px solid black",
+        margin: "50px auto",
+        borderRadius: "20px",
+      }}
+      // className={styles.tableContainer}
     >
       <Table aria-label="nested table">
         <TableHead>
