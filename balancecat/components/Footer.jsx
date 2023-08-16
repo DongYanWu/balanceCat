@@ -16,16 +16,12 @@ export default function Footer() {
             ? theme.palette.grey[200]
             : theme.palette.grey[800],
         p: 6,
+        width: "100%",
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={5}>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            sx={{ textAlign: { xs: "center", sm: "left" } }}
-          >
+      <Container maxWidth="none">
+        <Grid container justifyContent="space-around" spacing={5}>
+          <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               關於我們
             </Typography>
@@ -33,12 +29,7 @@ export default function Footer() {
               我希望通過我的記帳網站，可以幫助更多的人建立起更健康的財務習慣，更明智地管理金錢。請隨時來訪，體驗一下這個簡單而強大的財務工具吧！
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            sx={{ textAlign: { xs: "center", sm: "center" } }}
-          >
+          <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               聯絡我們
             </Typography>
@@ -52,12 +43,7 @@ export default function Footer() {
               Phone: +1 234 567 8901
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            sx={{ textAlign: { xs: "center", sm: "right" } }}
-          >
+          <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               追蹤我們
             </Typography>

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .box {
+        width: 80%;
+        border-radius: 0px 0px 50px 150px;
+        background: #B0FFBB;
+        padding: 2rem 2rem 4rem 4rem;
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        .title_entries{
+            width: max-content;
+            .title {
+                font-family: 'Tilt Warp', cursive;
+                font-size: 7rem;
+                // width: 50%;
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .cat_coin {
+            .imageContainer {
+                position: relative;
+                img {
+                    // animation:move 2s infinite;
+                }
+                #coin2 {
+                    position: absolute;
+                    top: 12rem;
+                    left: 5rem;
+                }
+                #coin3 {
+                    position: absolute;
+                    top: 7rem;
+                    left: 20rem;
+                }
+                #coin4 {
+                    position: absolute;
+                    top: 5rem;
+                    left: 12rem;
+                }
+                #coin5 {
+                    position: absolute;
+                    top: 15rem;
+                    left: 12rem;
+                }
+            }
+        }
+        @keyframes move{
+            from{
+              margin-top:0;
+            }
+            to{
+              margin-top:150px;
+            }
+          } 
+
+    }
+}
