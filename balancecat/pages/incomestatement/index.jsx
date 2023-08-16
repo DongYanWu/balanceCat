@@ -4,32 +4,26 @@ import NavBar from "@/components/NavBar";
 export default function BalanceSheetPage() {
   const data = [
     {
-      name: "資產",
-      subtitle: "Assets",
+      name: "收入",
+      subtitle: "Income",
       value: 1000,
       lastMonthValue: 800,
       children: [
         {
-          name: "流動資產",
-          subtitle: "Current Assets",
+          name: "經常性收入",
+          subtitle: "Regular Income",
           value: 1000,
           lastMonthValue: 800,
           children: [
             {
-              name: "現金",
-              subtitle: "Cash",
+              name: "薪資收入",
+              subtitle: "Salary",
               value: 500,
               lastMonthValue: 900,
             },
             {
-              name: "股票",
-              subtitle: "Stock",
-              value: 500,
-              lastMonthValue: 900,
-            },
-            {
-              name: "應收帳款",
-              subtitle: "Accounts receivable",
+              name: "利息收入",
+              subtitle: "Interest Income",
               value: 500,
               lastMonthValue: 900,
             },
@@ -42,38 +36,20 @@ export default function BalanceSheetPage() {
           ],
         },
         {
-          name: "非流動資產",
-          subtitle: "Non-Current Assets",
+          name: "非經常性收入",
+          subtitle: "Irregular Income",
           value: 1500,
           lastMonthValue: 900,
           children: [
             {
-              name: "車子",
-              subtitle: "Cars",
+              name: "兼職收入",
+              subtitle: "Part-time Income",
               value: 1500,
               lastMonthValue: 900,
             },
             {
-              name: "房子",
-              subtitle: "Houses",
-              value: 1500,
-              lastMonthValue: 900,
-            },
-            {
-              name: "電子設備",
-              subtitle: "3C",
-              value: 1500,
-              lastMonthValue: 900,
-            },
-            {
-              name: "家電",
-              subtitle: "Home Appliances",
-              value: 1500,
-              lastMonthValue: 900,
-            },
-            {
-              name: "預付款",
-              subtitle: "Prepayments",
+              name: "中獎",
+              subtitle: "Prize Winnings",
               value: 1500,
               lastMonthValue: 900,
             },
@@ -88,26 +64,39 @@ export default function BalanceSheetPage() {
       ],
     },
     {
-      name: "負債",
-      subtitle: "Liabilities",
+      name: "支出",
+      subtitle: "Expenses",
       value: 1000,
       lastMonthValue: 800,
       children: [
         {
-          name: "流動負債",
-          subtitle: "Current Liabilities",
+          name: "固定支出",
+          subtitle: "Fixed Expenses",
           value: 500,
           lastMonthValue: 900,
           children: [
+            { name: "食", subtitle: "Food", value: 500, lastMonthValue: 900 },
             {
-              name: "信用卡",
-              subtitle: "Credit Card",
-              value: 500,
+              name: "衣",
+              subtitle: "Clothing",
+              value: 1500,
               lastMonthValue: 900,
             },
             {
-              name: "應付帳款",
-              subtitle: "Accounts Payable",
+              name: "住",
+              subtitle: "Housing",
+              value: 1500,
+              lastMonthValue: 900,
+            },
+            {
+              name: "孝親",
+              subtitle: "Support Parents",
+              value: 1500,
+              lastMonthValue: 900,
+            },
+            {
+              name: "折舊",
+              subtitle: "Depreciation",
               value: 1500,
               lastMonthValue: 900,
             },
@@ -120,26 +109,27 @@ export default function BalanceSheetPage() {
           ],
         },
         {
-          name: "非流動負債",
-          subtitle: "Non-Current Liabilities",
+          name: "非固定支出",
+          subtitle: "Variable Expenses",
           value: 1000,
           lastMonthValue: 900,
           children: [
+            { name: "食", subtitle: "Food", value: 1000, lastMonthValue: 900 },
             {
-              name: "分期付款",
-              subtitle: "Installment",
-              value: 1000,
-              lastMonthValue: 900,
-            },
-            {
-              name: "車貸",
-              subtitle: "Car Loan",
+              name: "衣",
+              subtitle: "Clothing",
               value: 1500,
               lastMonthValue: 900,
             },
             {
-              name: "房貸",
-              subtitle: "Mortgage",
+              name: "住",
+              subtitle: "Housing",
+              value: 1500,
+              lastMonthValue: 900,
+            },
+            {
+              name: "孝親",
+              subtitle: "Support Parents",
               value: 1500,
               lastMonthValue: 900,
             },
@@ -154,11 +144,11 @@ export default function BalanceSheetPage() {
       ],
     },
   ];
+
   return (
     <div>
       <NavBar />
       <Sheet data={data} />
-      {/* <Test /> */}
     </div>
   );
 }

@@ -32,15 +32,15 @@ module.exports = {
   exportTrailingSlash: true,
 };
 
-module.exports = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'tony-canchu-api.octave.vip',
-        port: '',
-        pathname: '/assets/**',
-      },
-    ],
-  },
-};
+// module.exports = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'tony-canchu-api.octave.vip',
+//         port: '',
+//         pathname: '/assets/**',
+//       },
+//     ],
+//   },
+// };

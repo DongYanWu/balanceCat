@@ -18,7 +18,7 @@ export default function NavBar() {
         <Link href="/balancesheet" className={styles.link}>
           資產負債表
         </Link>
-        <Link href="/balancesheet" className={styles.link}>
+        <Link href="/incomestatement" className={styles.link}>
           綜合損益表
         </Link>
         <Link href="/balancesheet" className={styles.link}>

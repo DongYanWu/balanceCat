@@ -34,6 +34,32 @@ const nonCurrentLiabilitiesOptions = [
   { value: "green", label: "房貸", color: "#36B37E" },
   { value: "forest", label: "其他", color: "#00875A" },
 ];
+const recurringIncomeOptions = [
+  { value: "orange", label: "薪資收入", color: "#FF8B00" },
+  { value: "yellow", label: "利息收入", color: "#FFC400" },
+  { value: "forest", label: "其他", color: "#00875A" },
+];
+
+const nonRecurringIncomeOptions = [
+  { value: "orange", label: "兼職收入", color: "#FF8B00" },
+  { value: "yellow", label: "中獎", color: "#FFC400" },
+  { value: "forest", label: "其他", color: "#00875A" },
+];
+const fixedChargesOptions = [
+  { value: "orange", label: "食", color: "#FF8B00" },
+  { value: "yellow", label: "衣", color: "#FFC400" },
+  { value: "forest", label: "住", color: "#00875A" },
+  { value: "forest", label: "孝親", color: "#00875A" },
+  { value: "forest", label: "折舊", color: "#00875A" },
+  { value: "forest", label: "其他", color: "#00875A" },
+];
+const variableChargesOptions = [
+  { value: "orange", label: "食", color: "#FF8B00" },
+  { value: "yellow", label: "衣", color: "#FFC400" },
+  { value: "forest", label: "住", color: "#00875A" },
+  { value: "forest", label: "孝親", color: "#00875A" },
+  { value: "forest", label: "其他", color: "#00875A" },
+];
 
 const groupedOptions = [
   {
@@ -51,6 +77,22 @@ const groupedOptions = [
   {
     label: "非流動負債",
     options: nonCurrentLiabilitiesOptions,
+  },
+  {
+    label: "經常性收入",
+    options: recurringIncomeOptions,
+  },
+  {
+    label: "非經常性收入",
+    options: nonRecurringIncomeOptions,
+  },
+  {
+    label: "固定支出",
+    options: fixedChargesOptions,
+  },
+  {
+    label: "非固定支出",
+    options: variableChargesOptions,
   },
 ];
 
