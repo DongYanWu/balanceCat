@@ -11,13 +11,17 @@ export default function Entries() {
   function addNewDebitBox() {
     setDebitBoxes((prevBoxes) => [
       ...prevBoxes,
-      <AccountsBox key={prevBoxes.length} isDebit addBox={addNewDebitBox} />,
+      <AccountsBox
+        key={prevBoxes.length}
+        isDebit
+        addBox={() => addNewDebitBox()}
+      />,
     ]);
   }
   function addNewCreditBox() {
     setCreditBoxes((prevBoxes) => [
       ...prevBoxes,
-      <AccountsBox key={prevBoxes.length} addBox={addNewCreditBox} />,
+      <AccountsBox key={prevBoxes.length} addBox={() => addNewCreditBox()} />,
     ]);
   }
   return (
@@ -25,12 +29,12 @@ export default function Entries() {
       <DateSelector />
       <div className={styles.accountboxs}>
         <div className={styles.debitboxs}>
-          <AccountsBox isDebit addBox={addNewDebitBox} />
+          <AccountsBox isDebit addBox={() => addNewDebitBox()} />
 
           {debitBoxes}
         </div>
         <div className={styles.creditboxs}>
-          <AccountsBox isDebit={false} addBox={addNewCreditBox} />
+          <AccountsBox isDebit={false} addBox={() => addNewCreditBox()} />
           {creditBoxes}
         </div>
       </div>

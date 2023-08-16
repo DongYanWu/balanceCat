@@ -1,13 +1,13 @@
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import React, { useState } from "react";
 import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
 import SelectAdd from "./SelectAdd";
 
-const inter = Inter({
-  weight: "400",
-  subsets: ["latin"],
-});
+// const inter = Inter({
+//   weight: "400",
+//   subsets: ["latin"],
+// });
 
 export default function AccountsBox({ isDebit, addBox }) {
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
