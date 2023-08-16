@@ -16,17 +16,18 @@ export default function Footer() {
             ? theme.palette.grey[200]
             : theme.palette.grey[800],
         p: 6,
-        width: "100%",
+        width: "93.5vw",
       }}
     >
-      <Container maxWidth="none">
+      <Container maxWidth="lg">
         <Grid container justifyContent="space-around" spacing={5}>
           <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>
             <Typography variant="h6" color="text.primary" gutterBottom>
               關於我們
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              我希望通過我的記帳網站，可以幫助更多的人建立起更健康的財務習慣，更明智地管理金錢。請隨時來訪，體驗一下這個簡單而強大的財務工具吧！
+              歡迎來到 Balance Cat
+              團隊的世界！我們是一群熱愛技術、創新和財務管理的學生，致力於打造一個簡單、有效的記帳網站，幫助您更好地管理您的財務。
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>

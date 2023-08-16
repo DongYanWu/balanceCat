@@ -1,10 +1,10 @@
 // import Image from "next/image";
 import { useState } from "react";
 import Image from "next/image";
-import assets from "../mockdata/getNonExpired";
+import LiabilityBar from "@/components/assetsOverview/LiabilityBar";
+import assets from "@/mockdata/getNonExpired";
+import styles from "@/styles/assetsOverview/overview.module.scss";
 import AssetsBar from "./AssetsBar";
-import LiabilityBar from "./LiabilityBar";
-import styles from "../styles/assetsoverview.module.scss";
 
 export default function AssetsOverview() {
   const [assetButton, setAssetButton] = useState(true);

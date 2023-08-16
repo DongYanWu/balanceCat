@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import { format } from "date-fns";
-import styles from "../styles/assetsbar.module.scss";
+import styles from "@/styles/assetsOverview/assetsbar.module.scss";
 // test2
 export default function AssetsBar({ asset }) {
   const formattedDate = format(new Date(asset.timestamp), "yyyy/MM/dd");
