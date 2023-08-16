@@ -35,6 +35,7 @@ function Day(props) {
   const { day, startDate, endDate, ...other } = props;
 
   if (!startDate || !endDate) {
+    // eslint-disable-next-line react/jsx-props-no-spreading
     return <PickersDay day={day} {...other} />;
   }
 
@@ -44,6 +45,7 @@ function Day(props) {
 
   return (
     <CustomPickersDay
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
       day={day}
       sx={dayIsBetween ? { px: 2.5, mx: 0 } : {}}

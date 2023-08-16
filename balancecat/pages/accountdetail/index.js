@@ -8,7 +8,8 @@ import styles from "./detail.module.scss";
 
 const dot = DotGothic16({
   weight: "400",
-  subsets: ["cyrillic"],
+  // subsets: ["cyrillic"],
+  subsets: ["latin"],
 });
 const handjet = Handjet({
   weight: "400",
