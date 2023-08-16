@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/navbar.module.scss";
 
 export default function NavBar() {
@@ -7,13 +8,22 @@ export default function NavBar() {
       {/* <div /> */}
       <div className={styles.leftBar}>
         <Image src="/cat.png" width={50} height={50} className={styles.image} />
-        <button type="submit" className={styles.title}>
+
+        <Link href="/balancesheet" className={` ${styles.title}`}>
           Balance Cat
-        </button>
-        <button type="submit">個人頁面</button>
-        <button type="submit">資產負債表</button>
-        <button type="submit">綜合損益表</button>
-        <button type="submit">Support</button>
+        </Link>
+        <Link href="/balancesheet" className={styles.link}>
+          個人頁面
+        </Link>
+        <Link href="/balancesheet" className={styles.link}>
+          資產負債表
+        </Link>
+        <Link href="/balancesheet" className={styles.link}>
+          綜合損益表
+        </Link>
+        <Link href="/balancesheet" className={styles.link}>
+          support
+        </Link>
       </div>
       <div className={styles.rightBar}>
         <button type="submit">Sign In</button>

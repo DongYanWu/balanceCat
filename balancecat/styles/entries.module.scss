@@ -10,10 +10,12 @@
     .debitboxs {
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
     .creditboxs {
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
   }
   .btn {
