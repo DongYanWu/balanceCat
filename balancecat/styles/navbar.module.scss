@@ -3,7 +3,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  background-color: white;
+  background-color: #171721;
   height: 80px;
   .leftBar {
     display: flex;
@@ -21,7 +21,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: 1.5rem;
-      color: #000;
+      color: #d9d9d9;
       background: none;
       border: none;
       cursor: pointer;
@@ -35,7 +35,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: 1.5rem;
-      color: var(--gray-900, #18181b);
+      color: var(--gray-900, #d9d9d9);
       font-size: 1rem;
       background: none;
       border: none;
@@ -54,7 +54,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: 1.5rem;
-      color: var(--gray-900, #18181b);
+      color: var(--gray-900, #d9d9d9);
       font-size: 1rem;
       background: none;
       border: none;

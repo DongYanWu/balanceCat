@@ -196,10 +196,28 @@ export default function SubjectDetail() {
         width: "60%",
         overflow: "hidden",
         borderRadius: "20px",
-        border: "1px solid #d9d9d9",
+        border: "3px solid #d9d9d9",
       }}
     >
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer
+        sx={{
+          maxHeight: 440,
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "#212131", // 更改滾動條軌道的顏色
+          },
+          "&::-webkit-scrollbar": {
+            width: "12px", // 調整滾動條的寬度
+            color: "#212131",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#666", // 更改滾動條的顏色
+            borderRadius: "10px", // 設定圓角
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#777", // 滑鼠懸停時的顏色
+          },
+        }}
+      >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -207,7 +225,11 @@ export default function SubjectDetail() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{
+                    minWidth: column.minWidth,
+                    backgroundColor: "#212131",
+                    color: "white",
+                  }}
                   className={dot.className}
                 >
                   {column.label}
@@ -219,11 +241,23 @@ export default function SubjectDetail() {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={row.code}
+                  style={{
+                    backgroundColor: "#212131",
+                  }}
+                >
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ color: "white" }}
+                      >
                         {column.format && typeof value === "number"
                           ? column.format(value)
                           : value}
@@ -243,6 +277,17 @@ export default function SubjectDetail() {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          color: "white",
+          "& .Mui-disabled": {
+            color: "#ccc",
+          },
+          backgroundColor: "#212130",
+          "& .MuiTablePagination-selectIcon": {
+            color: "white",
+          },
+        }}
+        // className={styles.MuiSvgIcon-root-MuiSelect-icon}
       />
     </Paper>
   );
