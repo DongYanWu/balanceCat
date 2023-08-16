@@ -14,7 +14,7 @@ import {
 
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import style from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
+
 import styles from "../styles/sheet.module.scss";
 
 // const data = [
