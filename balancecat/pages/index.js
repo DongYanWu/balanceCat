@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Tilt_Warp } from "next/font/google";
+import { Silkscreen } from "next/font/google";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import AssetsOverview from "@/components/assetsOverview/AssetsOverview";
 import Entries from "@/components/entriesForm/Entries";
@@ -7,8 +7,8 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import styles from "@/styles/home.module.scss";
 
-const tilt = Tilt_Warp({
-  weight: "400",
+const silk = Silkscreen({
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -18,8 +18,8 @@ export default function Home() {
       <NavBar />
       <div className={styles.box}>
         <div className={styles.title_entries}>
-          <p className={`${tilt.className} ${styles.title}`}>You always</p>
-          <p className={`${tilt.className} ${styles.title}`}>are winner</p>
+          <p className={`${silk.className} ${styles.title}`}>You always</p>
+          <p className={`${silk.className} ${styles.title}`}>are winner</p>
           <Entries />
         </div>
         <div className={styles.cat_coin}>
