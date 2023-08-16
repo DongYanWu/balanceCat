@@ -124,7 +124,11 @@ export default function Sheet({ data }) {
     ));
 
   return (
-    <TableContainer component={Paper} className={styles.tableContainer}>
+    <TableContainer
+      component={Paper}
+      sx={{ width: "60%" }}
+      className={styles.tableContainer}
+    >
       <Table aria-label="nested table">
         <TableHead>
           <TableRow hover>
