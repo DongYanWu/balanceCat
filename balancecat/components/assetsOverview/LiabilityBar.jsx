@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import { format } from "date-fns";
-import styles from "../styles/assetsbar.module.scss";
+import styles from "@/styles/assetsOverview/assetsbar.module.scss";
 
 export default function LiabilityBar({ liability }) {
   const formattedDate = format(new Date(liability.timestamp), "yyyy/MM/dd");
