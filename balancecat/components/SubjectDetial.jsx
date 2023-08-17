@@ -8,6 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { DotGothic16 } from "next/font/google";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const dot = DotGothic16({
   weight: "400",
@@ -181,6 +184,18 @@ export default function SubjectDetail() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  const [openDialog, setOpenDialog] = React.useState(false);
+  const [selectedRow, setSelectedRow] = React.useState(null);
+
+  const handleClickOpen = (row) => {
+    setSelectedRow(row);
+    setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -193,7 +208,7 @@ export default function SubjectDetail() {
   return (
     <Paper
       sx={{
-        width: "60%",
+        width: "100%",
         overflow: "hidden",
         borderRadius: "20px",
         border: "3px solid #d9d9d9",
@@ -237,18 +252,23 @@ export default function SubjectDetail() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody
+            sx={{
+              backgroundColor: "#212131",
+              "& :hover": {
+                backgroundColor: "#2c2d3d",
+              },
+              cursor: "pointer",
+            }}
+          >
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow
-                  hover
                   role="checkbox"
                   tabIndex={-1}
                   key={row.code}
-                  style={{
-                    backgroundColor: "#212131",
-                  }}
+                  onClick={() => handleClickOpen(row)}
                 >
                   {columns.map((column) => {
                     const value = row[column.id];
@@ -267,6 +287,21 @@ export default function SubjectDetail() {
                 </TableRow>
               ))}
           </TableBody>
+          <Dialog open={openDialog} onClose={handleClose}>
+            <DialogTitle>詳細資訊</DialogTitle>
+            <DialogContent>
+              {selectedRow && (
+                <div>
+                  <p>日期： {selectedRow.date}</p>
+                  <p>金額： {selectedRow.amount}</p>
+                  <p>註解： {selectedRow.description}</p>
+                  <p>曜日： {selectedRow.day}</p>
+                  <p>借方：</p>
+                  <p>貸方：</p>
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
         </Table>
       </TableContainer>
       <TablePagination
@@ -287,7 +322,6 @@ export default function SubjectDetail() {
             color: "white",
           },
         }}
-        // className={styles.MuiSvgIcon-root-MuiSelect-icon}
       />
     </Paper>
   );
