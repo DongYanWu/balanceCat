@@ -43,140 +43,97 @@ const columns = [
   //     format: (value) => value.toFixed(2),
   //   },
 ];
-function createData(date, amount, description, day) {
-  return { date, amount, description, day };
+
+function createData(date, amount, description) {
+  const parsedDate = new Date(date); // 將字串轉換成 Date 物件
+  const dayNum = parsedDate.getDay(); // 取得星期幾的數字
+  let day = "還沒";
+  switch (dayNum) {
+    case 0:
+      day = "星期天";
+      break;
+    case 1:
+      day = "星期一";
+      break;
+    case 2:
+      day = "星期二";
+      break;
+    case 3:
+      day = "星期三";
+      break;
+    case 4:
+      day = "星期四";
+      break;
+    case 5:
+      day = "星期五";
+      break;
+    case 6:
+      day = "星期六";
+      break;
+    default:
+      day = "錯誤";
+      break;
+  }
+  const parts = date.split("-");
+  const formattedDate = `${parts[0]}/${parts[1]}/${parts[2]}`;
+  return { date: formattedDate, amount, description, day };
 }
-// function createData(date, amount, population, size) {
-//   const density = population / size;
-//   return { date, amount, population, size, density };
-// }
 
 const rows = [
   createData(
-    "2023/8/13",
+    "2023-8-17",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-17",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-16",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-13",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-13",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-12",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-11",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-10",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
   createData(
-    "2023/8/13",
+    "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
-  ),
-  createData(
-    "2023/8/13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "Sunday",
   ),
 ];
 
@@ -244,6 +201,7 @@ export default function SubjectDetail() {
                     minWidth: column.minWidth,
                     backgroundColor: "#212131",
                     color: "white",
+                    // fontFamily: "DotGothic16",
                   }}
                   className={dot.className}
                 >
@@ -278,8 +236,8 @@ export default function SubjectDetail() {
                         align={column.align}
                         style={{ color: "white" }}
                       >
-                        {column.format && typeof value === "number"
-                          ? column.format(value)
+                        {column.id === "description" && value.length > 30
+                          ? `${value.slice(0, 30)}...`
                           : value}
                       </TableCell>
                     );
