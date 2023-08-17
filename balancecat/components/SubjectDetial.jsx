@@ -193,7 +193,7 @@ export default function SubjectDetail() {
   return (
     <Paper
       sx={{
-        width: "60%",
+        width: "100%",
         overflow: "hidden",
         borderRadius: "20px",
         border: "3px solid #d9d9d9",

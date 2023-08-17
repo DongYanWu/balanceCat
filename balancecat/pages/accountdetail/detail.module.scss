@@ -4,14 +4,32 @@
     align-items: center;
     background-color: #171721;
     height: 100vh;
-    .title{
-        font-size: 4rem;
-        color: #d9d9d9;
-        margin: 0;
+    .content {
+        .title_calender {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            .titles {
+                // margin-left: 2rem;
+                .title{
+                    font-size: 4rem;
+                    color: #d9d9d9;
+                    margin: 0;
+                }
+                .subtitle {
+                    font-size: 2rem;
+                    color: #d9d9d9;
+                    margin: 0;
+                }
+            }
+            
+            .calender {
+                margin-top: 2rem;
+
+            }
+        }
     }
-    .subtitle {
-        font-size: 2rem;
-        color: #d9d9d9;
-        margin: 0;
-    }
+    
+    
+    
 }
