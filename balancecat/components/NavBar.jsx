@@ -12,7 +12,7 @@ export default function NavBar() {
         <Link href="/" className={` ${styles.title}`}>
           Balance Cat
         </Link>
-        <Link href="/balancesheet" className={styles.link}>
+        <Link href="/userpage" className={styles.link}>
           個人頁面
         </Link>
         <Link href="/balancesheet" className={styles.link}>
