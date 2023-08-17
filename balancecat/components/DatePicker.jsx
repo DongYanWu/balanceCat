@@ -34,14 +34,13 @@ export default function DateRangePickerValue() {
         onChange={(newValue) => setValue(newValue)}
         sx={{
           color: "white",
-          "& .MuiFormLabel-root": {
+          ".MuiFormLabel-root": {
             color: "white",
-            zIndex: "2",
           },
           ".MuiOutlinedInput-notchedOutline": {
             borderColor: "white",
           },
-          "& .MuiOutlinedInput-root": {
+          ".MuiOutlinedInput-root": {
             borderRadius: "10px",
             color: "white",
           },
