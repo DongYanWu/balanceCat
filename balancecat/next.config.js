@@ -15,6 +15,10 @@ const withMDX = require("@next/mdx")({
   },
 });
 
+// const withTM = require("next-transpile-modules")(["react-icons"]);
+
+// module.exports = withTM({});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
