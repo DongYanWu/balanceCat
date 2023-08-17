@@ -96,7 +96,6 @@ import Typography from "@mui/joy/Typography";
 import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
 import { ThemeProvider } from "@mui/joy/styles";
 
-
 export default function CongratCard() {
   return (
     <ThemeProvider>
