@@ -32,7 +32,7 @@ import BedIcon from "@mui/icons-material/Bed";
 import Face2Icon from "@mui/icons-material/Face2";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import Label from "@mui/icons-material/Label";
-// import SettingsIcon from "@mui/icons-material/Settings";
+import FlagIcon from "@mui/icons-material/Flag";
 import GmailTreeView from "@/components/GmailTreeView";
 
 const assetsData = [
@@ -164,13 +164,13 @@ const assets = [
 ];
 const liabilityData = [
   {
-    nodeId: "1",
+    nodeId: "14",
     labelText: "流動負債",
     labelIcon: WavesIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "3",
+        nodeId: "16",
         labelText: "信用卡",
         labelIcon: CreditCardIcon,
         labelInfo: "90",
@@ -180,7 +180,7 @@ const liabilityData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "4",
+        nodeId: "17",
         labelText: "應付帳款",
         labelIcon: AddToHomeScreenIcon,
         labelInfo: "90",
@@ -190,7 +190,7 @@ const liabilityData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "5",
+        nodeId: "18",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -202,13 +202,13 @@ const liabilityData = [
     ],
   },
   {
-    nodeId: "2",
+    nodeId: "15",
     labelText: "非流動負債",
     labelIcon: VolcanoIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "6",
+        nodeId: "19",
         labelText: "分期付款",
         labelIcon: ReceiptIcon,
         labelInfo: "90",
@@ -218,7 +218,7 @@ const liabilityData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "7",
+        nodeId: "20",
         labelText: "車貸",
         labelIcon: CarCrashIcon,
         labelInfo: "90",
@@ -228,7 +228,7 @@ const liabilityData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "8",
+        nodeId: "21",
         labelText: "房貸",
         labelIcon: NoMeetingRoomIcon,
         labelInfo: "90",
@@ -238,7 +238,7 @@ const liabilityData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "9",
+        nodeId: "22",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -252,7 +252,7 @@ const liabilityData = [
 ];
 const liability = [
   {
-    nodeId: "0",
+    nodeId: "13",
     labelText: "負債", // 新增一個外層資產節點
     labelIcon: Label, // 設置相關圖示
     labelInfo: "300",
@@ -261,13 +261,13 @@ const liability = [
 ];
 const incomeData = [
   {
-    nodeId: "1",
+    nodeId: "24",
     labelText: "經常性收入",
     labelIcon: AccessAlarmIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "3",
+        nodeId: "26",
         labelText: "薪資收入",
         labelIcon: WorkIcon,
         labelInfo: "90",
@@ -277,7 +277,7 @@ const incomeData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "4",
+        nodeId: "27",
         labelText: "利息收入",
         labelIcon: AccountBalanceIcon,
         labelInfo: "90",
@@ -287,7 +287,7 @@ const incomeData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "5",
+        nodeId: "28",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -299,13 +299,13 @@ const incomeData = [
     ],
   },
   {
-    nodeId: "2",
+    nodeId: "25",
     labelText: "非經常性收入",
     labelIcon: AlarmOffIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "6",
+        nodeId: "29",
         labelText: "兼職收入",
         labelIcon: TwoWheelerIcon,
         labelInfo: "90",
@@ -315,7 +315,7 @@ const incomeData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "7",
+        nodeId: "30",
         labelText: "中獎",
         labelIcon: EmojiEventsIcon,
         labelInfo: "90",
@@ -325,7 +325,7 @@ const incomeData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "8",
+        nodeId: "31",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -339,7 +339,7 @@ const incomeData = [
 ];
 const income = [
   {
-    nodeId: "0",
+    nodeId: "23",
     labelText: "收入", // 新增一個外層資產節點
     labelIcon: Label, // 設置相關圖示
     labelInfo: "300",
@@ -348,13 +348,13 @@ const income = [
 ];
 const expensesData = [
   {
-    nodeId: "1",
+    nodeId: "33",
     labelText: "固定支出",
     labelIcon: AccessAlarmIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "3",
+        nodeId: "35",
         labelText: "食",
         labelIcon: KebabDiningIcon,
         labelInfo: "90",
@@ -364,7 +364,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "4",
+        nodeId: "36",
         labelText: "衣",
         labelIcon: CheckroomIcon,
         labelInfo: "90",
@@ -374,7 +374,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "5",
+        nodeId: "37",
         labelText: "住",
         labelIcon: BedIcon,
         labelInfo: "90",
@@ -384,7 +384,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "6",
+        nodeId: "38",
         labelText: "孝親",
         labelIcon: Face2Icon,
         labelInfo: "90",
@@ -394,7 +394,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "7",
+        nodeId: "39",
         labelText: "折舊",
         labelIcon: ArrowCircleDownIcon,
         labelInfo: "90",
@@ -404,7 +404,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "8",
+        nodeId: "40",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -416,13 +416,13 @@ const expensesData = [
     ],
   },
   {
-    nodeId: "2",
+    nodeId: "34",
     labelText: "非固定支出",
     labelIcon: AlarmOffIcon,
     labelInfo: "90",
     children: [
       {
-        nodeId: "9",
+        nodeId: "41",
         labelText: "食",
         labelIcon: KebabDiningIcon,
         labelInfo: "90",
@@ -432,7 +432,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "10",
+        nodeId: "42",
         labelText: "衣",
         labelIcon: CheckroomIcon,
         labelInfo: "90",
@@ -442,7 +442,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "11",
+        nodeId: "43",
         labelText: "住",
         labelIcon: BedIcon,
         labelInfo: "90",
@@ -452,7 +452,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "12",
+        nodeId: "44",
         labelText: "孝親",
         labelIcon: Face2Icon,
         labelInfo: "90",
@@ -462,7 +462,7 @@ const expensesData = [
         bgColorForDarkMode: "#071318",
       },
       {
-        nodeId: "13",
+        nodeId: "45",
         labelText: "其他",
         labelIcon: MoreHorizIcon,
         labelInfo: "90",
@@ -476,51 +476,22 @@ const expensesData = [
 ];
 const expense = [
   {
-    nodeId: "0",
+    nodeId: "32",
     labelText: "支出", // 新增一個外層資產節點
     labelIcon: Label, // 設置相關圖示
     labelInfo: "300",
     children: expensesData, // 使用傳入的資料作為子節點
   },
 ];
-// const settings = [
-//   {
-//     nodeId: "-1",
-//     labelText: "設定目標",
-//     labelIcon: Settings,
-//     labelInfo: "100,000",
-//     children: [
-//       {
-//         nodeId: "-1-0",
-//         labelText: "支出",
-//         children: expensesData,
-//       },
-//       {
-//         nodeId: "-1-1",
-//         labelText: "收入",
-//         children: incomeData,
-//       },
-//       {
-//         nodeId: "-1-2",
-//         labelText: "負債",
-//         children: liabilityData,
-//       },
-//       {
-//         nodeId: "-1-3",
-//         labelText: "資產",
-//         children: assetsData,
-//       },
-//     ],
-//   },
-// ];
+const settings = [
+  {
+    nodeId: "-1",
+    labelText: "設定目標",
+    labelIcon: FlagIcon,
+    children: [...assets, ...liability, ...income, ...expense],
+  },
+];
 
 export default function Settings() {
-  return (
-    <>
-      <GmailTreeView data={assets} />
-      <GmailTreeView data={liability} />
-      <GmailTreeView data={income} />
-      <GmailTreeView data={expense} />
-    </>
-  );
+  return <GmailTreeView data={settings} />;
 }
