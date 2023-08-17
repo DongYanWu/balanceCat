@@ -201,6 +201,7 @@ export default function SubjectDetail() {
                     minWidth: column.minWidth,
                     backgroundColor: "#212131",
                     color: "white",
+                    // fontFamily: "DotGothic16",
                   }}
                   className={dot.className}
                 >
