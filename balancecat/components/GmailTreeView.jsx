@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { Button } from "@mui/material";
+import UploadButton from "./UploadButton";
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
@@ -59,6 +60,7 @@ function StyledTreeItem(props) {
     labelText,
     colorForDarkMode,
     bgColorForDarkMode,
+    isPersonal,
     ...other
   } = props;
   const [newLabelInfo, setNewLabelInfo] = React.useState(labelInfo);
@@ -69,9 +71,9 @@ function StyledTreeItem(props) {
       theme.palette.mode !== "dark" ? bgColor : bgColorForDarkMode,
   };
   const handleEditLabelInfo = (event) => {
-    event.stopPropagation(); // 阻止事件冒泡
+    event.stopPropagation();
     setIsEditMode(!isEditMode);
-    console.log(`Editing label info for ${labelText}`);
+    // console.log(`Editing label info for ${labelText}`);
   };
 
   return (
@@ -92,7 +94,7 @@ function StyledTreeItem(props) {
           >
             {labelText}
           </Typography>
-          {isEditMode ? (
+          {/* {isEditMode ? (
             <>
               <input
                 value={newLabelInfo}
@@ -121,9 +123,50 @@ function StyledTreeItem(props) {
               >
                 {labelInfo}
               </Typography>
+
               <Button onClick={handleEditLabelInfo} variant="outlined">
                 編輯目標
               </Button>
+            </>
+          )} */}
+          {labelText === "設定大頭貼" && <UploadButton />}
+          {labelInfo == null ? null : (
+            <>
+              {isEditMode ? (
+                <>
+                  <input
+                    value={newLabelInfo}
+                    onChange={(e) => {
+                      setNewLabelInfo(e.target.value);
+                    }}
+                    onClick={(event) => event.stopPropagation()}
+                    style={{
+                      marginRight: "1rem",
+                      width: "7rem",
+                      borderRadius: "5px",
+                      border: "none",
+                      textAlign: "end",
+                    }}
+                  />
+                  <Button variant="outlined" onClick={handleEditLabelInfo}>
+                    儲存目標
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Typography
+                    variant="caption"
+                    color="inherit"
+                    sx={{ marginRight: "1rem" }}
+                  >
+                    {labelInfo}
+                  </Typography>
+                  <Button onClick={handleEditLabelInfo} variant="outlined">
+                    編輯目標
+                  </Button>
+                </>
+              )}
+              {/** */}
             </>
           )}
         </Box>
@@ -143,9 +186,10 @@ StyledTreeItem.propTypes = {
   labelIcon: PropTypes.elementType.isRequired,
   labelInfo: PropTypes.string,
   labelText: PropTypes.string.isRequired,
+  isPersonal: PropTypes.bool,
 };
 
-export default function GmailTreeView({ data }) {
+export default function GmailTreeView({ isPersonal, data }) {
   const renderTree = (nodes) => (
     <StyledTreeItem
       key={nodes.nodeId}
@@ -157,6 +201,7 @@ export default function GmailTreeView({ data }) {
       bgColor={nodes.bgColor}
       colorForDarkMode={nodes.colorForDarkMode}
       bgColorForDarkMode={nodes.bgColorForDarkMode}
+      isPersonal={isPersonal}
     >
       {Array.isArray(nodes.children)
         ? nodes.children.map((node) => renderTree(node))

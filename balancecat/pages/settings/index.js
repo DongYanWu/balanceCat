@@ -33,7 +33,10 @@ import Face2Icon from "@mui/icons-material/Face2";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import Label from "@mui/icons-material/Label";
 import FlagIcon from "@mui/icons-material/Flag";
+import PersonIcon from "@mui/icons-material/Person";
+import FaceIcon from "@mui/icons-material/Face";
 import GmailTreeView from "@/components/GmailTreeView";
+// import UploadButton from "@/components/UploadButton";
 
 const assetsData = [
   {
@@ -491,7 +494,27 @@ const settings = [
     children: [...assets, ...liability, ...income, ...expense],
   },
 ];
+const personal = [
+  {
+    nodeId: "0",
+    labelText: "個人資料設定",
+    labelIcon: PersonIcon,
+    children: [
+      {
+        nodeId: "1",
+        labelText: "設定大頭貼",
+        labelIcon: FaceIcon,
+      },
+    ],
+  },
+];
 
 export default function Settings() {
-  return <GmailTreeView data={settings} />;
+  return (
+    <>
+      <GmailTreeView isPersonal data={personal} />
+      <GmailTreeView isPersonal={false} data={settings} />
+      {/* <UploadButton /> */}
+    </>
+  );
 }
