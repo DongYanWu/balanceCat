@@ -1,4 +1,3 @@
-import Test from "@/components/Test";
 import BasicLineChart from "@/components/BasicLineChart";
 import NavBar from "@/components/NavBar";
 

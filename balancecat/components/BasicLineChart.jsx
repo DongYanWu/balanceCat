@@ -1,9 +1,16 @@
-import * as React from "react";
-import { LineChart } from "@mui/x-charts/LineChart";
+import dynamic from "next/dynamic";
 
+const DynamicLineChart = dynamic(
+  () => import("@mui/x-charts").then((mod) => mod.LineChart),
+  {
+    ssr: false, // This will load the component only on the client side
+    loading: () => <p>Loading...</p>,
+    // eslint-disable-next-line prettier/prettier
+  }
+);
 export default function BasicLineChart() {
   return (
-    <LineChart
+    <DynamicLineChart
       xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
       series={[
         {

@@ -29,7 +29,8 @@ module.exports = withMDX(nextConfig);
 module.exports = nextConfig;
 
 module.exports = {
-  exportTrailingSlash: true,
+  // exportTrailingSlash: true,
+  trailingSlash: true,
 };
 
 // module.exports = {
