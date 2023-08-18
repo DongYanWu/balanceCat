@@ -1,10 +1,12 @@
 // components/CardTemplate.js
 import styles from "./CardTemplate.module.scss";
 
-function CardTemplate({ children }) {
+function CardTemplate({ children, style }) {
   return (
     <div className={styles.container}>
-      <div className={styles.card}>{children}</div>
+      <div className={styles.card} style={style}>
+        {children}
+      </div>
     </div>
   );
 }

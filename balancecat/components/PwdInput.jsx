@@ -22,21 +22,26 @@ export default function PwdInput({ confirm }) {
       <div>
         <FormControl
           sx={{
+            backgroundColor: "white",
+            borderRadius: "15px",
             m: 1,
-            width: "25ch",
+            width: "36ch",
             ".MuiOutlinedInput-root": {
-              borderRadius: "10px",
+              borderRadius: "15px",
+            },
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
             },
           }}
           variant="outlined"
         >
           {confirm ? (
             <InputLabel htmlFor="outlined-adornment-password">
-              再次輸入密碼
+              Confirm Password
             </InputLabel>
           ) : (
             <InputLabel htmlFor="outlined-adornment-password">
-              輸入密碼
+              Password
             </InputLabel>
           )}
           <OutlinedInput

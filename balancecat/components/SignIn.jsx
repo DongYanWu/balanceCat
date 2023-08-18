@@ -11,38 +11,39 @@ export default function SignUp({ setIsLogIn }) {
         <p className={styles.title}>Balance Cat</p>
       </div>
 
-      <p className={styles.free}>START FOR FREE</p>
+      <p className={styles.free}>CONTINUE YOUT JOURNEY</p>
       <div className={styles.sentence}>
-        <p className={styles.new}>Create new account</p>
+        <p className={styles.new}>Member Sign In</p>
         <p className={styles.period}>.</p>
       </div>
       <div className={styles.member_login}>
-        <p className={styles.member}>Already A Member?</p>
+        <p className={styles.member}>Not A Member?</p>
         <p
           className={styles.login}
           onClick={() => {
-            setIsLogIn(true);
+            setIsLogIn(false);
           }}
           aria-hidden="true"
         >
-          Log In
+          Sign Up
         </p>
       </div>
       <div className={styles.inputs}>
+        <br />
         <InputBox email />
-        <InputBox username />
+        <br />
         <PwdInput />
-        <PwdInput confirm />
         <br />
         <Button
           variant="contained"
           sx={{
+            fontWeight: "600",
             width: "20ch",
             backgroundColor: "#4481f4",
             borderRadius: "15px",
           }}
         >
-          Sign Up
+          SIGN IN
         </Button>
       </div>
     </div>

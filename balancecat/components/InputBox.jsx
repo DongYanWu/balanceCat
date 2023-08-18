@@ -7,7 +7,7 @@ export default function InputBox({ email, username }) {
     <Box
       component="form"
       sx={{
-        "& > :not(style)": { m: 1, width: "25ch" },
+        "& > :not(style)": { m: 1, width: "36ch" },
       }}
       noValidate
       autoComplete="off"
@@ -15,11 +15,16 @@ export default function InputBox({ email, username }) {
       {email && (
         <TextField
           id="outlined-basic"
-          label="電子信箱"
+          label="Email"
           variant="outlined"
           sx={{
+            backgroundColor: "white",
+            borderRadius: "15px",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
             ".MuiOutlinedInput-root": {
-              borderRadius: "10px",
+              borderRadius: "15px",
             },
           }}
         />
@@ -27,11 +32,16 @@ export default function InputBox({ email, username }) {
       {username && (
         <TextField
           id="outlined-basic"
-          label="你的名字"
+          label="Name"
           variant="outlined"
           sx={{
+            backgroundColor: "white",
+            borderRadius: "15px",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
             ".MuiOutlinedInput-root": {
-              borderRadius: "10px",
+              borderRadius: "15px",
             },
           }}
         />
