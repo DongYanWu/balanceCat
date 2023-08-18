@@ -87,14 +87,32 @@
 // }
 
 import * as React from "react";
-import AspectRatio from "@mui/joy/AspectRatio";
+// import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import CardActions from "@mui/joy/CardActions";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
-import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
+// import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
 import { ThemeProvider } from "@mui/joy/styles";
+import Stack from "@mui/material/Stack";
+import dynamic from "next/dynamic";
+
+// import { PieChart } from "@mui/x-charts";
+const PieChart = dynamic(
+  () => import("@mui/x-charts").then((mod) => mod.PieChart),
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+);
+
+const data = [
+  { label: "Group A", value: 400 },
+  { label: "Group B", value: 300 },
+  { label: "Group C", value: 300 },
+  { label: "Group D", value: 200 },
+];
 
 export default function CongratCard() {
   return (
@@ -109,10 +127,13 @@ export default function CongratCard() {
           // overflow: "auto",
           resize: "horizontal",
           "--icon-size": "100px",
+          borderRadius: "30px",
+          // backgroundColor: "#f9ccff",
+          backgroundImage: "linear-gradient(to bottom, #ddd3ff, #fdcbff)",
         }}
       >
         <CardOverflow variant="solid" color="warning">
-          <AspectRatio
+          {/* <AspectRatio
             variant="outlined"
             color="warning"
             ratio="1"
@@ -129,7 +150,7 @@ export default function CongratCard() {
             <div>
               <BakeryDiningIcon color="warning" sx={{ fontSize: "4rem" }} />
             </div>
-          </AspectRatio>
+          </AspectRatio> */}
         </CardOverflow>
         <Typography level="title-lg" sx={{ mt: "calc(var(--icon-size) / 2)" }}>
           🎊 Congrats Julia 🎊
@@ -137,6 +158,22 @@ export default function CongratCard() {
         <CardContent sx={{ maxWidth: "40ch" }}>
           You just gain one Cookhat for Salad cooking. Share your achievement
           with your friends.
+          <Stack direction="row">
+            <PieChart
+              series={[
+                {
+                  paddingAngle: 5,
+                  innerRadius: 60,
+                  outerRadius: 80,
+                  data,
+                },
+              ]}
+              margin={{ right: 5 }}
+              width={200}
+              height={200}
+              legend={{ hidden: true }}
+            />
+          </Stack>
         </CardContent>
         <CardActions
           orientation="vertical"
