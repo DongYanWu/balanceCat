@@ -33,16 +33,16 @@ export default function DateRangePickerValue() {
         value={value}
         onChange={(newValue) => setValue(newValue)}
         sx={{
-          color: "white",
-          ".MuiFormLabel-root": {
-            color: "white",
-          },
-          ".MuiOutlinedInput-notchedOutline": {
-            borderColor: "white",
-          },
+          // color: "white",
+          // ".MuiFormLabel-root": {
+          //   color: "white",
+          // },
+          // ".MuiOutlinedInput-notchedOutline": {
+          //   borderColor: "white",
+          // },
           ".MuiOutlinedInput-root": {
             borderRadius: "10px",
-            color: "white",
+            // color: "white",
           },
         }}
       />
