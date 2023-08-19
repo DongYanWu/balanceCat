@@ -1,5 +1,7 @@
 import Sheet from "@/components/Sheet";
-import NavBar from "@/components/NavBar";
+// import NavBar from "@/components/NavBar";
+import CardTemplate from "@/components/cardTemplate/CardTemplate";
+import SideBar from "@/components/SideBar";
 
 export default function BalanceSheetPage() {
   const data = [
@@ -155,10 +157,14 @@ export default function BalanceSheetPage() {
     },
   ];
   return (
-    <div>
-      <NavBar />
+    <CardTemplate style={{ display: "flex" }}>
+      <SideBar />
       <Sheet data={data} />
-      {/* <Test /> */}
-    </div>
+    </CardTemplate>
+    // <div>
+    //   {/* <NavBar /> */}
+    //   <Sheet data={data} />
+    //   {/* <Test /> */}
+    // </div>
   );
 }

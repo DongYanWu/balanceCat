@@ -42,7 +42,7 @@ export default function UploadButton() {
           </SvgIcon>
         }
       >
-        上傳圖片
+        上傳
         <VisuallyHiddenInput type="file" />
       </Button>
     </ThemeProvider>

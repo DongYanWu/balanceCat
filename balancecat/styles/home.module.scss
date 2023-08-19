@@ -5,9 +5,12 @@
     flex-direction: column;
     align-items: center;
     .box {
-        width: 80%;
-        border-radius: 0px 0px 50px 150px;
-        background: #B0FFBB;
+        width: 100%;
+        // border-radius: 0px 0px 50px 150px;
+        // background: #B0FFBB;
+        // background: radial-gradient(ellipse at bottom, #001f3f 0%, #000000 100%); 
+        height: max-content;
+        min-height:100% ;
         padding: 2rem 2rem 4rem 4rem;
         display: flex;
         flex-direction: row;
@@ -16,7 +19,7 @@
             width: max-content;
             .title {
                 // font-family: 'Tilt Warp', cursive;
-                font-size: 7rem;
+                font-size: 5rem;
                 font-weight: 800;
                 padding: 0;
                 margin: 0;
@@ -50,13 +53,5 @@
                 }
             }
         }
-        // @keyframes move{
-        //     from{
-        //       margin-top:0;
-        //     }
-        //     to{
-        //       margin-top:150px;
-        //     }
-        //   } 
     }
 }

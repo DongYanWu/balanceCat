@@ -142,7 +142,7 @@ function StyledTreeItem(props) {
                     onClick={(event) => event.stopPropagation()}
                     style={{
                       marginRight: "1rem",
-                      width: "7rem",
+                      width: "3rem",
                       borderRadius: "5px",
                       border: "none",
                       textAlign: "end",
@@ -162,7 +162,7 @@ function StyledTreeItem(props) {
                     {labelInfo}
                   </Typography>
                   <Button onClick={handleEditLabelInfo} variant="outlined">
-                    編輯目標
+                    編輯
                   </Button>
                 </>
               )}
