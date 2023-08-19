@@ -14,7 +14,9 @@
     .blueBox {
         width: 80%;
         border-radius: 50px;
-        background: #cce8fe;
+        // background: #cce8fe;
+        background: linear-gradient(to bottom right, #e0f1fd, #b9d7f9); 
+        box-shadow: 0 0 40px rgb(255,255,255,1);
         padding: 2rem 3rem;
         .bar {
             display: flex;
@@ -30,13 +32,12 @@
                 
             }
             img {
-                
-                // margin-right: 3%;
+                cursor: pointer;
             }
         }
         hr {
-            color: #c5e9ef;
-            border: 0.5px solid #717b87;
+            // color: #c5e9ef;
+            border: 0.5px solid #a1c1e5;
         }
     }
 }

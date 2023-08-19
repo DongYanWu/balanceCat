@@ -20,7 +20,18 @@ const handjet = Handjet({
 });
 export default function DetailPage() {
   return (
-    <CardTemplate style={{ display: "flex", gap: "10vw" }}>
+    <CardTemplate
+      backgroundStyle={{
+        background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+      }}
+      style={{
+        display: "flex",
+        gap: "15%",
+        background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+        border: "none",
+      }}
+    >
       <SideBar />
       <div className={styles.wrapper}>
         <div className={styles.content}>

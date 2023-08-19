@@ -21,27 +21,6 @@ const columns = [
   { id: "amount", label: "金額", minWidth: 100 },
   { id: "description", label: "註解", minWidth: 100 },
   { id: "day", label: "曜日", minWidth: 100 },
-  //   {
-  //     id: "population",
-  //     label: "Population",
-  //     minWidth: 170,
-  //     align: "right",
-  //     format: (value) => value.toLocaleString("en-US"),
-  //   },
-  //   {
-  //     id: "size",
-  //     label: "Size\u00a0(km\u00b2)",
-  //     minWidth: 170,
-  //     align: "right",
-  //     format: (value) => value.toLocaleString("en-US"),
-  //   },
-  //   {
-  //     id: "density",
-  //     label: "Density",
-  //     minWidth: 170,
-  //     align: "right",
-  //     format: (value) => value.toFixed(2),
-  //   },
 ];
 
 function createData(date, amount, description) {
@@ -173,21 +152,22 @@ export default function SubjectDetail() {
     >
       <TableContainer
         sx={{
+          minHeight: 300,
           maxHeight: 440,
-          "&::-webkit-scrollbar-track": {
-            backgroundColor: "#212131", // 更改滾動條軌道的顏色
-          },
-          "&::-webkit-scrollbar": {
-            width: "12px", // 調整滾動條的寬度
-            color: "#212131",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#666", // 更改滾動條的顏色
-            borderRadius: "10px", // 設定圓角
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#777", // 滑鼠懸停時的顏色
-          },
+          // "&::-webkit-scrollbar-track": {
+          //   backgroundColor: "#212131", // 更改滾動條軌道的顏色
+          // },
+          // "&::-webkit-scrollbar": {
+          //   width: "12px", // 調整滾動條的寬度
+          //   color: "#212131",
+          // },
+          // "&::-webkit-scrollbar-thumb": {
+          //   backgroundColor: "#666", // 更改滾動條的顏色
+          //   borderRadius: "10px", // 設定圓角
+          // },
+          // "&::-webkit-scrollbar-thumb:hover": {
+          //   backgroundColor: "#777", // 滑鼠懸停時的顏色
+          // },
         }}
       >
         <Table stickyHeader aria-label="sticky table">
@@ -199,9 +179,8 @@ export default function SubjectDetail() {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    backgroundColor: "#212131",
-                    color: "white",
-                    // fontFamily: "DotGothic16",
+                    // backgroundColor: "#212131",
+                    // color: "white",
                   }}
                   className={dot.className}
                 >
@@ -211,13 +190,13 @@ export default function SubjectDetail() {
             </TableRow>
           </TableHead>
           <TableBody
-            sx={{
-              backgroundColor: "#212131",
-              "& :hover": {
-                backgroundColor: "#2c2d3d",
-              },
-              cursor: "pointer",
-            }}
+          // sx={{
+          //   backgroundColor: "#212131",
+          //   "& :hover": {
+          //     backgroundColor: "#2c2d3d",
+          //   },
+          //   cursor: "pointer",
+          // }}
           >
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -234,7 +213,7 @@ export default function SubjectDetail() {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ color: "white" }}
+                        // style={{ color: "white" }}
                       >
                         {column.id === "description" && value.length > 30
                           ? `${value.slice(0, 30)}...`
@@ -271,14 +250,14 @@ export default function SubjectDetail() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
-          color: "white",
+          // color: "white",
           "& .Mui-disabled": {
             color: "#ccc",
           },
-          backgroundColor: "#212130",
-          "& .MuiTablePagination-selectIcon": {
-            color: "white",
-          },
+          // backgroundColor: "#170023",
+          // "& .MuiTablePagination-selectIcon": {
+          //   color: "white",
+          // },
         }}
       />
     </Paper>

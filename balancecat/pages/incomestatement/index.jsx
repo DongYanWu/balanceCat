@@ -147,7 +147,17 @@ export default function BalanceSheetPage() {
   ];
 
   return (
-    <CardTemplate style={{ display: "flex" }}>
+    <CardTemplate
+      backgroundStyle={{
+        background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+      }}
+      style={{
+        display: "flex",
+        boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+        background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        border: "none",
+      }}
+    >
       <SideBar />
       <Sheet data={data} />
     </CardTemplate>

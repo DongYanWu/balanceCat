@@ -84,10 +84,10 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
-          {assets.map.length <= 3 && (
+          {assets.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
-                src="/image.png"
+                src="/starcat.png"
                 width={100}
                 height={100}
                 alt="cat"
@@ -128,10 +128,10 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
-          {assets.map.length <= 3 && (
+          {assets.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
-                src="/image.png"
+                src="/starcat.png"
                 width={100}
                 height={100}
                 alt="cat"
@@ -172,10 +172,10 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
-          {assets.map.length <= 3 && (
+          {assets.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
-                src="/image.png"
+                src="/starcat.png"
                 width={100}
                 height={100}
                 alt="cat"
@@ -216,10 +216,10 @@ export default function AssetsOverview() {
               <hr />
             </div>
           ))}
-          {assets.map.length <= 3 && (
+          {assets.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
-                src="/image.png"
+                src="/starcat.png"
                 width={100}
                 height={100}
                 alt="cat"
