@@ -1,16 +1,13 @@
 import * as React from "react";
-// import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import CardActions from "@mui/joy/CardActions";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
-// import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
 import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import { Box, createTheme } from "@mui/system";
-
-// import { PieChart } from "@mui/x-charts";
+import styles from "../../styles/DataCard.module.scss";
 
 const PieChart = dynamic(
   () => import("@mui/x-charts").then((mod) => mod.PieChart),
@@ -30,7 +27,7 @@ const pieArcClasses = dynamic(
 
 const data = [
   { label: "資產", value: 400 },
-  { label: "Group B", value: 300 },
+  { label: "負債", value: 300 },
   { label: "Group C", value: 300 },
   { label: "Group D", value: 200 },
 ];
@@ -53,7 +50,7 @@ const theme = createTheme({
   },
 });
 
-export default function CongratCard() {
+export default function DataCard({ isDebitCard, color }) {
   return (
     <ThemeProvider>
       <Card
@@ -61,22 +58,22 @@ export default function CongratCard() {
         sx={{
           textAlign: "center",
           alignItems: "center",
-          width: 343,
+          width: 323,
+          height: 303,
           // to make the demo resizable
           // overflow: "auto",
           resize: "horizontal",
           "--icon-size": "100px",
           borderRadius: "30px",
           // backgroundColor: "#f9ccff",
-          backgroundImage: "linear-gradient(to bottom, #ddd3ff, #fdcbff)",
+
+          backgroundImage: color,
         }}
       >
         <CardOverflow variant="solid" color="warning" />
-        {/* <Typography level="title-lg" sx={{ mt: "calc(var(--icon-size) / 2)" }}>
-          🎊 Congrats Julia 🎊
-        </Typography> */}
+
         <CardContent sx={{ maxWidth: "40ch" }}>
-          <div style={{ display: "flex" }}>
+          <div className={styles.datacontent}>
             <ThemeProvider theme={theme}>
               <Box
                 sx={{
@@ -84,10 +81,14 @@ export default function CongratCard() {
                   boxShadow: 0,
                   borderRadius: 2,
                   p: 2,
-                  minWidth: 200,
+                  minWidth: 150,
+                  paddingRight: "0px",
+                  textAlign: "left",
                 }}
               >
-                <Box sx={{ color: "text.secondary" }}>資產</Box>
+                <Box sx={{ color: "text.secondary" }}>
+                  {isDebitCard ? "資產" : "當月支出限額"}
+                </Box>
                 <Box
                   sx={{
                     color: "text.primary",
@@ -126,10 +127,14 @@ export default function CongratCard() {
                   boxShadow: 0,
                   borderRadius: 2,
                   p: 2,
-                  minWidth: 200,
+                  minWidth: 150,
+                  paddingLeft: "0px",
+                  textAlign: "left",
                 }}
               >
-                <Box sx={{ color: "text.secondary" }}>負債</Box>
+                <Box sx={{ color: "text.secondary" }}>
+                  {isDebitCard ? "負債" : "已支出金額"}
+                </Box>
                 <Box
                   sx={{
                     color: "text.primary",
@@ -168,18 +173,17 @@ export default function CongratCard() {
               series={[
                 {
                   paddingAngle: 5,
-                  innerRadius: 60,
-                  outerRadius: 80,
+                  innerRadius: 40,
+                  outerRadius: 60,
                   // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
                   arcLabelMinAngle: 15,
                   highlightScope: { faded: "global", highlighted: "item" },
-                  faded: { innerRadius: 30, additionalRadius: -30 },
+                  faded: { innerRadius: 20, additionalRadius: -20 },
                   data,
                 },
               ]}
-              margin={{ right: 5 }}
-              width={200}
-              height={200}
+              // width={100}
+              height={130}
               // legend={{ hidden: true }}  //hide the color stand for
               sx={{
                 [`& .${pieArcClasses.faded}`]: {

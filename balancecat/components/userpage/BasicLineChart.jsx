@@ -2,7 +2,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
-import styles from "../styles/BasicLineChart.module.scss";
+import styles from "../../styles/BasicLineChart.module.scss";
 
 const Button = dynamic(() => import("@mui/material/Button"), { ssr: false });
 const Dialog = dynamic(() => import("@mui/material/Dialog"), { ssr: false });
@@ -23,7 +23,7 @@ const SettingsIcon = dynamic(() => import("@mui/icons-material/Settings"), {
   ssr: false,
 });
 
-const YearPicker = dynamic(() => import("./YearPicker"), { ssr: false });
+const YearPicker = dynamic(() => import("../YearPicker"), { ssr: false });
 
 const DynamicLineChart = dynamic(
   () => import("@mui/x-charts").then((mod) => mod.LineChart),
@@ -79,7 +79,7 @@ export default function BasicLineChart() {
   }, [open]);
 
   return (
-    <div>
+    <div className={styles.test}>
       {isSetting && (
         <Dialog
           fullScreen={fullScreen}
@@ -107,37 +107,12 @@ export default function BasicLineChart() {
         </Dialog>
       )}
 
-      <DynamicLineChart
-        // sx={{
-        //   "& .MuiChartsTooltip-table": {
-        //     position: "relative",
-        //     zIndex: "8000",
-        //     backgroundColor: "red",
-        //   },
-        // }}
-        xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12], label: "月份" }]}
-        yAxis={[
-          {
-            label: "1000 (TWD)", // Hypothetical label property for y-axis
-          },
-        ]}
-        series={[
-          {
-            data: [2, 5.5, 2, 8.5, 1.5, 5, 1],
-          },
-          {
-            data: [21, 4.5, 0, 1.5, 12.5, 5, 10],
-          },
-        ]}
-        width={500}
-        height={300}
-      />
       <Button onClick={handleClickOpen("paper")}>scroll=paper</Button>
       <Button onClick={handleClickOpen("body")}>scroll=body</Button>
       <Dialog
-        sx={{
-          zIndex: "0",
-        }}
+        // sx={{
+        //   zIndex: "0",
+        // }}
         open={open}
         onClose={handleClose}
         scroll={scroll}
@@ -244,6 +219,8 @@ export default function BasicLineChart() {
             </div>
             <DynamicLineChart
               sx={{
+                zIndex: "8000",
+
                 "& .MuiChartsTooltip-table": {
                   position: "relative",
                   zIndex: "8000",

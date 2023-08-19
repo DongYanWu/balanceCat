@@ -1,9 +1,8 @@
-import BasicLineChart from "@/components/BasicLineChart";
+import BasicLineChart from "@/components/userpage/BasicLineChart";
 import NavBar from "@/components/NavBar";
 // import YearPicker from "@/components/YearPicker";
-import ChartCard from "@/components/ChartCard";
-import Test from "@/components/Test";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
+import DataCard from "@/components/userpage/DataCard";
 
 export default function UserPage() {
   return (
@@ -11,8 +10,11 @@ export default function UserPage() {
       <NavBar />
       <BasicLineChart />
       <div style={{ display: "flex" }}>
-        <ChartCard />
-        <Test />
+        <DataCard
+          isDebitCard
+          color="linear-gradient(to bottom, #ddd3ff, #fdcbff)"
+        />
+        <DataCard color="linear-gradient(to bottom, #8ee8f7, #b0f2f0)" />
       </div>
     </CardTemplate>
   );
