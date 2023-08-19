@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { Silkscreen } from "next/font/google";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import AssetsOverview from "@/components/assetsOverview/AssetsOverview";
@@ -16,7 +16,17 @@ const silk = Silkscreen({
 export default function Home() {
   return (
     <div className={styles.wrapper}>
-      <CardTemplate style={{ display: "flex" }}>
+      <CardTemplate
+        backgroundStyle={{
+          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        }}
+        style={{
+          display: "flex",
+          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          border: "none",
+        }}
+      >
         <SideBar />
         <div className={styles.box}>
           <div className={styles.title_entries}>
@@ -24,62 +34,70 @@ export default function Home() {
             <p className={`${silk.className} ${styles.title}`}>are winner</p>
             <Entries />
           </div>
-          {/* <div className={styles.cat_coin}>
-            <Image src="/bigCat.png" width={340} height={313} alt="cat" />
-            <div className={styles.imageContainer}>
-              <Image
-                id={styles.coin1}
-                src="/coin1.png"
-                width={100}
-                height={100}
-                alt="coin"
-              />
-              <Image
-                id={styles.coin2}
-                src="/coin2.png"
-                width={100}
-                height={100}
-                alt="coin"
-              />
-              <Image
-                id={styles.coin3}
-                src="/coin3.png"
-                width={86}
-                height={100}
-                alt="coin"
-              />
-              <Image
-                id={styles.coin4}
-                src="/coin4.png"
-                width={100}
-                height={100}
-                alt="coin"
-              />
-              <Image
-                id={styles.coin5}
-                src="/coin5.png"
-                width={100}
-                height={100}
-                alt="coin"
-              />
-            </div>
-          </div> */}
         </div>
+        <Image
+          src="/astrocat.png"
+          alt="cat pic"
+          width={300}
+          height={300}
+          className={styles.cat}
+          style={{
+            borderRadius: "30%",
+            // position: "absolute",
+            // bottom: "20px",
+            // left: "50%",
+            transform: "translateX(-50%)",
+            animation: "bounce 2s infinite",
+          }}
+        />
       </CardTemplate>
+      <style>
+        {`
+          /* 定義彈跳動畫 */
+          @keyframes bounce {
+            0%,
+            100% {
+              transform: translateY(0); /* 初始和結束狀態為不移動 */
+            }
+            50% {
+              transform: translateY(-20px); /* 中間狀態為向上移動 */
+            }
+          }
+        `}
+      </style>
 
-      <br />
       <CardTemplate
-        style={{ display: "flex", gap: "2rem", alignItems: "center" }}
+        backgroundStyle={{
+          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        }}
+        style={{
+          display: "flex",
+          gap: "2rem",
+          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          border: "none",
+        }}
       >
         <SideBar />
         <AssetsOverview />
       </CardTemplate>
 
-      <CardTemplate style={{ display: "flex", alignItems: "center" }}>
+      <CardTemplate
+        backgroundStyle={{
+          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        }}
+        style={{
+          display: "flex",
+          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          border: "none",
+        }}
+      >
         <SideBar />
-        <FrequentlyAskedQuestions />
+        <div style={{ alignSelf: "center", width: "100%" }}>
+          <FrequentlyAskedQuestions />
+        </div>
       </CardTemplate>
-      <br />
       <Footer />
     </div>
   );

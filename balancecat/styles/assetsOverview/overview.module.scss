@@ -11,6 +11,19 @@
         font-weight: 700;
         line-height: normal;
     }
+    .cat {
+        border-radius: 30%;
+        animation: bounce 2s infinite;
+        @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0); /* 初始和結束狀態為不移動 */
+            }
+            50% {
+              transform: translateY(-20px); /* 中間狀態為向上移動 */
+            }
+          }
+    }
+    
     .buttons{
         display: flex;
         flex-direction: row;
