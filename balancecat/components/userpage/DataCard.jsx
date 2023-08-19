@@ -6,7 +6,7 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
-import { Box, createTheme, width } from "@mui/system";
+import { Box, createTheme } from "@mui/system";
 import styles from "../../styles/DataCard.module.scss";
 
 const PieChart = dynamic(
@@ -14,6 +14,7 @@ const PieChart = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
+    // eslint-disable-next-line prettier/prettier
   }
 );
 
@@ -22,6 +23,7 @@ const pieArcClasses = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
+    // eslint-disable-next-line prettier/prettier
   }
 );
 

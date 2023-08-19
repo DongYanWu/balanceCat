@@ -1,14 +1,13 @@
 import Avatar from "@mui/material/Avatar";
-import React, { useState } from "react";
+import React from "react";
 // import YearPicker from "@/components/YearPicker";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import DataCard from "@/components/userpage/DataCard";
 import SideBar from "@/components/SideBar";
-import TargetList from "@/components/userpage/TargetList";
 import SwitchBar from "@/components/userpage/SwitchBar";
 import PlanCard from "@/components/userpage/PlanCard";
-import styles from "../../styles/userpage.module.scss";
 import Sun from "@/components/Sun";
+import styles from "../../styles/userpage.module.scss";
 
 export default function UserPage() {
   return (

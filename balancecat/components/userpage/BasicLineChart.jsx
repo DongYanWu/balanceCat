@@ -14,6 +14,7 @@ const DialogContent = dynamic(() => import("@mui/material/DialogContent"), {
 });
 const DialogContentText = dynamic(
   () => import("@mui/material/DialogContentText"),
+  // eslint-disable-next-line prettier/prettier
   { ssr: false }
 );
 const DialogTitle = dynamic(() => import("@mui/material/DialogTitle"), {
@@ -30,6 +31,7 @@ const DynamicLineChart = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
+    // eslint-disable-next-line prettier/prettier
   }
 );
 

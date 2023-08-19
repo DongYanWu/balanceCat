@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from "react";
 import { styled } from "@mui/system";
 import { Tabs } from "@mui/base/Tabs";
@@ -41,18 +42,18 @@ const blue = {
   900: "#003A75",
 };
 
-const grey = {
-  50: "#f6f8fa",
-  100: "#eaeef2",
-  200: "#d0d7de",
-  300: "#afb8c1",
-  400: "#8c959f",
-  500: "#6e7781",
-  600: "#57606a",
-  700: "#424a53",
-  800: "#32383f",
-  900: "#24292f",
-};
+// const grey = {
+//   50: "#f6f8fa",
+//   100: "#eaeef2",
+//   200: "#d0d7de",
+//   300: "#afb8c1",
+//   400: "#8c959f",
+//   500: "#6e7781",
+//   600: "#57606a",
+//   700: "#424a53",
+//   800: "#32383f",
+//   900: "#24292f",
+// };
 
 const StyledTab = styled(Tab)`
   font-family: "IBM Plex Sans", sans-serif;
@@ -89,20 +90,21 @@ const StyledTab = styled(Tab)`
 //  color: #fff;
 // background-color: ${blue[400]};
 
-const StyledTabPanel = styled(TabPanel)(
-  ({ theme }) => `
-  width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  padding: 20px 12px;
-  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-  border-radius: 12px;
-  opacity: 0.6;
-  `
-);
+// const StyledTabPanel = styled(TabPanel)(
+//   ({ theme }) => `
+//   width: 100%;
+//   font-family: IBM Plex Sans, sans-serif;
+//   font-size: 0.875rem;
+//   padding: 20px 12px;
+//   background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+//   border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+//   border-radius: 12px;
+//   opacity: 0.6;
+//   `
+// );
 
 const StyledTabsList = styled(TabsList)(
+  // eslint-disable-next-line no-unused-vars
   ({ theme }) => `
   max-width: 400px;
   background-color: inherit;
