@@ -25,15 +25,15 @@
 }
 
 .test {
+  width: 100%;
   table {
     background-color: red;
-  
-  
   }
-  .css-2hvfka-MuiChartsTooltip-table  {
+  .css-2hvfka-MuiChartsTooltip-table {
     background-color: red;
-  
-  
   }
 }
 
+.MuiPopper-root.MuiPopper-root {
+  z-index: 10000;
+}

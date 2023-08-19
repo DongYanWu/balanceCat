@@ -14,7 +14,7 @@ const DialogContent = dynamic(() => import("@mui/material/DialogContent"), {
 });
 const DialogContentText = dynamic(
   () => import("@mui/material/DialogContentText"),
-  { ssr: false },
+  { ssr: false }
 );
 const DialogTitle = dynamic(() => import("@mui/material/DialogTitle"), {
   ssr: false,
@@ -30,7 +30,7 @@ const DynamicLineChart = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
-  },
+  }
 );
 
 // ... rest of your code
@@ -106,9 +106,11 @@ export default function BasicLineChart() {
           </DialogActions>
         </Dialog>
       )}
-
-      <Button onClick={handleClickOpen("paper")}>scroll=paper</Button>
-      <Button onClick={handleClickOpen("body")}>scroll=body</Button>
+      <Button variant="outlined" onClick={handleClickOpen("paper")}>
+        更多
+      </Button>
+      {/* <Button onClick={handleClickOpen("paper")}>scroll=paper</Button>
+      <Button onClick={handleClickOpen("body")}>scroll=body</Button> */}
       <Dialog
         // sx={{
         //   zIndex: "0",
@@ -220,15 +222,25 @@ export default function BasicLineChart() {
             <DynamicLineChart
               sx={{
                 zIndex: "8000",
-
-                "& .MuiChartsTooltip-table": {
-                  position: "relative",
-                  zIndex: "8000",
+                "& .MuiPopper-root": {
+                  zIndex: "10000 important",
                   backgroundColor: "red",
                 },
-                "& table": {
-                  position: "relative",
-                  zIndex: "8000",
+                "& .MuiChartsTooltip-table": {
+                  zIndex: "10000 important",
+                  backgroundColor: "red",
+                },
+                "& .MuiLineElement-root": {
+                  zIndex: "10000 important",
+                  backgroundColor: "red",
+                },
+
+                "& .MuiPopper-root-MuiPopper-root": {
+                  zIndex: "10000 important",
+                  backgroundColor: "red",
+                },
+                "& .MuiPopper-root.MuiPopper-root": {
+                  zIndex: "10000 important",
                   backgroundColor: "red",
                 },
               }}

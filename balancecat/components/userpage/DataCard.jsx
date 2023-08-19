@@ -6,7 +6,7 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
-import { Box, createTheme } from "@mui/system";
+import { Box, createTheme, width } from "@mui/system";
 import styles from "../../styles/DataCard.module.scss";
 
 const PieChart = dynamic(
@@ -14,7 +14,7 @@ const PieChart = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
-  },
+  }
 );
 
 const pieArcClasses = dynamic(
@@ -22,7 +22,7 @@ const pieArcClasses = dynamic(
   {
     ssr: false,
     loading: () => <p>Loading...</p>,
-  },
+  }
 );
 
 const data = [
@@ -58,15 +58,14 @@ export default function DataCard({ isDebitCard, color }) {
         sx={{
           textAlign: "center",
           alignItems: "center",
-          width: 323,
-          height: 303,
+          width: 280,
+          height: 240,
           // to make the demo resizable
           // overflow: "auto",
           resize: "horizontal",
           "--icon-size": "100px",
           borderRadius: "30px",
           // backgroundColor: "#f9ccff",
-
           backgroundImage: color,
         }}
       >
@@ -81,18 +80,20 @@ export default function DataCard({ isDebitCard, color }) {
                   boxShadow: 0,
                   borderRadius: 2,
                   p: 2,
-                  minWidth: 150,
+                  minWidth: 120,
                   paddingRight: "0px",
+                  padding: "0px",
+
                   textAlign: "left",
                 }}
               >
                 <Box sx={{ color: "text.secondary" }}>
-                  {isDebitCard ? "資產" : "當月支出限額"}
+                  {isDebitCard ? "資產" : "當月支出金額 "}
                 </Box>
                 <Box
                   sx={{
                     color: "text.primary",
-                    fontSize: 34,
+                    fontSize: 24,
                     fontWeight: "medium",
                   }}
                 >
@@ -127,8 +128,9 @@ export default function DataCard({ isDebitCard, color }) {
                   boxShadow: 0,
                   borderRadius: 2,
                   p: 2,
-                  minWidth: 150,
+                  minWidth: 120,
                   paddingLeft: "0px",
+                  padding: "0px",
                   textAlign: "left",
                 }}
               >
@@ -138,7 +140,7 @@ export default function DataCard({ isDebitCard, color }) {
                 <Box
                   sx={{
                     color: "text.primary",
-                    fontSize: 34,
+                    fontSize: 24,
                     fontWeight: "medium",
                   }}
                 >
@@ -186,8 +188,14 @@ export default function DataCard({ isDebitCard, color }) {
               height={130}
               // legend={{ hidden: true }}  //hide the color stand for
               sx={{
+                marginTop: "20px",
+                marginRight: "10px",
                 [`& .${pieArcClasses.faded}`]: {
                   fill: "gray",
+                },
+                "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                  // display: "none",
+                  margin: "20px",
                 },
               }}
             />
