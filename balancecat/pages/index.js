@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Silkscreen } from "next/font/google";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import AssetsOverview from "@/components/assetsOverview/AssetsOverview";

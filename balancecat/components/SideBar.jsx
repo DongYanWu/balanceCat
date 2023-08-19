@@ -8,10 +8,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import ArrowRight from "@mui/icons-material/ArrowRight";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+// import IconButton from "@mui/material/IconButton";
+// import Tooltip from "@mui/material/Tooltip";
+// import ArrowRight from "@mui/icons-material/ArrowRight";
+// import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import Home from "@mui/icons-material/Home";
 import Settings from "@mui/icons-material/Settings";
 import People from "@mui/icons-material/People";
@@ -64,11 +64,11 @@ export default function SideBar() {
       setIsHoveringSettings(true);
     }
   };
-//   const handleSettingsLeave = (label) => {
-//     if (label === "設定") {
-//       setIsHoveringSettings(true);
-//     }
-//   };
+  //   const handleSettingsLeave = (label) => {
+  //     if (label === "設定") {
+  //       setIsHoveringSettings(true);
+  //     }
+  //   };
   return (
     <Box
       sx={{ display: "flex", height: "100%" }}
@@ -201,7 +201,7 @@ export default function SideBar() {
                     },
                   }}
                   onMouseEnter={() => handleSettingsHover(item.label)}
-                //   onMouseLeave={() => handleSettingsLeave(item.label)}
+                  //   onMouseLeave={() => handleSettingsLeave(item.label)}
                   href={getItemLink(item.label)}
                 >
                   <ListItemIcon sx={{ color: "inherit" }}>
