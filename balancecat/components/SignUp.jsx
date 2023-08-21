@@ -30,6 +30,7 @@ export default function SignUp({ setIsLogIn }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/signup`,
     sendRequest,

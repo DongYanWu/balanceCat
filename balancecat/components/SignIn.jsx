@@ -11,7 +11,6 @@ import InputBox from "./InputBox";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 async function sendRequest(url, { arg }) {
-  console.log(arg);
   return fetch(url, {
     method: "POST",
     headers: {
@@ -23,6 +22,7 @@ async function sendRequest(url, { arg }) {
     .then((data) => [data, data.json()])
 
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error("Error:", error);
     });
 }
@@ -32,6 +32,7 @@ export default function SignIn({ setIsLogIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/signin`,
     sendRequest,
