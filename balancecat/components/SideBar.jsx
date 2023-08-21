@@ -21,6 +21,8 @@ import Dns from "@mui/icons-material/Dns";
 import Public from "@mui/icons-material/Public";
 import Link from "next/link";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import cookieCutter from "cookie-cutter";
+import { useRouter } from "next/router";
 import SettingsBar from "./SettingsBar";
 
 const data = [
@@ -59,6 +61,8 @@ const FireNav = styled(List)({
 });
 
 export default function SideBar() {
+  const router = useRouter();
+
   const [isHovering, setIsHovering] = React.useState(false);
   const [isHoveringSettings, setIsHoveringSettings] = React.useState(false);
   const handleSettingsHover = (label) => {
@@ -66,6 +70,11 @@ export default function SideBar() {
       setIsHoveringSettings(true);
     }
   };
+  function logoutHandler() {
+    cookieCutter.set("token", "");
+    router.push("/signin");
+  }
+
   //   const handleSettingsLeave = (label) => {
   //     if (label === "設定") {
   //       setIsHoveringSettings(true);
@@ -200,7 +209,7 @@ export default function SideBar() {
                   height: "100%",
                 }}
               >
-                {data.map((item) => (
+                {data.map((item, index) => (
                   <ListItemButton
                     key={item.label}
                     sx={{
@@ -214,6 +223,7 @@ export default function SideBar() {
                     onMouseEnter={() => handleSettingsHover(item.label)}
                     //   onMouseLeave={() => handleSettingsLeave(item.label)}
                     href={getItemLink(item.label)}
+                    onClick={index === 4 ? () => logoutHandler() : undefined}
                   >
                     <ListItemIcon sx={{ color: "inherit" }}>
                       {item.icon}

@@ -1,8 +1,12 @@
+import Cookies from "cookies";
 import Sheet from "@/components/Sheet";
 import SideBar from "@/components/SideBar";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 
-export default function BalanceSheetPage() {
+export default function BalanceSheetPage({ token, userId, username }) {
+  console.log(token);
+  console.log(userId);
+  console.log(username);
   const data = [
     {
       name: "收入",
@@ -163,3 +167,26 @@ export default function BalanceSheetPage() {
     </CardTemplate>
   );
 }
+
+export const getServerSideProps = ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const token = cookies.get("token");
+  const userId = cookies.get("id");
+  const username = cookies.get("username");
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+      userId,
+      username,
+    },
+  };
+};

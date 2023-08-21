@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import Cookies from "cookies";
 import SignUp from "@/components/SignUp";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import styles from "@/styles/loginpage.module.scss";
@@ -57,3 +58,22 @@ export default function LogInPage() {
     </div>
   );
 }
+
+export const getServerSideProps = ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const token = cookies.get("token") || null;
+
+  if (token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+    },
+  };
+};
