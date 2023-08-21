@@ -209,12 +209,42 @@ export default function SideBar() {
                   height: "100%",
                 }}
               >
-                {data.map((item, index) => (
+                {data.slice(0, 5).map((item, index) => (
                   <ListItemButton
                     key={item.label}
                     sx={{
                       py: 0,
-                      minHeight: 32,
+                      minHeight: 40,
+                      color: "rgba(255,255,255,.8)",
+                      "&:hover": {
+                        bgcolor: "rgba(71, 98, 130, 0.2)",
+                      },
+                    }}
+                    onMouseEnter={() => handleSettingsHover(item.label)}
+                    //   onMouseLeave={() => handleSettingsLeave(item.label)}
+                    href={getItemLink(item.label)}
+                    onClick={index === 4 ? () => logoutHandler() : undefined}
+                  >
+                    <ListItemIcon sx={{ color: "inherit" }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    {isHovering && (
+                      <ListItemText
+                        primary={item.label}
+                        primaryTypographyProps={{
+                          fontSize: 14,
+                          fontWeight: "medium",
+                        }}
+                      />
+                    )}
+                  </ListItemButton>
+                ))}
+                {data.slice(5, 7).map((item, index) => (
+                  <ListItemButton
+                    key={item.label}
+                    sx={{
+                      py: 0,
+                      minHeight: 40,
                       color: "rgba(255,255,255,.8)",
                       "&:hover": {
                         bgcolor: "rgba(71, 98, 130, 0.2)",
