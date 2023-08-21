@@ -85,6 +85,7 @@ function StyledTreeItem(props) {
             alignItems: "center",
             p: 0.5,
             pr: 0,
+            height: 40,
           }}
         >
           <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
