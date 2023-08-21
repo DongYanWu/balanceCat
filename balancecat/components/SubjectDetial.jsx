@@ -11,6 +11,7 @@ import { DotGothic16 } from "next/font/google";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Button } from "@mui/material";
 
 const dot = DotGothic16({
   weight: "400",
@@ -23,7 +24,7 @@ const columns = [
   { id: "day", label: "曜日", minWidth: 100 },
 ];
 
-function createData(date, amount, description) {
+function createData(date, amount, description, debit, credit) {
   const parsedDate = new Date(date); // 將字串轉換成 Date 物件
   const dayNum = parsedDate.getDay(); // 取得星期幾的數字
   let day = "還沒";
@@ -55,7 +56,7 @@ function createData(date, amount, description) {
   }
   const parts = date.split("-");
   const formattedDate = `${parts[0]}/${parts[1]}/${parts[2]}`;
-  return { date: formattedDate, amount, description, day };
+  return { date: formattedDate, amount, description, day, debit, credit };
 }
 
 const rows = [
@@ -63,56 +64,78 @@ const rows = [
     "2023-8-17",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-17",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-16",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-13",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-13",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-12",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-11",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-10",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
   createData(
     "2023-8-9",
     "$ 100,000",
     "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
+    "負債",
+    "資產",
   ),
 ];
 
@@ -229,16 +252,25 @@ export default function SubjectDetail() {
               ))}
           </TableBody>
           <Dialog open={openDialog} onClose={handleClose}>
-            <DialogTitle>詳細資訊</DialogTitle>
-            <DialogContent>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <DialogTitle>詳細資訊</DialogTitle>
+              <Button
+                variant="contained"
+                sx={{ cursor: "pointer", margin: "1rem 1rem 0 0" }}
+              >
+                刪除分錄
+              </Button>
+            </div>
+
+            <DialogContent sx={{ paddingTop: "0" }}>
               {selectedRow && (
                 <div>
                   <p>日期： {selectedRow.date}</p>
                   <p>金額： {selectedRow.amount}</p>
                   <p>註解： {selectedRow.description}</p>
                   <p>曜日： {selectedRow.day}</p>
-                  <p>借方：</p>
-                  <p>貸方：</p>
+                  <p>借方： {selectedRow.debit}</p>
+                  <p>貸方： {selectedRow.credit}</p>
                 </div>
               )}
             </DialogContent>
