@@ -171,10 +171,5 @@ export default function BalanceSheetPage() {
       <SideBar />
       <Sheet data={data} />
     </CardTemplate>
-    // <div>
-    //   {/* <NavBar /> */}
-    //   <Sheet data={data} />
-    //   {/* <Test /> */}
-    // </div>
   );
 }
