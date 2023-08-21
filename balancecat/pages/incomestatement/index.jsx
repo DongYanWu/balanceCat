@@ -172,7 +172,7 @@ export const getServerSideProps = ({ req, res }) => {
   const cookies = new Cookies(req, res);
   const token = cookies.get("token");
   const userId = cookies.get("id");
-  const username = cookies.get("username");
+  const username = cookies.get("username") || null;
 
   if (!token) {
     return {
