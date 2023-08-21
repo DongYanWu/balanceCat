@@ -128,7 +128,9 @@ export default function Sheet({ data }) {
       component={Paper}
       sx={{
         width: "60%",
-        border: "1px solid black",
+        border: "2px solid #d9d9d9",
+        background: "linear-gradient(to bottom right, #fffcf7, #ccc)",
+        boxShadow: "0 0 40px rbg(0,0,0,0.5)",
         margin: "50px auto",
         borderRadius: "20px",
       }}
@@ -137,9 +139,15 @@ export default function Sheet({ data }) {
       <Table aria-label="nested table">
         <TableHead>
           <TableRow hover>
-            <TableCell>Category</TableCell>
-            <TableCell align="right">上期金額</TableCell>
-            <TableCell align="right" className={styles.lastvalue}>
+            <TableCell sx={{ fontWeight: "600" }}>Category</TableCell>
+            <TableCell align="right" sx={{ fontWeight: "600" }}>
+              上期金額
+            </TableCell>
+            <TableCell
+              align="right"
+              className={styles.lastvalue}
+              sx={{ fontWeight: "600" }}
+            >
               當期金額
             </TableCell>
           </TableRow>

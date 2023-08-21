@@ -72,7 +72,15 @@ export default function SideBar() {
   //     }
   //   };
   return (
-    <div style={{ position: "sticky", top: 0, minHeight: "100%" }}>
+    <div
+      style={{
+        position: "sticky",
+        top: 0,
+        minHeight: "100%",
+        // overflowX: "auto",
+        // overflowY: "scroll",
+      }}
+    >
       <Box
         sx={{ display: "flex", minHeight: "100%" }}
         onMouseEnter={() => setIsHovering(true)}

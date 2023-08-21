@@ -19,7 +19,14 @@ export default function UserPage() {
       }}
     >
       <Sun />
-      <CardTemplate style={{ display: "flex" }}>
+      <CardTemplate
+        style={{
+          display: "flex",
+          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          border: "none",
+        }}
+      >
         <SideBar />
         <div className={styles.container}>
           <div className={styles.topcontainer}>
@@ -37,12 +44,26 @@ export default function UserPage() {
             <div style={{ display: "flex", gap: "30px" }}>
               <DataCard
                 isDebitCard
-                color="linear-gradient(to bottom, #ddd3ff, #fdcbff)"
+                // color="linear-gradient(to bottom, #d0eed7, #e0f8fc)"
+                color="#fffcf7"
               />
-              <DataCard color="linear-gradient(to bottom, #8ee8f7, #b0f2f0)" />
+              <DataCard
+                color="#e6f0f2"
+                // color="linear-gradient(to bottom, #e3f2ff, #dbe9ff)"
+              />
             </div>
           </div>
-          <SwitchBar />
+          <div
+            style={{
+              borderRadius: "20px",
+              backgroundColor: "#fff",
+              // width: "95%",
+              margin: "0px 30px 30px",
+              boxShadow: "0 0 10px rgb(0,0,0,0.2)",
+            }}
+          >
+            <SwitchBar />
+          </div>
         </div>
       </CardTemplate>
     </div>

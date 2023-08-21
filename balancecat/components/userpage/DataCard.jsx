@@ -28,10 +28,10 @@ const pieArcClasses = dynamic(
 );
 
 const data = [
-  { label: "資產", value: 400 },
-  { label: "負債", value: 300 },
-  { label: "Group C", value: 300 },
-  { label: "Group D", value: 200 },
+  { label: "資產", value: 400, color: "#9bbfe0" },
+  { label: "負債", value: 300, color: "#e8a09a" },
+  { label: "Group C", value: 300, color: "#fbe29f" },
+  { label: "Group D", value: 200, color: "#c6d68f" },
 ];
 
 const theme = createTheme({
@@ -61,14 +61,16 @@ export default function DataCard({ isDebitCard, color }) {
           textAlign: "center",
           alignItems: "center",
           width: 280,
-          height: 240,
+          // height: 240,
+          height: 263,
           // to make the demo resizable
           // overflow: "auto",
           resize: "horizontal",
           "--icon-size": "100px",
           borderRadius: "30px",
-          // backgroundColor: "#f9ccff",
-          backgroundImage: color,
+          backgroundColor: color,
+          boxShadow: "0 0 20px rgb(0,0,0,0.2)",
+          // backgroundImage: color,
         }}
       >
         <CardOverflow variant="solid" color="warning" />

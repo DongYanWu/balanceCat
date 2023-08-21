@@ -94,41 +94,6 @@ function StyledTreeItem(props) {
           >
             {labelText}
           </Typography>
-          {/* {isEditMode ? (
-            <>
-              <input
-                value={newLabelInfo}
-                onChange={(e) => {
-                  setNewLabelInfo(e.target.value);
-                }}
-                onClick={(event) => event.stopPropagation()}
-                style={{
-                  marginRight: "1rem",
-                  width: "7rem",
-                  borderRadius: "5px",
-                  border: "none",
-                  textAlign: "end",
-                }}
-              />
-              <Button variant="outlined" onClick={handleEditLabelInfo}>
-                儲存目標
-              </Button>
-            </>
-          ) : (
-            <>
-              <Typography
-                variant="caption"
-                color="inherit"
-                sx={{ marginRight: "1rem" }}
-              >
-                {labelInfo}
-              </Typography>
-
-              <Button onClick={handleEditLabelInfo} variant="outlined">
-                編輯目標
-              </Button>
-            </>
-          )} */}
           {labelText === "設定大頭貼" && <UploadButton />}
           {labelInfo == null ? null : (
             <>
@@ -215,7 +180,20 @@ export default function GmailTreeView({ isPersonal, data }) {
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{ height: "auto", flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
+      sx={{
+        maxHeight: "300px",
+        flexGrow: 1,
+        maxWidth: 400,
+        overflowY: "scroll",
+        scrollbarWidth: "none", // 新增這行來隱藏滾動條（for Firefox）
+        msOverflowStyle: "none", // 新增這行來隱藏滾動條（for IE and Edge）
+        "&::-webkit-scrollbar": {
+          width: "0.4em",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#333",
+        },
+      }}
     >
       {data.map((node) => renderTree(node))}
     </TreeView>

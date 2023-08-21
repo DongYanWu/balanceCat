@@ -146,6 +146,8 @@ export default function SubjectDetail() {
       sx={{
         width: "100%",
         overflow: "hidden",
+        background: "linear-gradient(to bottom right, #eef0f2, #eee)",
+        boxShadow: "0 0 40px rbg(0,0,0,0.5)",
         borderRadius: "20px",
         border: "3px solid #d9d9d9",
       }}
@@ -179,6 +181,8 @@ export default function SubjectDetail() {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
+                    background:
+                      "linear-gradient(to bottom right, #eef0f2, #eee)",
                     // backgroundColor: "#212131",
                     // color: "white",
                   }}
@@ -190,13 +194,13 @@ export default function SubjectDetail() {
             </TableRow>
           </TableHead>
           <TableBody
-          // sx={{
-          //   backgroundColor: "#212131",
-          //   "& :hover": {
-          //     backgroundColor: "#2c2d3d",
-          //   },
-          //   cursor: "pointer",
-          // }}
+            sx={{
+              // backgroundColor: "#212131",
+              "& :hover": {
+                backgroundColor: "#fff",
+              },
+              cursor: "pointer",
+            }}
           >
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
