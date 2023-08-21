@@ -65,8 +65,10 @@ export default function SignIn({ setIsLogIn }) {
         router.push("/");
 
         // Cookies.set('token', userData.data.access_token, { secure: true, httpOnly: true });
+
         cookieCutter.set("id", userData.data.user.id);
         cookieCutter.set("token", userData.data.access_token);
+        cookieCutter.set("username", userData.data.user.name);
       }
     });
   };

@@ -2,6 +2,7 @@ import { Handjet, DotGothic16 } from "next/font/google";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Cookies from "cookies";
 import SubjectDetail from "@/components/SubjectDetial";
 // import DatePicker from "@/components/DatePicker";
 import DateRangePickerValue from "@/components/DatePicker";
@@ -18,7 +19,10 @@ const handjet = Handjet({
   weight: "400",
   subsets: ["latin"],
 });
-export default function DetailPage() {
+export default function DetailPage({ token, userId, username }) {
+  console.log(token);
+  console.log(userId);
+  console.log(username);
   return (
     <CardTemplate
       backgroundStyle={{
@@ -50,3 +54,26 @@ export default function DetailPage() {
     </CardTemplate>
   );
 }
+
+export const getServerSideProps = ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const token = cookies.get("token");
+  const userId = cookies.get("id");
+  const username = cookies.get("username");
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+      userId,
+      username,
+    },
+  };
+};

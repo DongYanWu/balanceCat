@@ -170,6 +170,7 @@
 // 上述是動畫
 import Image from "next/image";
 import { Silkscreen } from "next/font/google";
+import Cookies from "cookies";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import AssetsOverview from "@/components/assetsOverview/AssetsOverview";
 import Entries from "@/components/entriesForm/Entries";
@@ -183,7 +184,10 @@ const silk = Silkscreen({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function Home({ token, userId, username }) {
+  console.log(token);
+  console.log(userId);
+  console.log(username);
   return (
     <div className={styles.wrapper}>
       <CardTemplate
@@ -272,3 +276,26 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const token = cookies.get("token");
+  const userId = cookies.get("id");
+  const username = cookies.get("username");
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+      userId,
+      username,
+    },
+  };
+};

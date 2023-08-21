@@ -1,6 +1,7 @@
 import Avatar from "@mui/material/Avatar";
 import React from "react";
 // import YearPicker from "@/components/YearPicker";
+import Cookies from "cookies";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import DataCard from "@/components/userpage/DataCard";
 import SideBar from "@/components/SideBar";
@@ -9,7 +10,10 @@ import PlanCard from "@/components/userpage/PlanCard";
 import Sun from "@/components/Sun";
 import styles from "../../styles/userpage.module.scss";
 
-export default function UserPage() {
+export default function UserPage({ token, userId, username }) {
+  console.log(token);
+  console.log(userId);
+  console.log(username);
   return (
     <div
       style={{
@@ -69,3 +73,26 @@ export default function UserPage() {
     </div>
   );
 }
+
+export const getServerSideProps = ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const token = cookies.get("token");
+  const userId = cookies.get("id");
+  const username = cookies.get("username");
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+      userId,
+      username,
+    },
+  };
+};
