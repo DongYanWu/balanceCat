@@ -15,10 +15,6 @@ const withMDX = require("@next/mdx")({
   },
 });
 
-// const withTM = require("next-transpile-modules")(["react-icons"]);
-
-// module.exports = withTM({});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
@@ -36,6 +32,12 @@ module.exports = {
   // exportTrailingSlash: true,
   trailingSlash: true,
 };
+
+const withTM = require("next-transpile-modules")(["gsap"]);
+
+module.exports = withTM({
+  // any other Next.js config optio});
+});
 
 // module.exports = {
 //   images: {

@@ -8,7 +8,13 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-export default function PwdInput({ confirm }) {
+export default function PwdInput({
+  password,
+  confirmPassword,
+  setPassword,
+  setConfirmPassword,
+  confirm,
+}) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -45,6 +51,14 @@ export default function PwdInput({ confirm }) {
             </InputLabel>
           )}
           <OutlinedInput
+            value={confirm ? confirmPassword : password}
+            onChange={(e) => {
+              if (confirm) {
+                setConfirmPassword(e.target.value);
+              } else {
+                setPassword(e.target.value);
+              }
+            }}
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
             endAdornment={

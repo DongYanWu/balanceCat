@@ -2,7 +2,14 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function InputBox({ email, username }) {
+export default function InputBox({
+  isEmail,
+  isUsername,
+  email,
+  setEmail,
+  username,
+  setUsername,
+}) {
   return (
     <Box
       component="form"
@@ -12,8 +19,10 @@ export default function InputBox({ email, username }) {
       noValidate
       autoComplete="off"
     >
-      {email && (
+      {isEmail && (
         <TextField
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           id="outlined-basic"
           label="Email"
           variant="outlined"
@@ -29,8 +38,10 @@ export default function InputBox({ email, username }) {
           }}
         />
       )}
-      {username && (
+      {isUsername && (
         <TextField
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           id="outlined-basic"
           label="Name"
           variant="outlined"
