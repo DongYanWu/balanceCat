@@ -32,12 +32,12 @@ module.exports = {
   // exportTrailingSlash: true,
   trailingSlash: true,
 };
+// need to add this to fix dynamic problem
+// const withTM = require("next-transpile-modules")(["gsap"]);
 
-const withTM = require("next-transpile-modules")(["gsap"]);
-
-module.exports = withTM({
-  // any other Next.js config optio});
-});
+// module.exports = withTM({
+//   // any other Next.js config optio});
+// });
 
 // module.exports = {
 //   images: {
