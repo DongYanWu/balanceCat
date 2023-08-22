@@ -146,6 +146,7 @@ const CustomNumberInput = React.forwardRef((props, ref) => (
         children: "▾",
       },
     }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
     ref={ref}
   />

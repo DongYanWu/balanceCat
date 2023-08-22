@@ -133,6 +133,7 @@ export default function Entries({ token }) {
     dayjs(),
   );
 
+  // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}entries`,
     sendRequest,
@@ -186,6 +187,7 @@ export default function Entries({ token }) {
         <div className={styles.debitboxs}>
           {debitData.map((data, idx) => (
             <AccountsBox
+              // eslint-disable-next-line react/no-array-index-key
               key={idx}
               isDebit
               addBox={() => addNewDebitBox()}
@@ -198,6 +200,7 @@ export default function Entries({ token }) {
         <div className={styles.creditboxs}>
           {creditData.map((data, idx) => (
             <AccountsBox
+              // eslint-disable-next-line react/no-array-index-key
               key={idx}
               isDebit={false}
               addBox={() => addNewCreditBox()}

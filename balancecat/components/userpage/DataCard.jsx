@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import * as React from "react";
 import Card from "@mui/joy/Card";
 import CardActions from "@mui/joy/CardActions";
@@ -7,8 +8,8 @@ import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import { Box, createTheme } from "@mui/system";
+// eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
-import useSWRMutation from "swr/mutation";
 import styles from "../../styles/DataCard.module.scss";
 import FetchWithToken from "../fetchWithToken";
 
@@ -59,8 +60,10 @@ export default function DataCard({ isDebitCard, color, token }) {
   }
   const {
     data: userData,
+    // eslint-disable-next-line no-unused-vars
     error,
     isLoading,
+    // eslint-disable-next-line no-shadow
   } = useSWR([api, token], ([url, token]) => FetchWithToken(url, token));
   // const refreshFriendData = () => {
   //   mutate([`${API_URL}/frie`, token]);

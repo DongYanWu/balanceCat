@@ -179,7 +179,7 @@ import styles from "@/styles/home.module.scss";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
 import Sun from "@/components/Sun";
-import Water from "@/components/water";
+// import Water from "@/components/water";
 
 const silk = Silkscreen({
   weight: ["400"],
@@ -251,7 +251,7 @@ export default function Home({ token, userId, username }) {
           }
         `}
         </style>
-        <Water />
+
         <CardTemplate
           // backgroundStyle={{
           //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
@@ -265,7 +265,7 @@ export default function Home({ token, userId, username }) {
           }}
         >
           <SideBar />
-          <AssetsOverview />
+          <AssetsOverview token={token} />
         </CardTemplate>
 
         <CardTemplate

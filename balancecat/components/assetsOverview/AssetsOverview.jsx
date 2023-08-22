@@ -1,71 +1,106 @@
 // import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import LiabilityBar from "@/components/assetsOverview/LiabilityBar";
-import assets from "@/mockdata/getNonExpired";
 import styles from "@/styles/assetsOverview/overview.module.scss";
+import useSWRMutation from "swr/mutation";
+import swal from "sweetalert";
+import { Button } from "@mui/material";
 import AssetsBar from "./AssetsBar";
 
-export default function AssetsOverview() {
-  const [assetButton, setAssetButton] = useState(true);
-  const [liabilityButton, setLiabilityButton] = useState(false);
-  const [arButton, setARButton] = useState(false);
-  const [apButton, setAPButton] = useState(false);
+export default function AssetsOverview({ token }) {
+  const [type, setType] = useState("assets");
+  const API_URL = `${process.env.NEXT_PUBLIC_API_URL}registers?type=${type}`;
+  const [registerData, setRegisterData] = useState(null);
+
+  // useGetRegister({ setData: setAssetData, type: "assets", token });
+  async function fetcher(url, { arg }) {
+    return fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${arg.token}`,
+      },
+    })
+      .then((response) => response)
+      .then((data) => [data, data.json()])
+
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error("Error:", error);
+      });
+  }
+  const { trigger } = useSWRMutation(API_URL, fetcher);
+
+  const handleButtonOnClick = async (clickedType) => {
+    await setType(clickedType);
+    trigger({ token }).then(async (data) => {
+      const response = data[0];
+      const responseData = await data[1];
+
+      if (response.status === 403) {
+        swal("Error", "Wrong Token", "error");
+      }
+      if (response.status === 400) {
+        swal("Error", "Client Error Response", "error");
+      }
+      if (response.status === 500) {
+        swal(
+          "Error",
+          "Something's wrong. Please try again later or notify our engineering team",
+          "info",
+        );
+      }
+      if (response.status === 200) {
+        setRegisterData(responseData.data.registers);
+      }
+    });
+  };
+  useEffect(() => {
+    handleButtonOnClick("assets"); // 這裡可以設定初始的 type
+  }, []);
   return (
     <div className={styles.wrapper}>
       <p className={styles.title}>資產概況</p>
       <div className={styles.buttons}>
         <button
           type="submit"
-          className={assetButton && styles.blueButton}
+          className={type === "assets" && styles.blueButton}
           onClick={() => {
-            setAssetButton(true);
-            setLiabilityButton(false);
-            setARButton(false);
-            setAPButton(false);
+            handleButtonOnClick("assets");
           }}
         >
           資產
         </button>
         <button
           type="submit"
-          className={liabilityButton && styles.blueButton}
+          className={type === "liabilities" && styles.blueButton}
           onClick={() => {
-            setAssetButton(false);
-            setLiabilityButton(true);
-            setARButton(false);
-            setAPButton(false);
+            handleButtonOnClick("liabilities");
           }}
         >
           負債
         </button>
         <button
           type="submit"
-          className={arButton && styles.blueButton}
+          className={type === "ar" && styles.blueButton}
           onClick={() => {
-            setAssetButton(false);
-            setLiabilityButton(false);
-            setARButton(true);
-            setAPButton(false);
+            handleButtonOnClick("ar");
           }}
         >
           應收
         </button>
         <button
           type="submit"
-          className={apButton && styles.blueButton}
+          className={type === "ap" && styles.blueButton}
           onClick={() => {
-            setAssetButton(false);
-            setLiabilityButton(false);
-            setARButton(false);
-            setAPButton(true);
+            handleButtonOnClick("ap");
           }}
         >
           應付
         </button>
       </div>
       <hr />
-      {assetButton && (
+      {type === "assets" && (
         <div className={styles.table}>
           <div className={styles.titleBar}>
             <p className={styles.name}>物品名稱</p>
@@ -73,18 +108,18 @@ export default function AssetsOverview() {
             <p>購買金額</p>
             <p>物品現值</p>
             <p>累計折舊</p>
-            <button type="submit" id={styles.none}>
-              更多細節
-            </button>
+            <Button type="submit" id={styles.none}>
+              details
+            </Button>
           </div>
           <hr />
-          {assets.map((asset) => (
+          {registerData?.map((asset) => (
             <div key={asset.id}>
               <AssetsBar asset={asset} />
               <hr />
             </div>
           ))}
-          {assets.map.length <= 5 && (
+          {registerData?.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -109,7 +144,7 @@ export default function AssetsOverview() {
           )}
         </div>
       )}
-      {liabilityButton && (
+      {type === "liabilities" && (
         <div className={styles.table}>
           <div className={styles.titleBar}>
             <p className={styles.name}>物品名稱</p>
@@ -122,13 +157,13 @@ export default function AssetsOverview() {
             </button>
           </div>
           <hr />
-          {assets.map((liability) => (
+          {registerData?.map((liability) => (
             <div key={liability.id}>
               <LiabilityBar liability={liability} />
               <hr />
             </div>
           ))}
-          {assets.map.length <= 5 && (
+          {registerData?.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -153,7 +188,7 @@ export default function AssetsOverview() {
           )}
         </div>
       )}
-      {arButton && (
+      {type === "ar" && (
         <div className={styles.table}>
           <div className={styles.titleBar}>
             <p className={styles.name}>物品名稱</p>
@@ -166,13 +201,13 @@ export default function AssetsOverview() {
             </button>
           </div>
           <hr />
-          {assets.map((asset) => (
+          {registerData?.map((asset) => (
             <div key={asset.id}>
               <AssetsBar asset={asset} />
               <hr />
             </div>
           ))}
-          {assets.map.length <= 5 && (
+          {registerData?.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -197,7 +232,7 @@ export default function AssetsOverview() {
           )}
         </div>
       )}
-      {apButton && (
+      {type === "ap" && (
         <div className={styles.table}>
           <div className={styles.titleBar}>
             <p className={styles.name}>物品名稱</p>
@@ -205,18 +240,18 @@ export default function AssetsOverview() {
             <p>初始金額</p>
             <p>剩於欠款</p>
             <p>累計還款</p>
-            <button type="submit" id={styles.none}>
-              更多細節
-            </button>
+            <Button type="submit" id={styles.none}>
+              detials
+            </Button>
           </div>
           <hr />
-          {assets.map((liability) => (
+          {registerData?.map((liability) => (
             <div key={liability.id}>
               <LiabilityBar liability={liability} />
               <hr />
             </div>
           ))}
-          {assets.map.length <= 5 && (
+          {registerData?.map.length <= 5 && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"

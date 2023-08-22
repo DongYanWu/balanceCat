@@ -6,6 +6,7 @@ import { TabsList } from "@mui/base/TabsList";
 import { TabPanel } from "@mui/base/TabPanel";
 import { buttonClasses } from "@mui/base/Button";
 import { Tab, tabClasses } from "@mui/base/Tab";
+// eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
 import TargetList from "./TargetList";
 
@@ -26,7 +27,7 @@ const fetchWithToken = (url, token) =>
 
 
 export default function SwitchBar({token}) {
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, no-shadow
   const { data, error, mutate } = useSWR([`${API_URL}goals`, token], ([url, token]) =>
   fetchWithToken(url, token),
 );

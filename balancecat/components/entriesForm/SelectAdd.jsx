@@ -10,7 +10,6 @@ export default function SelectAdd({
   addBox,
   isDescriptionVisible,
   setDescriptionVisible,
-
 }) {
   const options = [
     isDescriptionVisible ? "取消註解" : "增加註解",

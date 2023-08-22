@@ -1,5 +1,6 @@
 // pages/index.js
 import React from "react";
+import Link from "next/link";
 import {
   Table,
   TableBody,
@@ -87,7 +88,7 @@ export default function Sheet({ data }) {
   };
 
   const renderRows = (items, depth = 0) =>
-    items.map((item) => (
+    items?.map((item) => (
       <React.Fragment key={item.name}>
         <TableRow hover>
           <TableCell
@@ -112,9 +113,15 @@ export default function Sheet({ data }) {
             </div>
           </TableCell>
 
-          <TableCell align="right">{item.value}</TableCell>
+          <TableCell align="right">
+            <Link href={`/accountdetail/${item.subject_id}`}>{item.value}</Link>
+          </TableCell>
+
           <TableCell align="right" className={styles.lastvalue}>
-            {item.lastMonthValue}
+            {" "}
+            <Link href={`/accountdetail/${item.subject_id}`}>
+              {item.lastMonthValue}
+            </Link>
           </TableCell>
         </TableRow>
         {item.children &&

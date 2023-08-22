@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
 import SelectAdd from "./SelectAdd";
-import NumberInputBasic from "./NumberInput";
+// import NumberInputBasic from "./NumberInput";
 
 export default function AccountsBox({
   isDebit,

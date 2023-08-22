@@ -32,6 +32,8 @@ module.exports = {
   // exportTrailingSlash: true,
   trailingSlash: true,
 };
+// need to add this to fix dynamic problem
+// const withTM = require("next-transpile-modules")(["gsap"]);
 
 // const withTM = require("next-transpile-modules")(["gsap"]);
 
