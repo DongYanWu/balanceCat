@@ -54,13 +54,19 @@ const theme = createTheme({
     },
   },
 });
-export default function BasicLineChart() {
+export default function BasicLineChart({
+  hisData,
+  name,
+  total,
+  wish,
+  achievement,
+}) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const [isSetting, setIsSetting] = useState(false);
   // const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
+  console.log(hisData);
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
@@ -125,7 +131,7 @@ export default function BasicLineChart() {
       >
         <DialogTitle id="scroll-dialog-title">
           <div className={styles.accountbar}>
-            項目名稱
+            {name}
             <SettingsIcon onClick={() => setIsSetting(true)} />
           </div>
         </DialogTitle>
@@ -154,7 +160,7 @@ export default function BasicLineChart() {
                       fontWeight: "medium",
                     }}
                   >
-                    98.3 K
+                    {Math.round(wish / 1000)} K
                   </Box>
                   <Box
                     sx={{
@@ -196,7 +202,7 @@ export default function BasicLineChart() {
                       fontWeight: "medium",
                     }}
                   >
-                    98.3 K
+                    {Math.round(total / 1000)} K
                   </Box>
                   <Box
                     sx={{
@@ -247,22 +253,36 @@ export default function BasicLineChart() {
                 },
               }}
               className={styles.MuiChartsTooltip}
-              xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12], label: "月份" }]}
+              xAxis={[
+                {
+                  data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                  label: "月份",
+                },
+              ]}
               yAxis={[
                 {
-                  label: "1000 (TWD)", // Hypothetical label property for y-axis
+                  label: "10,000 (TWD)", // Hypothetical label property for y-axis
                 },
               ]}
-              series={[
-                {
-                  data: [2, 5.5, 2, 8.5, 1.5, 5, 1],
-                  label: 2023,
-                },
-                {
-                  data: [21, 4.5, 0, 1.5, 12.5, 5, 10],
-                  label: 2022,
-                },
-              ]}
+              // series={[
+              //   hisData.map((item) => {
+              //     label:item.label;
+              //     data:item.data;
+              //   }),
+
+              //   // {
+              //   //   data: [2, 5.5, 2, 8.5, 1.5, 5, 1],
+              //   //   label: 2023,
+              //   // },
+              //   // {
+              //   //   data: [21, 4.5, 0, 1.5, 12.5, 5, 10],
+              //   //   label: 2022,
+              //   // },
+              // ]}
+              series={hisData.map((item) => ({
+                label: item.label,
+                data: item.data.map((value) => value / 10000),
+              }))}
               width={500}
               height={300}
             />

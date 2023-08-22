@@ -2,18 +2,34 @@ import Avatar from "@mui/material/Avatar";
 import React from "react";
 // import YearPicker from "@/components/YearPicker";
 import Cookies from "cookies";
+import useSWR, { mutate as globalMutate } from "swr";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import DataCard from "@/components/userpage/DataCard";
 import SideBar from "@/components/SideBar";
 import SwitchBar from "@/components/userpage/SwitchBar";
 import PlanCard from "@/components/userpage/PlanCard";
 import Sun from "@/components/Sun";
+import FetchWithToken from "@/components/fetchWithToken";
 import styles from "../../styles/userpage.module.scss";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function UserPage({ token, userId, username }) {
-  console.log(token);
-  console.log(userId);
-  console.log(username);
+  const {
+    data,
+    // eslint-disable-next-line no-unused-vars
+    error,
+    mutate,
+    // eslint-disable-next-line no-shadow
+  } = useSWR([`${API_URL}users`, token], ([url, token]) =>
+    FetchWithToken(url, token),
+  );
+  const refreshFriendData = () => {
+    mutate([`${API_URL}users`, token]);
+  };
+
+  const loading = !data && !error;
+  console.log(data?.data?.user);
+  if (loading) return <div>loading...</div>;
   return (
     <div
       style={{
@@ -38,12 +54,18 @@ export default function UserPage({ token, userId, username }) {
               <div className={styles.name}>
                 <Avatar
                   alt="Personal"
-                  src="/pic.jpg"
+                  src={data?.data?.user?.picture}
                   sx={{ width: 56, height: 56 }}
                 />
-                <p style={{ fontSize: "20px" }}>{`${username}，歡迎回來`}</p>
+                <p
+                  style={{ fontSize: "20px" }}
+                >{`${data?.data?.user?.name}，歡迎回來`}</p>
               </div>
-              <PlanCard />
+              <PlanCard
+                title={data?.data?.user?.memo_title}
+                content={data?.data?.user?.memo_content}
+                token={token}
+              />
             </div>
             <div style={{ display: "flex", gap: "30px" }}>
               <DataCard

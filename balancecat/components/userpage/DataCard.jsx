@@ -68,62 +68,59 @@ export default function DataCard({ isDebitCard, color, token }) {
   // const refreshFriendData = () => {
   //   mutate([`${API_URL}/frie`, token]);
   // };
-
-  if (!isLoading) {
-    console.log(userData?.data);
-  }
+  console.log(userData);
   const data = [
     {
-      label: userData?.data.charts[0].name,
-      value: userData?.data.charts[0].amount,
+      label: userData?.data?.charts[0]?.name,
+      value: userData?.data?.charts[0]?.amount,
       color: "#9bbfe0",
     },
     {
-      label: userData?.data.charts[1].name,
-      value: userData?.data.charts[1].amount,
+      label: userData?.data?.charts[1]?.name,
+      value: userData?.data?.charts[1]?.amount,
       color: "#e8a09a",
     },
     {
-      label: userData?.data.charts[2].name,
-      value: userData?.data.charts[2].amount,
+      label: userData?.data?.charts[2]?.name,
+      value: userData?.data?.charts[2]?.amount,
       color: "#fbe29f",
     },
     {
-      label: userData?.data.charts[3].name,
-      value: userData?.data.charts[3].amount,
+      label: userData?.data?.charts[3]?.name,
+      value: userData?.data?.charts[3]?.amount,
       color: "#c6d68f",
     },
   ];
   if (!isDebitCard) {
     data.push(
       {
-        label: userData?.data.charts[4].name,
-        value: userData?.data.charts[4].amount,
+        label: userData?.data?.charts[4]?.name,
+        value: userData?.data?.charts[4]?.amount,
         color: "#d6d68f",
       },
       {
-        label: userData?.data.charts[5].name,
-        value: userData?.data.charts[5].amount,
+        label: userData?.data?.charts[5]?.name,
+        value: userData?.data?.charts[5]?.amount,
         color: "#e6d68f",
       },
       {
-        label: userData?.data.charts[6].name,
-        value: userData?.data.charts[6].amount,
+        label: userData?.data?.charts[6]?.name,
+        value: userData?.data?.charts[6]?.amount,
         color: "#f6d68f",
       },
       {
-        label: userData?.data.charts[7].name,
-        value: userData?.data.charts[7].amount,
+        label: userData?.data?.charts[7]?.name,
+        value: userData?.data?.charts[7]?.amount,
         color: "#g6d68f",
       },
       {
-        label: userData?.data.charts[8].name,
-        value: userData?.data.charts[8].amount,
+        label: userData?.data?.charts[8]?.name,
+        value: userData?.data?.charts[8]?.amount,
         color: "#h6d68f",
       },
     );
   }
-  console.log(data);
+
   return (
     <ThemeProvider>
       <Card
@@ -172,7 +169,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {`${userData?.data.stats[0].amount / 1000} K`}
+                  {`${Math.round(userData?.data?.stats[0]?.amount / 1000)} K`}
                 </Box>
                 <Box
                   sx={{
@@ -183,7 +180,9 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontSize: 10,
                   }}
                 >
-                  {userData?.data.stats[0].percentage_change || "+18.77%"}
+                  {`${Math.round(
+                    userData?.data?.stats[1]?.percentage_change,
+                  )}%` || "+18.77%"}
                 </Box>
                 <Box
                   sx={{
@@ -192,7 +191,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontSize: 10,
                   }}
                 >
-                  vs. last week
+                  vs. last month
                 </Box>
               </Box>
             </ThemeProvider>
@@ -219,7 +218,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {`${userData?.data.stats[1].amount / 1000} K`}
+                  {`${-Math.round(userData?.data?.stats[2]?.amount / 1000)} K`}
                 </Box>
                 <Box
                   sx={{
@@ -230,7 +229,9 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontSize: 10,
                   }}
                 >
-                  {userData?.data.stats[0].percentage_change || "+18.77%"}
+                  {`${Math.round(
+                    userData?.data?.stats[3]?.percentage_change,
+                  )}%` || "+18.77%"}
                 </Box>
                 <Box
                   sx={{

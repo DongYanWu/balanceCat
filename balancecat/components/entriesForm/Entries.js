@@ -116,13 +116,34 @@ async function sendRequest(url, { arg }) {
     });
 }
 
+// const transformData = (data) =>
+//   data.map((entry) => ({
+//     subject_id: entry.subjectId,
+//     amount: parseInt(entry.amount, 10),
+//     register: entry.register
+//       ? { id: null, expired_in: parseInt(entry.register, 10) }
+//       : null,
+
+//     description: entry.description, // Add logic here if required for the 'description' field
+//   }));
 const transformData = (data) =>
-  data.map((entry) => ({
-    subject_id: entry.subjectId,
-    amount: parseInt(entry.amount, 10),
-    register: null, // Add logic here if required for the 'register' field
-    description: entry.description, // Add logic here if required for the 'description' field
-  }));
+  data.map((entry) => {
+    let registerValue;
+    if (entry.dataSet) {
+      registerValue = entry.dataSet;
+    } else if (entry.register) {
+      registerValue = { id: null, expired_in: parseInt(entry.register, 10) };
+    } else {
+      registerValue = null;
+    }
+
+    return {
+      subject_id: entry.subjectId,
+      amount: parseInt(entry.amount, 10),
+      register: registerValue,
+      description: entry.description,
+    };
+  });
 
 export default function Entries({ token }) {
   // Use data arrays directly for debit and credit.
@@ -132,6 +153,7 @@ export default function Entries({ token }) {
     // new Date().toISOString().split("T")[0],
     dayjs(),
   );
+  const [parent_id, setParent_id] = useState(null);
 
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
@@ -140,7 +162,7 @@ export default function Entries({ token }) {
   );
 
   const handleDateChange = (e) => {
-    setSelectedDate(e.format("YYYY-MM-DD HH:mm:ss"));
+    setSelectedDate(e);
     // console.log(e.format("YYYY-MM-DD HH:mm:ss"));
   };
 
@@ -163,7 +185,7 @@ export default function Entries({ token }) {
     const mergedData = {
       details: [...transformData(debitData), ...transformData(creditData)],
       timestamp: selectedDate.format("YYYY-MM-DD HH:mm:ss"),
-      parent_id: null,
+      parent_id,
     };
 
     trigger({ token, mergedData }).then(async (data) => console.log(data));
@@ -194,6 +216,8 @@ export default function Entries({ token }) {
               onDataChanged={handleDataChange}
               data={data}
               index={idx}
+              token={token}
+              setParent_id={setParent_id}
             />
           ))}
         </div>
@@ -207,6 +231,8 @@ export default function Entries({ token }) {
               onDataChanged={handleDataChange}
               data={data}
               index={idx}
+              token={token}
+              setParent_id={setParent_id}
             />
           ))}
         </div>

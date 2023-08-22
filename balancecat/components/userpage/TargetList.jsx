@@ -9,19 +9,19 @@ import Paper from "@mui/material/Paper";
 import Chip from "@mui/material/Chip";
 import BasicLineChart from "./BasicLineChart";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+// function createData(name, total, wish, achievement, protein) {
+//   return { name, total, wish, achievement, protein };
+// }
 
-const rows = [
-  createData("房子", 159, 159, "24%"),
-  createData("Ice cream sandwich", 237, 159, "24%"),
-  createData("Eclair", 262, 159, "24%"),
-  createData("Cupcake", 305, 159, "24%"),
-  createData("Gingerbread", 356, 159, "24%"),
-];
+// const rows = [
+//   createData("房子", 159, 159, "24%"),
+//   createData("Ice cream sandwich", 237, 159, "24%"),
+//   createData("Eclair", 262, 159, "24%"),
+//   createData("Cupcake", 305, 159, "24%"),
+//   createData("Gingerbread", 356, 159, "24%"),
+// ];
 
-export default function TargetList({ display }) {
+export default function TargetList({ display, rows }) {
   return (
     <TableContainer
       sx={{
@@ -81,17 +81,17 @@ export default function TargetList({ display }) {
                 {row.name}
               </TableCell>
               <TableCell align="right" sx={{ borderBottom: "none" }}>
-                {row.calories}
+                {row.total}
               </TableCell>
               <TableCell align="right" sx={{ borderBottom: "none" }}>
-                {row.fat}
+                {row.wish}
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ borderBottom: "none", paddingRight: "12px" }}
               >
                 <Chip
-                  label={row.carbs}
+                  label={`${row.achievement}%`}
                   color="success"
                   variant="outlined"
                   sx={{
@@ -103,7 +103,13 @@ export default function TargetList({ display }) {
                 />
               </TableCell>
               <TableCell align="right" sx={{ borderBottom: "none" }}>
-                <BasicLineChart />
+                <BasicLineChart
+                  name={row.name}
+                  total={row.total}
+                  wish={row.wish}
+                  achievement={row.achievement}
+                  hisData={row.hisData}
+                />
               </TableCell>
             </TableRow>
           ))}
