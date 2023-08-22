@@ -6,13 +6,6 @@ import Box from "@mui/material/Box";
 import TreeView from "@mui/lab/TreeView";
 import TreeItem, { treeItemClasses } from "@mui/lab/TreeItem";
 import Typography from "@mui/material/Typography";
-// import MailIcon from "@mui/icons-material/Mail";
-// import DeleteIcon from "@mui/icons-material/Delete";
-
-// import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-// import InfoIcon from "@mui/icons-material/Info";
-// import ForumIcon from "@mui/icons-material/Forum";
-// import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { Button } from "@mui/material";
@@ -196,7 +189,7 @@ export default function GmailTreeView({ isPersonal, data }) {
         },
       }}
     >
-      {data.map((node) => renderTree(node))}
+      {data?.map((node) => renderTree(node))}
     </TreeView>
   );
 }

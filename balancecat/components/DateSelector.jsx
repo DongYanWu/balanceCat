@@ -70,9 +70,16 @@ export default function DateSelector({ selectedDate, onDateChange }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DateTimePicker"]}>
         <DateTimePicker
-          label="Basic date time picker"
+          label="日期"
           onChange={onDateChange}
           value={selectedDate}
+          sx={{
+            width: "fit-content",
+            ".MuiOutlinedInput-root": {
+              borderRadius: "10px",
+              // color: "white",
+            },
+          }}
         />
       </DemoContainer>
     </LocalizationProvider>

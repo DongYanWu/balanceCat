@@ -119,7 +119,7 @@ export default function AssetsOverview({ token }) {
               <hr />
             </div>
           ))}
-          {registerData?.map.length <= 5 && (
+          {(registerData?.map.length <= 5 || registerData === null) && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -163,7 +163,7 @@ export default function AssetsOverview({ token }) {
               <hr />
             </div>
           ))}
-          {registerData?.map.length <= 5 && (
+          {(registerData?.map.length <= 5 || registerData === null) && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -207,7 +207,7 @@ export default function AssetsOverview({ token }) {
               <hr />
             </div>
           ))}
-          {registerData?.map.length <= 5 && (
+          {(registerData?.map.length <= 5 || registerData === null) && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
@@ -251,7 +251,7 @@ export default function AssetsOverview({ token }) {
               <hr />
             </div>
           ))}
-          {registerData?.map.length <= 5 && (
+          {(registerData?.map.length <= 5 || registerData === null) && (
             <div className={styles.catBar}>
               <Image
                 src="/starcat.png"
