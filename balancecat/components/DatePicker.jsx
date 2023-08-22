@@ -6,32 +6,22 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 
-export default function DateRangePickerValue() {
+export default function DateRangePickerValue({ setStartDate, setEndDate }) {
   const [value, setValue] = React.useState([
-    dayjs(
-      `${
-        new Date(new Date().setDate(new Date().getDate() - 7))
-          .toISOString()
-          .split("T")[0]
-      }`,
-    ),
-    dayjs(`${new Date().toISOString().split("T")[0]}`),
+    dayjs().subtract(7, "day"),
+    dayjs(),
   ]);
-
+  const handleDateChange = (newValue) => {
+    setValue(newValue);
+    setStartDate(newValue[0]);
+    setEndDate(newValue[1]);
+  };
+  console.log(value);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {/* <DemoContainer
-        components={["DateRangePicker", "DateRangePicker"]}
-        sx={{ color: "white" }}
-      >
-        <DemoItem
-          label="選擇日期"
-          component="DateRangePicker"
-          sx={{ color: "white" }}
-        > */}
       <DateRangePicker
         value={value}
-        onChange={(newValue) => setValue(newValue)}
+        onChange={handleDateChange}
         sx={{
           // color: "white",
           // ".MuiFormLabel-root": {
@@ -46,8 +36,6 @@ export default function DateRangePickerValue() {
           },
         }}
       />
-      {/* </DemoItem>
-      </DemoContainer> */}
     </LocalizationProvider>
   );
 }

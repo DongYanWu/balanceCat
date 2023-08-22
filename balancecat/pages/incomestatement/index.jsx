@@ -1,68 +1,101 @@
 import Cookies from "cookies";
+import * as React from "react";
 import Sheet from "@/components/Sheet";
 import SideBar from "@/components/SideBar";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
+import MonthPicker from "@/components/MonthPicker";
+import dayjs from "dayjs";
+import useGetFinancialData from "@/hooks/useGetFinancialData";
 
 export default function BalanceSheetPage({ token, userId, username }) {
   console.log(token);
   console.log(userId);
   console.log(username);
-  const data = [
+  const [selectedDate, setSelectedDate] = React.useState(dayjs());
+  const [prevDate, setPrevDate] = React.useState(dayjs().subtract(1, "month"));
+  const [prevFinancialData, setPrevFinancialData] = React.useState(null);
+  const [currFinancialData, setCurrFinancialData] = React.useState(null);
+  useGetFinancialData({
+    setData: setPrevFinancialData,
+    date: prevDate,
+    token,
+  });
+  useGetFinancialData({
+    setData: setCurrFinancialData,
+    date: selectedDate,
+    token,
+  });
+  const dataSet = [
     {
       name: "收入",
       subtitle: "Income",
-      value: 1000,
-      lastMonthValue: 800,
+      subject_id: 4000,
+      value: prevFinancialData?.[3]?.amount,
+      lastMonthValue: currFinancialData?.[3]?.amount,
       children: [
         {
           name: "經常性收入",
           subtitle: "Regular Income",
-          value: 1000,
-          lastMonthValue: 800,
+          subject_id: 4100,
+          value: prevFinancialData?.[3].subjects[0].amount,
+          lastMonthValue: currFinancialData?.[3]?.subjects[0].amount,
           children: [
             {
               name: "薪資收入",
               subtitle: "Salary",
-              value: 500,
-              lastMonthValue: 900,
+              subject_id: 4101,
+              value: prevFinancialData?.[3].subjects[0].subjects[0].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[0].subjects[0].amount,
             },
             {
               name: "利息收入",
               subtitle: "Interest Income",
-              value: 500,
-              lastMonthValue: 900,
+              subject_id: 4102,
+              value: prevFinancialData?.[3].subjects[0].subjects[1].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[0].subjects[1].amount,
             },
             {
               name: "其他",
               subtitle: "Others",
-              value: 500,
-              lastMonthValue: 900,
+              subject_id: 4103,
+              value: prevFinancialData?.[3].subjects[0].subjects[2].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[0].subjects[2].amount,
             },
           ],
         },
         {
           name: "非經常性收入",
           subtitle: "Irregular Income",
-          value: 1500,
-          lastMonthValue: 900,
+          subject_id: 4200,
+          value: prevFinancialData?.[3].subjects[1].amount,
+          lastMonthValue: currFinancialData?.[3]?.subjects[1].amount,
           children: [
             {
               name: "兼職收入",
               subtitle: "Part-time Income",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 4201,
+              value: prevFinancialData?.[3].subjects[1].subjects[0].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[1].subjects[0].amount,
             },
             {
               name: "中獎",
               subtitle: "Prize Winnings",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 4202,
+              value: prevFinancialData?.[3].subjects[1].subjects[1].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[1].subjects[1].amount,
             },
             {
               name: "其他",
               subtitle: "Others",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 4203,
+              value: prevFinancialData?.[3].subjects[1].subjects[2].amount,
+              lastMonthValue:
+                currFinancialData?.[3]?.subjects[1].subjects[2].amount,
             },
           ],
         },
@@ -71,78 +104,161 @@ export default function BalanceSheetPage({ token, userId, username }) {
     {
       name: "支出",
       subtitle: "Expenses",
-      value: 1000,
-      lastMonthValue: 800,
+      subject_id: 5000,
+      value: prevFinancialData?.[4]?.amount,
+      lastMonthValue: currFinancialData?.[4]?.amount,
       children: [
         {
-          name: "固定支出",
+          name: "經常性支出",
           subtitle: "Fixed Expenses",
-          value: 500,
-          lastMonthValue: 900,
+          subject_id: 5100,
+          value: prevFinancialData?.[4].subjects[0].amount,
+          lastMonthValue: currFinancialData?.[4]?.subjects[0].amount,
           children: [
-            { name: "食", subtitle: "Food", value: 500, lastMonthValue: 900 },
             {
-              name: "衣",
+              name: "伙食支出",
+              subtitle: "Food",
+              subject_id: 5101,
+              value: prevFinancialData?.[4].subjects[0].subjects[0].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[0].amount,
+            },
+            {
+              name: "治裝支出",
               subtitle: "Clothing",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5102,
+              value: prevFinancialData?.[4].subjects[0].subjects[1].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[1].amount,
             },
             {
-              name: "住",
+              name: "住房支出",
               subtitle: "Housing",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5103,
+              value: prevFinancialData?.[4].subjects[0].subjects[2].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[2].amount,
             },
             {
-              name: "孝親",
+              name: "交通支出",
+              subtitle: "Transporting",
+              subject_id: 5104,
+              value: prevFinancialData?.[4].subjects[0].subjects[3].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[3].amount,
+            },
+            {
+              name: "教育支出",
+              subtitle: "Education",
+              subject_id: 5105,
+              value: prevFinancialData?.[4].subjects[0].subjects[4].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[4].amount,
+            },
+            {
+              name: "娛樂支出",
+              subtitle: "Entertainment",
+              subject_id: 5106,
+              value: prevFinancialData?.[4].subjects[0].subjects[5].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[5].amount,
+            },
+            {
+              name: "孝親費",
               subtitle: "Support Parents",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5107,
+              value: prevFinancialData?.[4].subjects[0].subjects[6].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[6].amount,
             },
             {
-              name: "折舊",
+              name: "折舊費用",
               subtitle: "Depreciation",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5108,
+              value: prevFinancialData?.[4].subjects[0].subjects[6].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[6].amount,
             },
             {
               name: "其他",
               subtitle: "Others",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5109,
+              value: prevFinancialData?.[4].subjects[0].subjects[7].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[0].subjects[7].amount,
             },
           ],
         },
         {
           name: "非固定支出",
           subtitle: "Variable Expenses",
-          value: 1000,
-          lastMonthValue: 900,
+          subject_id: 5200,
+          value: prevFinancialData?.[4].subjects[1].amount,
+          lastMonthValue: currFinancialData?.[4]?.subjects[1].amount,
           children: [
-            { name: "食", subtitle: "Food", value: 1000, lastMonthValue: 900 },
             {
-              name: "衣",
+              name: "伙食支出",
+              subtitle: "Food",
+              subject_id: 5201,
+              value: prevFinancialData?.[4].subjects[1].subjects[0].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[0].amount,
+            },
+            {
+              name: "治裝支出",
               subtitle: "Clothing",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5202,
+              value: prevFinancialData?.[4].subjects[1].subjects[1].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[1].amount,
             },
             {
-              name: "住",
+              name: "住房支出",
               subtitle: "Housing",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5203,
+              value: prevFinancialData?.[4].subjects[1].subjects[2].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[2].amount,
             },
             {
-              name: "孝親",
+              name: "交通支出",
+              subtitle: "Transporting",
+              subject_id: 5204,
+              value: prevFinancialData?.[4].subjects[1].subjects[3].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[3].amount,
+            },
+            {
+              name: "教育支出",
+              subtitle: "Education",
+              subject_id: 5205,
+              value: prevFinancialData?.[4].subjects[1].subjects[4].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[4].amount,
+            },
+            {
+              name: "娛樂支出",
+              subtitle: "Entertainment",
+              subject_id: 5206,
+              value: prevFinancialData?.[4].subjects[1].subjects[5].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[5].amount,
+            },
+            {
+              name: "孝親費",
               subtitle: "Support Parents",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5207,
+              value: prevFinancialData?.[4].subjects[1].subjects[6].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[6].amount,
             },
             {
               name: "其他",
               subtitle: "Others",
-              value: 1500,
-              lastMonthValue: 900,
+              subject_id: 5208,
+              value: prevFinancialData?.[4].subjects[1].subjects[7].amount,
+              lastMonthValue:
+                currFinancialData?.[4]?.subjects[1].subjects[7].amount,
             },
           ],
         },
@@ -163,7 +279,25 @@ export default function BalanceSheetPage({ token, userId, username }) {
       }}
     >
       <SideBar />
-      <Sheet data={data} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          alignItems: "center",
+          marginTop: "2rem",
+        }}
+      >
+        <span>
+          <MonthPicker
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            setPrevDate={setPrevDate}
+          />
+        </span>
+
+        <Sheet data={dataSet} />
+      </div>
     </CardTemplate>
   );
 }
