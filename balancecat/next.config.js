@@ -33,11 +33,11 @@ module.exports = {
   trailingSlash: true,
 };
 
-const withTM = require("next-transpile-modules")(["gsap"]);
+// const withTM = require("next-transpile-modules")(["gsap"]);
 
-module.exports = withTM({
-  // any other Next.js config optio});
-});
+// module.exports = withTM({
+//   // any other Next.js config optio});
+// });
 
 // module.exports = {
 //   images: {

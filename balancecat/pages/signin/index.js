@@ -62,7 +62,6 @@ export default function LogInPage() {
 export const getServerSideProps = ({ req, res }) => {
   const cookies = new Cookies(req, res);
   const token = cookies.get("token") || null;
-
   if (token) {
     return {
       redirect: {
