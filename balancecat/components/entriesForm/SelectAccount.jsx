@@ -7,58 +7,64 @@ const defaultOption = {
   isDisabled: true,
 };
 const currentAssetsOptions = [
-  { value: "ocean", label: "現金", color: "#00B8D9" },
-  { value: "blue", label: "股票", color: "#0052CC" },
-  { value: "purple", label: "應收帳款", color: "#5243AA" },
-  { value: "red", label: "其他", color: "#FF5630" },
+  { value: "1101", label: "現金", color: "#00B8D9" },
+  { value: "1102", label: "股票", color: "#0052CC" },
+  { value: "1103", label: "應收帳款", color: "#5243AA" },
+  { value: "1104", label: "其他", color: "#FF5630" },
 ];
 
 const nonCurrentAssetsOptions = [
-  { value: "orange", label: "車子", color: "#FF8B00" },
-  { value: "yellow", label: "房子", color: "#FFC400" },
-  { value: "green", label: "3C", color: "#36B37E" },
-  { value: "forest", label: "家電", color: "#00875A" },
-  { value: "slate", label: "預付款", color: "#253858" },
-  { value: "silver", label: "其他", color: "#666666" },
+  { value: "1201", label: "車子", color: "#FF8B00" },
+  { value: "1202", label: "房子", color: "#FFC400" },
+  { value: "1203", label: "3C", color: "#36B37E" },
+  { value: "1204", label: "家電", color: "#00875A" },
+  { value: "1205", label: "預付款", color: "#253858" },
+  { value: "1206", label: "其他", color: "#666666" },
 ];
 
 const currentLiabilitiesOptions = [
-  { value: "orange", label: "信用卡", color: "#FF8B00" },
-  { value: "yellow", label: "應付帳款", color: "#FFC400" },
-  { value: "green", label: "其他", color: "#36B37E" },
+  { value: "2101", label: "信用卡費", color: "#FF8B00" },
+  { value: "2102", label: "應付帳款", color: "#FFC400" },
+  { value: "2103", label: "其他", color: "#36B37E" },
 ];
 
 const nonCurrentLiabilitiesOptions = [
-  { value: "orange", label: "分期付款", color: "#FF8B00" },
-  { value: "yellow", label: "車貸", color: "#FFC400" },
-  { value: "green", label: "房貸", color: "#36B37E" },
-  { value: "forest", label: "其他", color: "#00875A" },
+  { value: "2201", label: "分期付款", color: "#FF8B00" },
+  { value: "2202", label: "車貸", color: "#FFC400" },
+  { value: "2203", label: "房貸", color: "#36B37E" },
+  { value: "2204", label: "其他", color: "#00875A" },
 ];
 const recurringIncomeOptions = [
-  { value: "orange", label: "薪資收入", color: "#FF8B00" },
-  { value: "yellow", label: "利息收入", color: "#FFC400" },
-  { value: "forest", label: "其他", color: "#00875A" },
+  { value: "4101", label: "薪資收入", color: "#FF8B00" },
+  { value: "4102", label: "利息收入", color: "#FFC400" },
+  { value: "4103", label: "其他", color: "#00875A" },
 ];
 
 const nonRecurringIncomeOptions = [
-  { value: "orange", label: "兼職收入", color: "#FF8B00" },
-  { value: "yellow", label: "中獎", color: "#FFC400" },
-  { value: "forest", label: "其他", color: "#00875A" },
+  { value: "4201", label: "兼職收入", color: "#FF8B00" },
+  { value: "4202", label: "中獎", color: "#FFC400" },
+  { value: "4203", label: "其他", color: "#00875A" },
 ];
 const fixedChargesOptions = [
-  { value: "orange", label: "食", color: "#FF8B00" },
-  { value: "yellow", label: "衣", color: "#FFC400" },
-  { value: "forest", label: "住", color: "#00875A" },
-  { value: "forest", label: "孝親", color: "#00875A" },
-  { value: "forest", label: "折舊", color: "#00875A" },
-  { value: "forest", label: "其他", color: "#00875A" },
+  { value: "5101", label: "伙食支出", color: "#FF8B00" },
+  { value: "5102", label: "治裝支出", color: "#FFC400" },
+  { value: "5103", label: "住房支出", color: "#00875A" },
+  { value: "5104", label: "交通支出", color: "#00875A" },
+  { value: "5105", label: "教育支出", color: "#00875A" },
+  { value: "5106", label: "娛樂支出", color: "#00875A" },
+  { value: "5107", label: "孝親費", color: "#00875A" },
+  { value: "5108", label: "折舊費用", color: "#00875A" },
+  { value: "5109", label: "其他", color: "#00875A" },
 ];
 const variableChargesOptions = [
-  { value: "orange", label: "食", color: "#FF8B00" },
-  { value: "yellow", label: "衣", color: "#FFC400" },
-  { value: "forest", label: "住", color: "#00875A" },
-  { value: "forest", label: "孝親", color: "#00875A" },
-  { value: "forest", label: "其他", color: "#00875A" },
+  { value: "5201", label: "伙食支出", color: "#FF8B00" },
+  { value: "5202", label: "治裝支出", color: "#FFC400" },
+  { value: "5203", label: "住房支出", color: "#00875A" },
+  { value: "5204", label: "交通支出", color: "#00875A" },
+  { value: "5205", label: "教育支出", color: "#00875A" },
+  { value: "5206", label: "娛樂支出", color: "#00875A" },
+  { value: "5207", label: "孝親費", color: "#00875A" },
+  { value: "5208", label: "其他", color: "#00875A" },
 ];
 
 const groupedOptions = [
@@ -135,7 +141,7 @@ const customStyles = {
   }),
 };
 
-export default function SelectAccount() {
+export default function SelectAccount({ setSubjectId, subjectId }) {
   return (
     <Select
       //   aria-labelledby="aria-label"
@@ -144,6 +150,7 @@ export default function SelectAccount() {
       //   placeholder="Select an option..."
       styles={customStyles}
       defaultValue={defaultOption}
+      onChange={(option) => setSubjectId(option.value)}
     />
   );
 }

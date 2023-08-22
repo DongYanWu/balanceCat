@@ -1,20 +1,80 @@
-import { useState } from "react";
-import styles from "../styles/dateselector.module.scss";
+// import styles from "../styles/dateselector.module.scss";
 
-export default function DateSelector() {
-  const [selectedDate, setSelectedDate] = useState(
-    new Date().toISOString().split("T")[0],
-  );
+// export default function DateSelector({ selectedDate, onDateChange }) {
+//   return (
+//     <div>
+//       <input
+//         type="date"
+//         id="start"
+//         name="trip-start"
+//         value={selectedDate}
+//         onChange={onDateChange}
+//         className={styles.selector}
+//       />
+//     </div>
+//   );
+// }
+
+import * as React from "react";
+// import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+
+import dynamic from "next/dynamic";
+
+const DemoContainer = dynamic(
+  () =>
+    import("@mui/x-date-pickers/internals/demo").then(
+      (mod) => mod.DemoContainer,
+    ),
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+);
+
+// const AdapterDayjs = dynamic(
+//   () =>
+//     import("@mui/x-date-pickers/AdapterDayjs").then((mod) => mod.AdapterDayjs),
+//   {
+//     ssr: false,
+//     loading: () => <p>Loading...</p>,
+//   },
+// );
+
+// const LocalizationProvider = dynamic(
+//   () =>
+//     import("@mui/x-date-pickers/LocalizationProvider").then(
+//       (mod) => mod.LocalizationProvider,
+//     ),
+//   {
+//     ssr: false,
+//     loading: () => <p>Loading...</p>,
+//   },
+// );
+
+// const DateTimePicker = dynamic(
+//   () =>
+//     import("@mui/x-date-pickers/DateTimePicker").then(
+//       (mod) => mod.DateTimePicker,
+//     ),
+//   {
+//     ssr: false,
+//     loading: () => <p>Loading...</p>,
+//   },
+// );
+
+export default function DateSelector({ selectedDate, onDateChange }) {
   return (
-    <div>
-      <input
-        type="date"
-        id="start"
-        name="trip-start"
-        value={selectedDate}
-        onChange={(e) => setSelectedDate(e.target.value)}
-        className={styles.selector}
-      />
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={["DateTimePicker"]}>
+        <DateTimePicker
+          label="Basic date time picker"
+          onChange={onDateChange}
+          value={selectedDate}
+        />
+      </DemoContainer>
+    </LocalizationProvider>
   );
 }

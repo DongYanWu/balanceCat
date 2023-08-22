@@ -7,7 +7,10 @@ import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import { Box, createTheme } from "@mui/system";
+import useSWR, { mutate as globalMutate } from "swr";
+import useSWRMutation from "swr/mutation";
 import styles from "../../styles/DataCard.module.scss";
+import FetchWithToken from "../fetchWithToken";
 
 const PieChart = dynamic(
   () => import("@mui/x-charts").then((mod) => mod.PieChart),
@@ -27,12 +30,7 @@ const pieArcClasses = dynamic(
   }
 );
 
-const data = [
-  { label: "資產", value: 400, color: "#9bbfe0" },
-  { label: "負債", value: 300, color: "#e8a09a" },
-  { label: "Group C", value: 300, color: "#fbe29f" },
-  { label: "Group D", value: 200, color: "#c6d68f" },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const theme = createTheme({
   palette: {
@@ -52,7 +50,77 @@ const theme = createTheme({
   },
 });
 
-export default function DataCard({ isDebitCard, color }) {
+export default function DataCard({ isDebitCard, color, token }) {
+  let api;
+  if (isDebitCard) {
+    api = `${API_URL}stats/overall`;
+  } else {
+    api = `${API_URL}stats/expenses`;
+  }
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useSWR([api, token], ([url, token]) => FetchWithToken(url, token));
+  // const refreshFriendData = () => {
+  //   mutate([`${API_URL}/frie`, token]);
+  // };
+
+  if (!isLoading) {
+    console.log(userData?.data);
+  }
+  const data = [
+    {
+      label: userData?.data.charts[0].name,
+      value: userData?.data.charts[0].amount,
+      color: "#9bbfe0",
+    },
+    {
+      label: userData?.data.charts[1].name,
+      value: userData?.data.charts[1].amount,
+      color: "#e8a09a",
+    },
+    {
+      label: userData?.data.charts[2].name,
+      value: userData?.data.charts[2].amount,
+      color: "#fbe29f",
+    },
+    {
+      label: userData?.data.charts[3].name,
+      value: userData?.data.charts[3].amount,
+      color: "#c6d68f",
+    },
+  ];
+  if (!isDebitCard) {
+    data.push(
+      {
+        label: userData?.data.charts[4].name,
+        value: userData?.data.charts[4].amount,
+        color: "#d6d68f",
+      },
+      {
+        label: userData?.data.charts[5].name,
+        value: userData?.data.charts[5].amount,
+        color: "#e6d68f",
+      },
+      {
+        label: userData?.data.charts[6].name,
+        value: userData?.data.charts[6].amount,
+        color: "#f6d68f",
+      },
+      {
+        label: userData?.data.charts[7].name,
+        value: userData?.data.charts[7].amount,
+        color: "#g6d68f",
+      },
+      {
+        label: userData?.data.charts[8].name,
+        value: userData?.data.charts[8].amount,
+        color: "#h6d68f",
+      },
+    );
+  }
+  console.log(data);
   return (
     <ThemeProvider>
       <Card
@@ -92,7 +160,7 @@ export default function DataCard({ isDebitCard, color }) {
                 }}
               >
                 <Box sx={{ color: "text.secondary" }}>
-                  {isDebitCard ? "資產" : "當月支出金額 "}
+                  {isDebitCard ? "資產" : "經常性支出"}
                 </Box>
                 <Box
                   sx={{
@@ -101,7 +169,7 @@ export default function DataCard({ isDebitCard, color }) {
                     fontWeight: "medium",
                   }}
                 >
-                  98.3 K
+                  {`${userData?.data.stats[0].amount / 1000} K`}
                 </Box>
                 <Box
                   sx={{
@@ -112,7 +180,7 @@ export default function DataCard({ isDebitCard, color }) {
                     fontSize: 10,
                   }}
                 >
-                  +18.77%
+                  {userData?.data.stats[0].percentage_change || "+18.77%"}
                 </Box>
                 <Box
                   sx={{
@@ -139,7 +207,7 @@ export default function DataCard({ isDebitCard, color }) {
                 }}
               >
                 <Box sx={{ color: "text.secondary" }}>
-                  {isDebitCard ? "負債" : "已支出金額"}
+                  {isDebitCard ? "負債" : "非經常性支出"}
                 </Box>
                 <Box
                   sx={{
@@ -148,7 +216,7 @@ export default function DataCard({ isDebitCard, color }) {
                     fontWeight: "medium",
                   }}
                 >
-                  98.3 K
+                  {`${userData?.data.stats[1].amount / 1000} K`}
                 </Box>
                 <Box
                   sx={{
@@ -159,7 +227,7 @@ export default function DataCard({ isDebitCard, color }) {
                     fontSize: 10,
                   }}
                 >
-                  +18.77%
+                  {userData?.data.stats[0].percentage_change || "+18.77%"}
                 </Box>
                 <Box
                   sx={{
@@ -199,8 +267,14 @@ export default function DataCard({ isDebitCard, color }) {
                 },
                 "& .MuiChartsLegend-root.MuiChartsLegend-column": {
                   // display: "none",
+                  height: "50px",
                   margin: "20px",
+                  overflow: "scroll",
                 },
+                // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                //   height: "80px",
+                //   overflow: "scroll",
+                // },
               }}
             />
           </Stack>

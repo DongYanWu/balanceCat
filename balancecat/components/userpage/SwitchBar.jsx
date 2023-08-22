@@ -6,9 +6,32 @@ import { TabsList } from "@mui/base/TabsList";
 import { TabPanel } from "@mui/base/TabPanel";
 import { buttonClasses } from "@mui/base/Button";
 import { Tab, tabClasses } from "@mui/base/Tab";
+import useSWR, { mutate as globalMutate } from "swr";
 import TargetList from "./TargetList";
 
-export default function SwitchBar() {
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+const fetchWithToken = (url, token) =>
+  fetch(url, {
+    method: "GET",
+    headers: {
+      // 'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    // body: JSON.stringify({ content: 18 }),
+  }).then((r) => r.json());
+
+
+
+
+export default function SwitchBar({token}) {
+  // eslint-disable-next-line no-unused-vars
+  const { data, error, mutate } = useSWR([`${API_URL}goals`, token], ([url, token]) =>
+  fetchWithToken(url, token),
+);
+  
+
   return (
     <Tabs defaultValue={0}>
       <StyledTabsList>

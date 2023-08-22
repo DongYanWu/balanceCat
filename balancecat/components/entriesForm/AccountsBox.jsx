@@ -3,14 +3,27 @@ import React, { useState } from "react";
 import styles from "../../styles/accountsbox.module.scss";
 import SelectAccount from "./SelectAccount";
 import SelectAdd from "./SelectAdd";
+import NumberInputBasic from "./NumberInput";
 
-// const inter = Inter({
-//   weight: "400",
-//   subsets: ["latin"],
-// });
-
-export default function AccountsBox({ isDebit, addBox }) {
+export default function AccountsBox({
+  isDebit,
+  addBox,
+  onDataChanged,
+  data,
+  index,
+}) {
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
+  const [subjectId, setSubjectId] = useState("1101");
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    const newData = {
+      ...data,
+      subjectId,
+      [id]: value,
+    };
+    onDataChanged(index, newData, isDebit);
+  };
+
   return (
     <div
       className={styles.container}
@@ -22,19 +35,31 @@ export default function AccountsBox({ isDebit, addBox }) {
             <p>$</p>
           </div>
 
-          <SelectAccount />
+          <SelectAccount setSubjectId={setSubjectId} subjectId={subjectId} />
         </div>
-        <label htmlFor="amoutInput" className={styles.amoutInput}>
-          <input type="text" id="amoutInput" />
+        <label htmlFor="amount" className={styles.amoutInput}>
+          <input
+            type="text"
+            id="amount"
+            defaultValue={data.amoutInput || ""}
+            // value={data.amoutInput || ""}
+            onChange={handleInputChange}
+          />
         </label>
 
         <label
-          htmlFor="descriptionInput"
+          htmlFor="description"
           className={styles.descriptionInput}
           style={{ display: isDescriptionVisible ? "block" : "none" }}
         >
           <p>註解</p>
-          <textarea type="text" id="descriptionInput" />
+          <textarea
+            type="text"
+            id="description"
+            defaultValue={data.descriptionInput || ""}
+            // value={data.descriptionInput || ""}
+            onChange={handleInputChange}
+          />
         </label>
         {/* <div
           className={styles.circle}

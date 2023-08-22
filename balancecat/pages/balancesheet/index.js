@@ -1,14 +1,27 @@
 import Cookies from "cookies";
+import useSWR, { mutate as globalMutate } from "swr";
 import Sheet from "@/components/Sheet";
 // import NavBar from "@/components/NavBar";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
+import FetchWithToken from "@/components/fetchWithToken";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function BalanceSheetPage({ token, userId, username }) {
   console.log(token);
   console.log(userId);
   console.log(username);
-  const data = [
+  const { data, error, mutate } = useSWR(
+    [`${API_URL}fs?month=2023-08-01`, token],
+    ([url, token]) => FetchWithToken(url, token),
+  );
+  // const refreshFriendData = () => {
+  //   mutate([`${API_URL}/friends`, token]);
+  // };
+  console.log(data);
+
+  const loading = !data && !error;
+  const dataSet = [
     {
       name: "資產",
       subtitle: "Assets",
@@ -173,7 +186,7 @@ export default function BalanceSheetPage({ token, userId, username }) {
       }}
     >
       <SideBar />
-      <Sheet data={data} />
+      <Sheet data={dataSet} />
     </CardTemplate>
   );
 }

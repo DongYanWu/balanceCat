@@ -41,17 +41,19 @@ export default function UserPage({ token, userId, username }) {
                   src="/pic.jpg"
                   sx={{ width: 56, height: 56 }}
                 />
-                <p style={{ fontSize: "20px" }}>Tony，歡迎回來</p>
+                <p style={{ fontSize: "20px" }}>{`${username}，歡迎回來`}</p>
               </div>
               <PlanCard />
             </div>
             <div style={{ display: "flex", gap: "30px" }}>
               <DataCard
                 isDebitCard
+                token={token}
                 // color="linear-gradient(to bottom, #d0eed7, #e0f8fc)"
                 color="#fffcf7"
               />
               <DataCard
+                token={token}
                 color="#e6f0f2"
                 // color="linear-gradient(to bottom, #e3f2ff, #dbe9ff)"
               />
@@ -66,7 +68,7 @@ export default function UserPage({ token, userId, username }) {
               boxShadow: "0 0 10px rgb(0,0,0,0.2)",
             }}
           >
-            <SwitchBar />
+            <SwitchBar token={token} />
           </div>
         </div>
       </CardTemplate>

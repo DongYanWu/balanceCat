@@ -178,6 +178,8 @@ import Footer from "@/components/Footer";
 import styles from "@/styles/home.module.scss";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
+import Sun from "@/components/Sun";
+import Water from "@/components/water";
 
 const silk = Silkscreen({
   weight: ["400"],
@@ -188,45 +190,55 @@ export default function Home({ token, userId, username }) {
   console.log(token);
   console.log(userId);
   console.log(username);
+
   return (
-    <div className={styles.wrapper}>
-      <CardTemplate
-        backgroundStyle={{
-          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-        }}
-        style={{
-          display: "flex",
-          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
-          border: "none",
-        }}
-      >
-        <SideBar />
-        <div className={styles.box}>
-          <div className={styles.title_entries}>
-            <p className={`${silk.className} ${styles.title}`}>You always</p>
-            <p className={`${silk.className} ${styles.title}`}>are winner</p>
-            <Entries />
-          </div>
-        </div>
-        <Image
-          src="/astrocat.png"
-          alt="cat pic"
-          width={300}
-          height={300}
-          className={styles.cat}
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "#0f0f15",
+      }}
+    >
+      <Sun />
+      <div className={styles.wrapper}>
+        <CardTemplate
+          // backgroundStyle={{
+          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+          // }}
           style={{
-            borderRadius: "30%",
-            // position: "absolute",
-            // bottom: "20px",
-            // left: "50%",
-            transform: "translateX(-50%)",
-            animation: "bounce 2s infinite",
+            display: "flex",
+            background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+            boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+            border: "none",
           }}
-        />
-      </CardTemplate>
-      <style>
-        {`
+        >
+          <SideBar />
+          <div className={styles.box}>
+            <div className={styles.title_entries}>
+              <p className={`${silk.className} ${styles.title}`}>You always</p>
+              <p className={`${silk.className} ${styles.title}`}>are winner</p>
+              <Entries token={token} />
+            </div>
+          </div>
+          <Image
+            src="/astrocat.png"
+            alt="cat pic"
+            width={300}
+            height={300}
+            className={styles.cat}
+            style={{
+              borderRadius: "30%",
+              // position: "absolute",
+              // bottom: "20px",
+              // left: "50%",
+              transform: "translateX(-50%)",
+              animation: "bounce 2s infinite",
+            }}
+          />
+        </CardTemplate>
+
+        <style>
+          {`
           /* 定義彈跳動畫 */
           @keyframes bounce {
             0%,
@@ -238,41 +250,43 @@ export default function Home({ token, userId, username }) {
             }
           }
         `}
-      </style>
+        </style>
+        <Water />
+        <CardTemplate
+          // backgroundStyle={{
+          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+          // }}
+          style={{
+            display: "flex",
+            gap: "2rem",
+            background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+            boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+            border: "none",
+          }}
+        >
+          <SideBar />
+          <AssetsOverview />
+        </CardTemplate>
 
-      <CardTemplate
-        backgroundStyle={{
-          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-        }}
-        style={{
-          display: "flex",
-          gap: "2rem",
-          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
-          border: "none",
-        }}
-      >
-        <SideBar />
-        <AssetsOverview />
-      </CardTemplate>
+        <CardTemplate
+          // backgroundStyle={{
+          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+          // }}
+          style={{
+            display: "flex",
+            background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+            boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+            border: "none",
+          }}
+        >
+          <SideBar />
+          <div style={{ alignSelf: "center", width: "100%" }}>
+            <FrequentlyAskedQuestions />
+          </div>
+        </CardTemplate>
 
-      <CardTemplate
-        backgroundStyle={{
-          background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-        }}
-        style={{
-          display: "flex",
-          background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
-          border: "none",
-        }}
-      >
-        <SideBar />
-        <div style={{ alignSelf: "center", width: "100%" }}>
-          <FrequentlyAskedQuestions />
-        </div>
-      </CardTemplate>
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }
