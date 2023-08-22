@@ -23,7 +23,7 @@ import KebabDiningIcon from "@mui/icons-material/KebabDining";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import BedIcon from "@mui/icons-material/Bed";
 import Face2Icon from "@mui/icons-material/Face2";
-import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+// import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import Label from "@mui/icons-material/Label";
 import FlagIcon from "@mui/icons-material/Flag";
 import PersonIcon from "@mui/icons-material/Person";
@@ -52,7 +52,11 @@ const personal = [
 export default function SettingsBars({ token }) {
   const [goalData, setGoalData] = useState(null);
   useGetGoals({ setData: setGoalData, token });
-  console.log(goalData);
+  const goalsInfo = goalData?.map((goal) => ({
+    subject_id: goal.subject_id,
+    amount: goal.amount,
+    id: goal.id,
+  }));
 
   const assetsData = [
     {
@@ -60,6 +64,7 @@ export default function SettingsBars({ token }) {
       labelText: "流動資產",
       labelIcon: WavesIcon,
       labelInfo: "尚無目標",
+      goalId: "-1",
       children: [
         {
           nodeId: "1101",
@@ -70,6 +75,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1102",
@@ -80,6 +86,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1103",
@@ -90,6 +97,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -98,6 +106,7 @@ export default function SettingsBars({ token }) {
       labelText: "非流動資產",
       labelIcon: VolcanoIcon,
       labelInfo: "尚無目標",
+      goalId: "-1",
       children: [
         {
           nodeId: "1201",
@@ -108,6 +117,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1202",
@@ -118,6 +128,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1203",
@@ -128,6 +139,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1204",
@@ -138,6 +150,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1205",
@@ -148,6 +161,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "1206",
@@ -158,6 +172,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -169,6 +184,7 @@ export default function SettingsBars({ token }) {
       labelIcon: Label,
       labelInfo: "尚無目標",
       children: assetsData,
+      goalId: "-1",
     },
   ];
   const incomeData = [
@@ -177,6 +193,7 @@ export default function SettingsBars({ token }) {
       labelText: "經常性收入",
       labelIcon: AccessAlarmIcon,
       labelInfo: "尚無目標",
+      goalId: "-1",
       children: [
         {
           nodeId: "4101",
@@ -187,6 +204,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "4102",
@@ -197,6 +215,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "4103",
@@ -207,6 +226,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -215,6 +235,7 @@ export default function SettingsBars({ token }) {
       labelText: "非經常性收入",
       labelIcon: AlarmOffIcon,
       labelInfo: "尚無目標",
+      goalId: "-1",
       children: [
         {
           nodeId: "4201",
@@ -225,6 +246,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "4202",
@@ -235,6 +257,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "4203",
@@ -245,6 +268,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -256,6 +280,7 @@ export default function SettingsBars({ token }) {
       labelIcon: Label,
       labelInfo: "尚無目標",
       children: incomeData,
+      goalId: "-1",
     },
   ];
   const expenseData = [
@@ -264,6 +289,7 @@ export default function SettingsBars({ token }) {
       labelText: "經常性支出",
       labelIcon: AccessAlarmIcon,
       labelInfo: "尚無限制",
+      goalId: "-1",
       children: [
         {
           nodeId: "5101",
@@ -274,6 +300,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5102",
@@ -284,6 +311,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5103",
@@ -294,6 +322,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5104",
@@ -304,6 +333,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5105",
@@ -314,6 +344,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5106",
@@ -324,6 +355,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5107",
@@ -334,6 +366,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5108",
@@ -344,6 +377,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5109",
@@ -354,6 +388,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -362,6 +397,7 @@ export default function SettingsBars({ token }) {
       labelText: "非固定支出",
       labelIcon: AlarmOffIcon,
       labelInfo: "尚無限制",
+      goalId: "-1",
       children: [
         {
           nodeId: "5201",
@@ -372,6 +408,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5202",
@@ -382,6 +419,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5203",
@@ -392,6 +430,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5204",
@@ -402,6 +441,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5205",
@@ -412,6 +452,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5206",
@@ -422,6 +463,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5207",
@@ -432,6 +474,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
         {
           nodeId: "5208",
@@ -442,6 +485,7 @@ export default function SettingsBars({ token }) {
           bgColor: "#e8f0fe",
           colorForDarkMode: "#B8E7FB",
           bgColorForDarkMode: "#071318",
+          goalId: "-1",
         },
       ],
     },
@@ -453,6 +497,7 @@ export default function SettingsBars({ token }) {
       labelIcon: Label,
       labelInfo: "尚無限制",
       children: expenseData,
+      goalId: "-1",
     },
   ];
   const settings = [
@@ -464,10 +509,70 @@ export default function SettingsBars({ token }) {
     },
   ];
 
+  const updatedSettings = settings.map((setting) => {
+    const updatedChildren = setting.children.map((category) => {
+      const categorySubjectId = category.nodeId;
+      const matchingCategoryGoal = goalsInfo?.find(
+        (goal) => categorySubjectId === goal.subject_id.toString(),
+      );
+
+      const updatedCategoryChildren = category.children.map((child) => {
+        const childSubjectId = child.nodeId;
+        const matchingChildGoal = goalsInfo?.find(
+          (goal) => childSubjectId === goal.subject_id.toString(),
+        );
+        const updatedNestedChildren = child.children.map((nestedChild) => {
+          const nestedChildSubjectId = nestedChild.nodeId;
+          const matchingNestedGoal = goalsInfo?.find(
+            (goal) => nestedChildSubjectId === goal.subject_id.toString(),
+          );
+
+          if (matchingNestedGoal) {
+            return {
+              ...nestedChild,
+              labelInfo: `${matchingNestedGoal.amount}`,
+              goalId: `${matchingNestedGoal.id}`,
+            };
+          }
+          return nestedChild;
+        });
+        if (matchingChildGoal) {
+          return {
+            ...child,
+            labelInfo: `${matchingChildGoal.amount}`,
+            goalId: `${matchingChildGoal.id}`,
+            children: updatedNestedChildren,
+          };
+        }
+        return {
+          ...child,
+          children: updatedNestedChildren,
+        };
+      });
+      if (matchingCategoryGoal) {
+        return {
+          ...category,
+          labelInfo: `${matchingCategoryGoal.amount}`,
+          goalId: `${matchingCategoryGoal.id}`,
+          children: updatedCategoryChildren,
+        };
+      }
+      return {
+        ...category,
+        children: updatedCategoryChildren,
+      };
+    });
+
+    return {
+      ...setting,
+      children: updatedChildren,
+    };
+  });
+
   return (
     <>
       <GmailTreeView isPersonal data={personal} />
-      <GmailTreeView isPersonal={false} data={settings} />
+      <GmailTreeView isPersonal={false} data={updatedSettings} token={token} />
     </>
   );
 }
