@@ -77,11 +77,11 @@ export default function UserPage({ token, userId, username }) {
                 isDebitCard
                 token={token}
                 // color="linear-gradient(to bottom, #d0eed7, #e0f8fc)"
-                color="#fffcf7"
+                color="#e6f0f2"
               />
               <DataCard
                 token={token}
-                color="#e6f0f2"
+                color="#FFFDE7"
                 // color="linear-gradient(to bottom, #e3f2ff, #dbe9ff)"
               />
             </div>

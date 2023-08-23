@@ -16,7 +16,6 @@ import { Button } from "@mui/material";
 import createData from "@/createData";
 import useSWRMutation from "swr/mutation";
 import swal from "sweetalert";
-// import swal from "sweetalert";
 
 const dot = DotGothic16({
   weight: "400",
@@ -91,9 +90,14 @@ export default function SubjectDetail({ entriesData, token }) {
     });
   };
   const handleClickDelete = () => {
-    triggerDelete({ token }).then(async (data) => {
-      await console.log(data);
-      swal("Success", `成功刪除分錄`, "success");
+    triggerDelete({ token }).then(async (response) => {
+      if (response.status === 200) {
+        swal("Success", `成功刪除分錄`, "success").then(() => {
+          window.location.reload();
+        });
+      } else {
+        swal("Error", `刪除分錄失敗`, "error");
+      }
     });
   };
   const handleClose = () => {
@@ -115,7 +119,7 @@ export default function SubjectDetail({ entriesData, token }) {
         width: "100%",
         overflow: "hidden",
         background: "linear-gradient(to bottom right, #eef0f2, #eee)",
-        boxShadow: "0 0 40px rbg(0,0,0,0.5)",
+        boxShadow: "0 0 40px rgb(255,255,255,1)",
         borderRadius: "20px",
         border: "3px solid #d9d9d9",
       }}

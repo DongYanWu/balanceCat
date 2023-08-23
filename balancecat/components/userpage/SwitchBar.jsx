@@ -21,7 +21,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 function createData(name, total, wish, achievement, hisData) {
   return { name, total, wish, achievement,  hisData};
 }
-
+function absolute(value){
+  if (value<0)
+    return -value;
+  return value;
+}
 
 export default function SwitchBar({token}) {
   const [startYear, setStartYear] = useState(2022);
@@ -41,19 +45,19 @@ console.log(data?.data)
 //   // createData("Gingerbread", 356, 159, "24%"),
 // ];
 const totalRows = data?.data?.goals.map((item) => 
-  createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
+  createData(item.name, absolute(item.current_amount).toLocaleString(), item.amount.toLocaleString(), (absolute(item.current_amount * 100) / item.amount).toFixed(2), item.history_amount)
 ) || [];
 
 const debitRows = data?.data?.goals
-  .filter(item => [1101, 1102, 1103, 1104, 1201, 1202, 1203, 1204, 1205, 1206].includes(item.subject_id))
+  .filter(item => [1000, 1100, 1101, 1102, 1103, 1104, 1200, 1201, 1202, 1203, 1204, 1205, 1206, 4000, 4100, 4101, 4102, 4103, 4200, 4201, 4202, 4203].includes(item.subject_id))
   .map((item) => 
-    createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
+    createData(item.name, absolute(item.current_amount).toLocaleString(), item.amount.toLocaleString(), (absolute(item.current_amount * 100) / item.amount).toFixed(2), item.history_amount)
   ) || [];
 
   const expenseRows = data?.data?.goals
-  .filter(item => [5101, 5102, 5103, 5104, 5105, 5106, 5107, 5108, 5109, 5201, 5202, 5203, 5204, 5205, 5206, 5207, 5208].includes(item.subject_id))
+  .filter(item => [5000, 5100, 5101, 5102, 5103, 5104, 5105, 5106, 5107, 5108, 5109, 5200, 5201, 5202, 5203, 5204, 5205, 5206, 5207, 5208].includes(item.subject_id))
   .map((item) => 
-    createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
+    createData(item.name, absolute(item.current_amount).toLocaleString(), item.amount.toLocaleString(), (absolute(item.current_amount * 100) / item.amount).toFixed(2), item.history_amount)
   ) || [];
 
   return (

@@ -183,9 +183,10 @@ export default function BasicLineChart({
                       fontWeight: "medium",
                     }}
                   >
-                    {Math.round(wish / 1000)} K
+                    {wish}
+                    {/* {Math.round(wish / 1000)} K */}
                   </Box>
-                  <Box
+                  {/* <Box
                     sx={{
                       color: "success.dark",
                       display: "inline",
@@ -195,8 +196,8 @@ export default function BasicLineChart({
                     }}
                   >
                     +18.77%
-                  </Box>
-                  <Box
+                  </Box> */}
+                  {/* <Box
                     sx={{
                       color: "text.secondary",
                       display: "inline",
@@ -204,7 +205,7 @@ export default function BasicLineChart({
                     }}
                   >
                     vs. last week
-                  </Box>
+                  </Box> */}
                 </Box>
               </ThemeProvider>
               <ThemeProvider theme={theme}>
@@ -225,9 +226,10 @@ export default function BasicLineChart({
                       fontWeight: "medium",
                     }}
                   >
-                    {Math.round(total / 1000)} K
+                    {total}
+                    {/* {Math.round(total / 1000)} K */}
                   </Box>
-                  <Box
+                  {/* <Box
                     sx={{
                       color: "success.dark",
                       display: "inline",
@@ -246,7 +248,7 @@ export default function BasicLineChart({
                     }}
                   >
                     vs. last week
-                  </Box>
+                  </Box> */}
                 </Box>
               </ThemeProvider>
             </div>
