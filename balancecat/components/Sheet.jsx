@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 // pages/index.js
 import React from "react";
 import Link from "next/link";
@@ -15,7 +16,7 @@ import {
 
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import SheetSkeleton from "./SheetSkeleton";
 import styles from "../styles/sheet.module.scss";
 
 // const data = [
@@ -80,7 +81,7 @@ import styles from "../styles/sheet.module.scss";
 //   },
 // ];
 
-export default function Sheet({ data }) {
+export default function Sheet({ data, isLoading, isPrevLoading }) {
   const [open, setOpen] = React.useState({});
 
   const handleToggle = (name) => {
@@ -120,7 +121,9 @@ export default function Sheet({ data }) {
             </div>
           </TableCell>
           <TableCell align="right">
-            {excludedIds.includes(item.subject_id) ? (
+            {isPrevLoading ? (
+              <SheetSkeleton width={60} height={10} />
+            ) : excludedIds.includes(item.subject_id) ? (
               absolute(item.value)
             ) : (
               <Link
@@ -132,7 +135,9 @@ export default function Sheet({ data }) {
             )}
           </TableCell>
           <TableCell align="right" className={styles.lastvalue}>
-            {excludedIds.includes(item.subject_id) ? (
+            {isLoading ? (
+              <SheetSkeleton width={60} height={10} />
+            ) : excludedIds.includes(item.subject_id) ? (
               absolute(item.lastMonthValue)
             ) : (
               <Link
@@ -154,11 +159,11 @@ export default function Sheet({ data }) {
     <TableContainer
       component={Paper}
       sx={{
-        width: "60%",
+        width: "100%",
         border: "2px solid #d9d9d9",
         background: "linear-gradient(to bottom right, #fffcf7, #ccc)",
-        boxShadow: "0 0 40px rbg(0,0,0,0.5)",
-        margin: "50px auto",
+        boxShadow: "0 0 40px rgb(255,255,255,1)",
+        margin: "50px 0",
         borderRadius: "20px",
       }}
       // className={styles.tableContainer}

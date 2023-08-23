@@ -6,6 +6,8 @@ import SideBar from "@/components/SideBar";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import MonthPicker from "@/components/MonthPicker";
 import useGetIncomeData from "@/hooks/useGetIncomeData";
+import Image from "next/image";
+import Rocket from "@/components/Rocket";
 
 // eslint-disable-next-line no-unused-vars
 export default function BalanceSheetPage({ token, userId, username }) {
@@ -13,16 +15,17 @@ export default function BalanceSheetPage({ token, userId, username }) {
   const [prevDate, setPrevDate] = React.useState(dayjs().subtract(1, "month"));
   const [prevFinancialData, setPrevFinancialData] = React.useState(null);
   const [currFinancialData, setCurrFinancialData] = React.useState(null);
-  useGetIncomeData({
+  const isLoading = useGetIncomeData({
     setData: setPrevFinancialData,
     date: prevDate,
     token,
   });
-  useGetIncomeData({
+  const isPrevLoading = useGetIncomeData({
     setData: setCurrFinancialData,
     date: selectedDate,
     token,
   });
+
   const dataSet = [
     {
       name: "收入",
@@ -267,16 +270,22 @@ export default function BalanceSheetPage({ token, userId, username }) {
   return (
     <CardTemplate
       backgroundStyle={{
-        background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        background: "#0f0f15",
+        zIndex: "-1",
       }}
       style={{
         display: "flex",
         boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
-        background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        // background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        background: "#0f0f15",
         border: "none",
+        zIndex: "0",
       }}
     >
-      <SideBar token={token} />
+      <SideBar token={token} shadow />
+      <Rocket />
+      <Rocket />
+      <Rocket />
       <div
         style={{
           display: "flex",
@@ -294,8 +303,39 @@ export default function BalanceSheetPage({ token, userId, username }) {
           />
         </span>
 
-        <Sheet data={dataSet} />
+        <Sheet
+          data={dataSet}
+          isLoading={isLoading}
+          isPrevLoading={isPrevLoading}
+        />
       </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "20vw",
+          left: "10vw",
+          // width: "100%",
+          // height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/typing.gif" width={500} height={500} />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "35vw",
+          left: "75vw",
+          // width: "100%",
+          // height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/ufo.gif" width={200} height={200} />
+      </div>
+      <Rocket />
+      <Rocket />
+      <Rocket />
     </CardTemplate>
   );
 }

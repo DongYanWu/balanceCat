@@ -20,6 +20,21 @@ export default function MonthPicker({
         views={["month", "year"]}
         value={selectedDate}
         onChange={handleDateChange}
+        sx={{
+          ".MuiInputLabel-root": {
+            color: "white",
+          },
+          ".MuiOutlinedInput-root": {
+            borderRadius: "10px",
+            color: "white",
+          },
+          ".MuiOutlinedInput-notchedOutline": {
+            borderColor: "white",
+          },
+          ".MuiIconButton-root": {
+            color: "white",
+          }
+        }}
       />
     </LocalizationProvider>
   );

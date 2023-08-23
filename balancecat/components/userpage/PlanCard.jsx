@@ -61,7 +61,7 @@ export default function PlanCard({ title, content, token }) {
     context = (
       <Card
         sx={{
-          minWidth: 275,
+          minWidth: 523,
           height: 195,
           borderRadius: "20px",
           backgroundColor: "#fff",
@@ -113,7 +113,7 @@ export default function PlanCard({ title, content, token }) {
     context = (
       <Card
         sx={{
-          minWidth: 275,
+          minWidth: 523,
           height: 195,
           borderRadius: "20px",
           backgroundColor: "#fff",

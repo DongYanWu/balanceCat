@@ -5,30 +5,12 @@ import * as React from "react";
 import dayjs from "dayjs";
 import MonthPicker from "@/components/MonthPicker";
 import Sheet from "@/components/Sheet";
-// import NavBar from "@/components/NavBar";
+import Image from "next/image";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
 import useGetFinancialData from "@/hooks/useGetFinancialData";
+import Rocket from "@/components/Rocket";
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// async function sendRequest(url, { arg }) {
-//   return fetch(url, {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${arg.token}`,
-//     },
-//   })
-//     .then((response) => response)
-//     .then((data) => [data, data.json()])
-
-//     .catch((error) => {
-//       // eslint-disable-next-line no-console
-//       console.error("Error:", error);
-//     });
-// }
-
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function BalanceSheetPage({ token, userId, username }) {
   console.log(token);
   console.log(userId);
@@ -37,72 +19,16 @@ export default function BalanceSheetPage({ token, userId, username }) {
   const [prevDate, setPrevDate] = React.useState(dayjs().subtract(1, "month"));
   const [prevFinancialData, setPrevFinancialData] = React.useState(null);
   const [currFinancialData, setCurrFinancialData] = React.useState(null);
-  useGetFinancialData({
+  const isPrevLoading = useGetFinancialData({
     setData: setPrevFinancialData,
     date: prevDate,
     token,
   });
-  useGetFinancialData({
+  const isLoading = useGetFinancialData({
     setData: setCurrFinancialData,
     date: selectedDate,
     token,
   });
-  // const data = isPrevLoading || isSecloading;
-  // if (!isPrevLoading || isSecloading) {
-  //   return <div>hi</div>;
-  // }
-  // const { data, error, mutate } = useSWR(
-  //   [`${API_URL}fs?${startDate.format("YYYY-MM")}-01`, token],
-  //   ([url, token]) => FetchWithToken(url, token),
-  // );
-  // const { trigger, isMutating } = useSWRMutation(
-  //   `${API_URL}fs?${startDate.format("YYYY-MM")}-01`,
-  //   sendRequest,
-  // );
-  // useEffect(() => {
-  //   trigger({ token }).then(async (data) => {
-  //     console.log(data);
-  //   });
-  // }, [startDate]);
-  // setStartDate(dayjs());
-  // trigger({ token }).then(async (data) => {
-  //   console.log(data);
-  // });
-
-  // // console.log(data);
-  // const [startFinancialData, setStartFinancialData] = React.useState(
-  //   data.data.subjects,
-  // );
-  // console.log(data.data.subjects);
-  // const [endFinancialData, setEndFinancialData] = React.useState(null);
-  // end financial data
-  // const { dataEnd, errorEnd } = useSWR(
-  //   `${API_URL}fs?month=${endDate.format("YYYY-MM")}-01`,
-  //   (url) => fetcher(url, token),
-  // );
-  // if (dataEnd) {
-  //   setEndFinancialData(dataEnd);
-  //   console.log(endFinancialData);
-  // } else if (errorEnd) console.log(errorEnd);
-  // const { data, error } = useSWR(
-  //   [`${API_URL}fs?${startDate.format("YYYY-MM")}-01`, token],
-  //   ([url, token]) => FetchWithToken(url, token),
-  // );
-  // React.useEffect(() => {
-  //   if (data) {
-  //     setStartFinancialData(data.data.subjects);
-  //     console.log(startFinancialData);
-  //   } else {
-  //     console.error("錯誤", error);
-  //   }
-  // }, [startDate]);
-
-  // const refreshFriendData = () => {
-  //   mutate([`${API_URL}/friends`, token]);
-  // };
-  // console.log(data);
-
-  // const loading = !data && !error;
 
   const dataSet = [
     {
@@ -305,16 +231,22 @@ export default function BalanceSheetPage({ token, userId, username }) {
   return (
     <CardTemplate
       backgroundStyle={{
-        background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        background: "#0f0f15",
+        zIndex: "-1",
       }}
       style={{
         display: "flex",
-        background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        // background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        background: "#0f0f15",
         boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
         border: "none",
+        zIndex: "0",
       }}
     >
-      <SideBar token={token} />
+      <SideBar token={token} shadow />
+      <Rocket />
+      <Rocket />
+      <Rocket />
       <div
         style={{
           display: "flex",
@@ -332,8 +264,37 @@ export default function BalanceSheetPage({ token, userId, username }) {
           />
         </span>
 
-        <Sheet data={dataSet} />
+        <Sheet
+          data={dataSet}
+          isPrevLoading={isPrevLoading}
+          isLoading={isLoading}
+        />
       </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "20vw",
+          left: "10vw",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/typing.gif" width={500} height={500} />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "35vw",
+          left: "75vw",
+          // width: "100%",
+          // height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/ufo.gif" width={200} height={200} />
+      </div>
+      <Rocket />
+      <Rocket />
+      <Rocket />
     </CardTemplate>
   );
 }

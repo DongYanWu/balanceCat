@@ -13,8 +13,10 @@ const fetcher = (url, token) =>
     .then((r) => r.data.data.subjects);
 
 export default function useGetFinancialData({ setData, date, token }) {
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}is?${date.format("YYYY-MM")}-01`,
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}fs/is?timestamp=${date.format(
+      "YYYY-MM",
+    )}-01`,
     (url) => fetcher(url, token),
   );
   useEffect(() => {
@@ -22,4 +24,5 @@ export default function useGetFinancialData({ setData, date, token }) {
       setData(data);
     } else if (error) console.error(error);
   });
+  return isLoading;
 }

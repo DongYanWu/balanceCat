@@ -1,0 +1,15 @@
+.rocket {
+    background: url(/rocket.png) no-repeat;
+    background-size: contain;
+    width: 140px;
+    height: 140px;
+    cursor: -webkit-grab;
+    will-change: transform;
+    user-select: none;
+    z-index: 2;
+  }
+  
+  .rocket:active {
+    cursor: -webkit-grabbing;
+  }
+  
