@@ -92,7 +92,7 @@ export default function UploadButton({ token }) {
         <VisuallyHiddenInput
           type="file"
           ref={fileInputRef}
-          onChange={() => fileChangedHandler()}
+          onChange={(e) => fileChangedHandler(e)}
         />
       </Button>
     </ThemeProvider>
