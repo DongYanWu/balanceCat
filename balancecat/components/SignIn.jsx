@@ -35,7 +35,7 @@ export default function SignIn({ setIsLogIn }) {
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/signin`,
-    sendRequest,
+    sendRequest
   );
 
   const handleSignIn = () => {
@@ -47,7 +47,7 @@ export default function SignIn({ setIsLogIn }) {
         swal(
           "Error",
           "Wrong Password, User Not Found, Wrong provider",
-          "error",
+          "error"
         );
       }
       if (response.status === 400) {
@@ -57,7 +57,7 @@ export default function SignIn({ setIsLogIn }) {
         swal(
           "Error",
           "Something's wrong. Please try again later or notify our engineering team",
-          "info",
+          "info"
         );
       }
       if (response.status === 200) {
@@ -66,9 +66,13 @@ export default function SignIn({ setIsLogIn }) {
 
         // Cookies.set('token', userData.data.access_token, { secure: true, httpOnly: true });
 
-        cookieCutter.set("id", userData.data.user.id, { secure: true });
-        cookieCutter.set("token", userData.data.access_token, { secure: true });
-        cookieCutter.set("username", userData.data.user.name, { secure: true });
+        cookieCutter.set("id", userData.data.user.id, { sameSite: "lax" });
+        cookieCutter.set("token", userData.data.access_token, {
+          sameSite: "lax",
+        });
+        cookieCutter.set("username", userData.data.user.name, {
+          sameSite: "lax",
+        });
       }
     });
   };
