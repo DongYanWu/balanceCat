@@ -284,9 +284,9 @@ export default function DataCard({ isDebitCard, color, token }) {
                 },
                 "& .MuiChartsLegend-root.MuiChartsLegend-column": {
                   // display: "none",
-                  height: "50px",
+                  height: "30px",
                   margin: "20px",
-                  overflow: "scroll",
+                  overflowY: "scroll",
                 },
                 // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
                 //   height: "80px",

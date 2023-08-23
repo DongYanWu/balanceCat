@@ -69,7 +69,8 @@ export default function PlanCard({ title, content, token }) {
           boxShadow: "0 0 20px rgb(0,0,0,0.2)",
           "&:hover": {
             transform: "translateY(-4px)",
-            boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.08)",
+            // boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.08)",
+            boxShadow: "0 0 20px rgb(0,0,0,0.2)",
           },
         }}
       >

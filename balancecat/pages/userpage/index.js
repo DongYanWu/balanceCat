@@ -48,7 +48,7 @@ export default function UserPage({ token, userId, username }) {
         style={{
           display: "flex",
           background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 0.8)",
           border: "none",
         }}
       >
