@@ -33,7 +33,8 @@ export default function MonthPicker({
           },
           ".MuiIconButton-root": {
             color: "white",
-          }
+            // eslint-disable-next-line prettier/prettier
+          },
         }}
       />
     </LocalizationProvider>
