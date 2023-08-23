@@ -28,16 +28,26 @@
 
 // export default YearPicker;
 import * as React from "react";
+import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export default function YearPicker({ content }) {
+export default function YearPicker({ content, setYear, year }) {
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["DatePicker"]}>
-        <DatePicker label={`${content} year`} views={["year"]} />
+        <DatePicker
+          label={`${content} year`}
+          views={["year"]}
+          onChange={(e) => setYear(e.$y)}
+          // defaultValue={year}
+          defaultValue={dayjs().year(year)}
+
+          // defaultCalendarYear={year}
+        />
       </DemoContainer>
     </LocalizationProvider>
   );

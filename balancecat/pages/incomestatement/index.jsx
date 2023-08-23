@@ -278,7 +278,7 @@ export default function BalanceSheetPage({ token, userId, username }) {
         border: "none",
       }}
     >
-      <SideBar />
+      <SideBar token={token}/>
       <div
         style={{
           display: "flex",

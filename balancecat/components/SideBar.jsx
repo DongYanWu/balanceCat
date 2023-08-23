@@ -60,7 +60,7 @@ const FireNav = styled(List)({
   },
 });
 
-export default function SideBar() {
+export default function SideBar({ token }) {
   const router = useRouter();
 
   const [isHovering, setIsHovering] = React.useState(false);
@@ -239,7 +239,9 @@ export default function SideBar() {
                     )}
                   </ListItemButton>
                 ))}
-                {isHovering && isHoveringSettings && <SettingsBar />}
+                {isHovering && isHoveringSettings && (
+                  <SettingsBar token={token} />
+                )}
               </Box>
             </FireNav>
           </Paper>

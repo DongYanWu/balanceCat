@@ -509,11 +509,11 @@ const personal = [
   },
 ];
 
-export default function SettingsBars() {
+export default function SettingsBars({ token }) {
   return (
     <>
-      <GmailTreeView isPersonal data={personal} />
-      <GmailTreeView isPersonal={false} data={settings} />
+      <GmailTreeView isPersonal data={personal} token={token} />
+      <GmailTreeView isPersonal={false} data={settings} token={token} />
     </>
   );
 }

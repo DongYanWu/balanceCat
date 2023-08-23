@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/require-default-props */
 import * as React from "react";
 import PropTypes from "prop-types";
@@ -95,7 +96,7 @@ function StyledTreeItem(props) {
           >
             {labelText}
           </Typography>
-          {labelText === "設定大頭貼" && <UploadButton />}
+          {labelText === "設定大頭貼" && <UploadButton token={props.token} />}
           {labelInfo == null ? null : (
             <>
               {isEditMode ? (
@@ -155,9 +156,10 @@ StyledTreeItem.propTypes = {
   isPersonal: PropTypes.bool,
 };
 
-export default function GmailTreeView({ isPersonal, data }) {
+export default function GmailTreeView({ isPersonal, data, token }) {
   const renderTree = (nodes) => (
     <StyledTreeItem
+      token={token}
       key={nodes.nodeId}
       nodeId={nodes.nodeId}
       labelText={nodes.labelText}

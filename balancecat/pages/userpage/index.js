@@ -47,7 +47,7 @@ export default function UserPage({ token, userId, username }) {
           border: "none",
         }}
       >
-        <SideBar />
+        <SideBar token={token}/>
         <div className={styles.container}>
           <div className={styles.topcontainer}>
             <div className={styles.personalinfo}>

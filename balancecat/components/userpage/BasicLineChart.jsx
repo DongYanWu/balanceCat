@@ -60,10 +60,17 @@ export default function BasicLineChart({
   total,
   wish,
   achievement,
+  setStartYear,
+  setEndYear,
+  startYear,
+  endYear,
 }) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const [isSetting, setIsSetting] = useState(false);
+  const [tempStartYear, setTempStartYear] = useState(startYear);
+  const [tempEndYear, setTempEndYear] = useState(endYear);
+
   // const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   console.log(hisData);
@@ -99,8 +106,16 @@ export default function BasicLineChart({
           <DialogContent>
             <DialogContentText sx={{ height: "100px" }}>
               <div className={styles.yearPicker}>
-                <YearPicker content="Start" />
-                <YearPicker content="End" />
+                <YearPicker
+                  content="Start"
+                  setYear={setTempStartYear}
+                  year={tempStartYear}
+                />
+                <YearPicker
+                  content="End"
+                  setYear={setTempEndYear}
+                  year={tempEndYear}
+                />
               </div>
             </DialogContentText>
           </DialogContent>
@@ -108,7 +123,14 @@ export default function BasicLineChart({
             <Button autoFocus onClick={() => setIsSetting(false)}>
               Cancel
             </Button>
-            <Button onClick={() => setIsSetting(false)} autoFocus>
+            <Button
+              onClick={() => {
+                setStartYear(tempStartYear);
+                setEndYear(tempEndYear);
+                setIsSetting(false);
+              }}
+              autoFocus
+            >
               Confirm
             </Button>
           </DialogActions>
@@ -264,21 +286,6 @@ export default function BasicLineChart({
                   label: "10,000 (TWD)", // Hypothetical label property for y-axis
                 },
               ]}
-              // series={[
-              //   hisData.map((item) => {
-              //     label:item.label;
-              //     data:item.data;
-              //   }),
-
-              //   // {
-              //   //   data: [2, 5.5, 2, 8.5, 1.5, 5, 1],
-              //   //   label: 2023,
-              //   // },
-              //   // {
-              //   //   data: [21, 4.5, 0, 1.5, 12.5, 5, 10],
-              //   //   label: 2022,
-              //   // },
-              // ]}
               series={hisData.map((item) => ({
                 label: item.label,
                 data: item.data.map((value) => value / 10000),

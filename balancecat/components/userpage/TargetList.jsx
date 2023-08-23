@@ -21,7 +21,14 @@ import BasicLineChart from "./BasicLineChart";
 //   createData("Gingerbread", 356, 159, "24%"),
 // ];
 
-export default function TargetList({ display, rows }) {
+export default function TargetList({
+  display,
+  rows,
+  setStartYear,
+  setEndYear,
+  startYear,
+  endYear,
+}) {
   return (
     <TableContainer
       sx={{
@@ -109,6 +116,10 @@ export default function TargetList({ display, rows }) {
                   wish={row.wish}
                   achievement={row.achievement}
                   hisData={row.hisData}
+                  setStartYear={setStartYear}
+                  setEndYear={setEndYear}
+                  startYear={startYear}
+                  endYear={endYear}
                 />
               </TableCell>
             </TableRow>

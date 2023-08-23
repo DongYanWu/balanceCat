@@ -3,15 +3,15 @@ import { Handjet, DotGothic16 } from "next/font/google";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Cookies from "cookies";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import dayjs from "dayjs";
 import SubjectDetail from "@/components/SubjectDetial";
 // import DatePicker from "@/components/DatePicker";
 import DateRangePickerValue from "@/components/DatePicker";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
-import { useRouter } from "next/router";
 import useGetEntryHistory from "@/hooks/useGetEntryHistory";
-import { useState } from "react";
-import dayjs from "dayjs";
 import idNameConverter from "@/idNameConverter";
 import styles from "./detail.module.scss";
 
@@ -48,7 +48,7 @@ export default function DetailPage({ token, userId, username }) {
         border: "none",
       }}
     >
-      <SideBar />
+      <SideBar token={token} />
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.title_calender}>

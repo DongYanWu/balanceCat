@@ -8,6 +8,7 @@ import { buttonClasses } from "@mui/base/Button";
 import { Tab, tabClasses } from "@mui/base/Tab";
 // eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
+import { useState } from "react";
 import TargetList from "./TargetList";
 import FetchWithToken from "../fetchWithToken";
 
@@ -23,8 +24,10 @@ function createData(name, total, wish, achievement, hisData) {
 
 
 export default function SwitchBar({token}) {
+  const [startYear, setStartYear] = useState(2022);
+  const [endYear, setEndYear] = useState(2023);
   // eslint-disable-next-line no-unused-vars, no-shadow
-  const { data, error, mutate } = useSWR([`${API_URL}goals/?startyear=2022&endyear=2023 `, token], ([url, token]) =>
+  const { data, error, mutate } = useSWR([`${API_URL}goals/?startyear=${startYear}&endyear=${endYear} `, token], ([url, token]) =>
   FetchWithToken(url, token),
 );
   
@@ -61,13 +64,13 @@ const debitRows = data?.data?.goals
         <StyledTab value={2}>支出限制</StyledTab>
       </StyledTabsList>
       <TabPanel value={0}>
-        <TargetList display="all" rows={totalRows}/>
+        <TargetList display="all" rows={totalRows} startYear={startYear} endYear={endYear} setStartYear={setStartYear} setEndYear={setEndYear}/>
       </TabPanel>
       <TabPanel value={1}>
-        <TargetList display="asset" rows={debitRows}/>
+        <TargetList display="asset" rows={debitRows} startYear={startYear} endYear={endYear}  setStartYear={setStartYear} setEndYear={setEndYear}/>
       </TabPanel>
       <TabPanel value={2}>
-        <TargetList display="limit" rows={expenseRows}/>
+        <TargetList display="limit" rows={expenseRows} startYear={startYear} endYear={endYear}  setStartYear={setStartYear} setEndYear={setEndYear}/>
       </TabPanel>
     </Tabs>
   );

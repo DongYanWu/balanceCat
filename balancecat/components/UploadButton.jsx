@@ -2,6 +2,10 @@ import * as React from "react";
 import Button from "@mui/joy/Button";
 import SvgIcon from "@mui/joy/SvgIcon";
 import { ThemeProvider, styled } from "@mui/joy";
+import { useRef } from "react";
+import useSWRMutation from "swr/mutation";
+import swal from "sweetalert";
+import { mutate } from "swr";
 
 const VisuallyHiddenInput = styled("input")`
   clip: rect(0 0 0 0);
@@ -15,7 +19,47 @@ const VisuallyHiddenInput = styled("input")`
   width: 1px;
 `;
 
-export default function UploadButton() {
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+async function sendRequest(url, { arg }) {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${arg.token}`,
+      // 'Content-Type': 'multipart/form-data',
+    },
+    body: arg.formData,
+  }).catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+export default function UploadButton({ token }) {
+  const fileInputRef = useRef();
+  const { trigger, isMutating } = useSWRMutation(
+    `${API_URL}users/picture`,
+    sendRequest,
+  );
+
+  function fileChangedHandler(event) {
+    const file = event.target.files[0];
+    const regex = /(.*?)\.(jpg|jpeg|png)$/;
+    if (!file.name.match(regex)) {
+      swal(
+        "Error",
+        "Invalid file format. Only jpg, jpeg, and png files are allowed.",
+        "error",
+      );
+    } else {
+      const formData = new FormData();
+
+      formData.append("picture", file);
+
+      trigger({ formData, token }).then(async (response) => {
+        mutate([`${API_URL}users`, token]);
+      });
+    }
+  }
   return (
     <ThemeProvider>
       <Button
@@ -43,7 +87,11 @@ export default function UploadButton() {
         }
       >
         上傳
-        <VisuallyHiddenInput type="file" />
+        <VisuallyHiddenInput
+          type="file"
+          ref={fileInputRef}
+          onChange={fileChangedHandler}
+        />
       </Button>
     </ThemeProvider>
   );
