@@ -194,10 +194,11 @@ export default function Home({ token, userId, username }) {
       style={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#0f0f15",
+        // backgroundColor: "#0f0f15",
       }}
     >
       <Sun />
+      <Water />
 
       <div className={styles.wrapper}>
         <CardTemplate
@@ -250,11 +251,10 @@ export default function Home({ token, userId, username }) {
           }
         `}
         </style>
-        <Water />
+        {/* <Water /> */}
         <CardTemplate
           backgroundStyle={{
             backgroundColor: "#0f0f15",
-            zIndex: "-2",
           }}
           style={{
             display: "flex",

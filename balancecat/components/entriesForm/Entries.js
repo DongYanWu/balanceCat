@@ -215,9 +215,23 @@ export default function Entries({ token }) {
           </Alert>;
         }
         if (response.status === 400) {
-          <Alert severity="success">
-            This is a success alert — check it out!
-          </Alert>;
+          Swal.fire({
+            title: "兩邊科目不能有相同科目ㄛ",
+            width: 450,
+            padding: "3em",
+            // color: "#716add",
+            // color: "rgba(0, 0, 0, 0.834)",
+            confirmButtonText: "OK",
+            // background: "#fff url(/cat.png)",
+            backdrop: `
+          rgba(0, 0, 0, 0.834)
+            url("/boom.gif")
+            left 
+            no-repeat
+          `,
+          }).then(() => {
+            window.location.reload();
+          });
         }
         if (response.status === 500) {
           <Alert severity="success">
