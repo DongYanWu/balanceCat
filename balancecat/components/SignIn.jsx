@@ -35,6 +35,7 @@ export default function SignIn({ setIsLogIn }) {
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/signin`,
+    // eslint-disable-next-line prettier/prettier
     sendRequest
   );
 
@@ -47,6 +48,7 @@ export default function SignIn({ setIsLogIn }) {
         swal(
           "Error",
           "Wrong Password, User Not Found, Wrong provider",
+          // eslint-disable-next-line prettier/prettier
           "error"
         );
       }
@@ -57,6 +59,7 @@ export default function SignIn({ setIsLogIn }) {
         swal(
           "Error",
           "Something's wrong. Please try again later or notify our engineering team",
+          // eslint-disable-next-line prettier/prettier
           "info"
         );
       }
