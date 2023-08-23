@@ -72,6 +72,8 @@ export default function SideBar({ token }) {
   };
   function logoutHandler() {
     cookieCutter.set("token", "");
+    cookieCutter.set("username", "");
+    cookieCutter.set("id", "");
     router.push("/signin");
   }
 

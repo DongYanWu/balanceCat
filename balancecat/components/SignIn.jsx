@@ -7,6 +7,7 @@ import { useState } from "react";
 import styles from "@/styles/signup.module.scss";
 import PwdInput from "./PwdInput";
 import InputBox from "./InputBox";
+import LoadingAnimation from "./LoadingAnimation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -31,6 +32,7 @@ export default function SignIn({ setIsLogIn }) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let finishRouterLoading = false;
 
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
@@ -70,53 +72,68 @@ export default function SignIn({ setIsLogIn }) {
 
         cookieCutter.set("id", userData.data.user.id, { path: "/" });
         cookieCutter.set("token", userData.data.access_token, { path: "/" });
+        // cookieCutter.set(
+        //   "token",
+        //   userData.data.access_token,
+        //   { path: "/" },
+        //   {
+        //     sameSite: "none",
+        //     secure: true,
+        //     // eslint-disable-next-line prettier/prettier
+        //   }
+        // );
+
         cookieCutter.set("username", userData.data.user.name, { path: "/" });
         router.push("/");
+        finishRouterLoading = true;
       }
     });
   };
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.title_container}>
-        <p className={styles.circle} />
-        <p className={styles.title}>Balance Cat</p>
-      </div>
+    <div>
+      {isMutating && !finishRouterLoading && <LoadingAnimation />}
+      <div className={styles.wrapper}>
+        <div className={styles.title_container}>
+          <p className={styles.circle} />
+          <p className={styles.title}>Balance Cat</p>
+        </div>
 
-      <p className={styles.free}>CONTINUE YOUT JOURNEY</p>
-      <div className={styles.sentence}>
-        <p className={styles.new}>Member Sign In</p>
-        <p className={styles.period}>.</p>
-      </div>
-      <div className={styles.member_login}>
-        <p className={styles.member}>Not A Member?</p>
-        <p
-          className={styles.login}
-          onClick={() => {
-            setIsLogIn(false);
-          }}
-          aria-hidden="true"
-        >
-          Sign Up
-        </p>
-      </div>
-      <div className={styles.inputs}>
-        <br />
-        <InputBox isEmail email={email} setEmail={setEmail} />
-        <br />
-        <PwdInput password={password} setPassword={setPassword} />
-        <br />
-        <Button
-          onClick={handleSignIn}
-          variant="contained"
-          sx={{
-            fontWeight: "600",
-            width: "20ch",
-            backgroundColor: "#4481f4",
-            borderRadius: "15px",
-          }}
-        >
-          SIGN IN
-        </Button>
+        <p className={styles.free}>CONTINUE YOUT JOURNEY</p>
+        <div className={styles.sentence}>
+          <p className={styles.new}>Member Sign In</p>
+          <p className={styles.period}>.</p>
+        </div>
+        <div className={styles.member_login}>
+          <p className={styles.member}>Not A Member?</p>
+          <p
+            className={styles.login}
+            onClick={() => {
+              setIsLogIn(false);
+            }}
+            aria-hidden="true"
+          >
+            Sign Up
+          </p>
+        </div>
+        <div className={styles.inputs}>
+          <br />
+          <InputBox isEmail email={email} setEmail={setEmail} />
+          <br />
+          <PwdInput password={password} setPassword={setPassword} />
+          <br />
+          <Button
+            onClick={handleSignIn}
+            variant="contained"
+            sx={{
+              fontWeight: "600",
+              width: "20ch",
+              backgroundColor: "#4481f4",
+              borderRadius: "15px",
+            }}
+          >
+            SIGN IN
+          </Button>
+        </div>
       </div>
     </div>
   );

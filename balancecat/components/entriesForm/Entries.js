@@ -91,6 +91,8 @@ import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import useSWRMutation from "swr/mutation";
 import dayjs from "dayjs";
+import Alert from "@mui/material/Alert";
+import Swal from "sweetalert2";
 import AccountsBox from "./AccountsBox";
 import DateSelector from "../DateSelector";
 import styles from "../../styles/entries.module.scss";
@@ -98,7 +100,6 @@ import styles from "../../styles/entries.module.scss";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 async function sendRequest(url, { arg }) {
-  console.log(arg);
   return fetch(url, {
     method: "POST",
     headers: {
@@ -151,20 +152,35 @@ export default function Entries({ token }) {
   const [creditData, setCreditData] = useState([{}]);
   const [selectedDate, setSelectedDate] = useState(
     // new Date().toISOString().split("T")[0],
-    dayjs(),
+    // eslint-disable-next-line prettier/prettier
+    dayjs()
   );
   const [parent_id, setParent_id] = useState(null);
 
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}entries`,
-    sendRequest,
+    // eslint-disable-next-line prettier/prettier
+    sendRequest
   );
 
   const handleDateChange = (e) => {
     setSelectedDate(e);
     // console.log(e.format("YYYY-MM-DD HH:mm:ss"));
   };
+
+  function sumAmount(dataArray) {
+    console.log(dataArray);
+    return dataArray.reduce((sum, entry) => sum + Number(entry.amount), 0);
+  }
+
+  function areDebitAndCreditEqual(data1, data2) {
+    const debitSum = sumAmount(data1);
+    const creditSum = sumAmount(data2);
+    console.log(debitSum);
+    console.log(creditSum);
+    return debitSum === -1 * creditSum;
+  }
 
   const handleDataChange = (index, data, isDebit = true) => {
     if (isDebit) {
@@ -182,13 +198,69 @@ export default function Entries({ token }) {
     console.log("Debit Data:", debitData);
     console.log("Credit Data:", creditData);
     console.log(selectedDate);
-    const mergedData = {
-      details: [...transformData(debitData), ...transformData(creditData)],
-      timestamp: selectedDate.format("YYYY-MM-DD HH:mm:ss"),
-      parent_id,
-    };
+    if (areDebitAndCreditEqual(debitData, creditData)) {
+      const mergedData = {
+        details: [...transformData(debitData), ...transformData(creditData)],
+        timestamp: selectedDate.format("YYYY-MM-DD HH:mm:ss"),
+        parent_id,
+      };
 
-    trigger({ token, mergedData }).then(async (data) => console.log(data));
+      trigger({ token, mergedData }).then(async (data) => {
+        const response = data[0];
+        // const userData = await data[1]; //it would it you the user data(token user_id and provider which now is native)
+        console.log(response.status);
+        if (response.status === 403) {
+          <Alert severity="success">
+            This is a success alert — check it out!
+          </Alert>;
+        }
+        if (response.status === 400) {
+          <Alert severity="success">
+            This is a success alert — check it out!
+          </Alert>;
+        }
+        if (response.status === 500) {
+          <Alert severity="success">
+            This is a success alert — check it out!
+          </Alert>;
+        }
+        if (response.status === 200) {
+          Swal.fire({
+            title: "又邁進了成功的一步",
+            width: 450,
+            padding: "3em",
+            // color: "#716add",
+            // color: "rgba(0, 0, 0, 0.834)",
+            confirmButtonText: "讚讚",
+            // background: "#fff url(/cat.png)",
+            backdrop: `
+          rgba(0, 0, 0, 0.834)
+            url("/dance.gif")
+            left 
+            no-repeat
+          `,
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "你沒有平衡= =",
+        width: 450,
+        padding: "3em",
+        // color: "#716add",
+        // color: "rgba(0, 0, 0, 0.834)",
+
+        // background: "#fff url(/cat.png)",
+        backdrop: `
+      rgba(0, 0, 0, 0.834)
+        url("/error.gif")
+        left 
+        no-repeat
+      `,
+      });
+    }
   };
 
   function addNewDebitBox() {

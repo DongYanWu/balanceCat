@@ -1,0 +1,18 @@
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* or absolute based on your preference */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #090909;
+  /* Optional: semi-transparent white background */
+  z-index: 1000; /* This will ensure the loading GIF stays on top of other elements */
+}
+
+.loadingContainer img {
+  max-width: 700px; /* Or your preferred size */
+  max-height: 500px;
+}

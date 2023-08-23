@@ -180,17 +180,15 @@ import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
 import Sun from "@/components/Sun";
 // import Water from "@/components/water";
+import Water from "@/components/Water";
 
 const silk = Silkscreen({
   weight: ["400"],
   subsets: ["latin"],
 });
 
+// eslint-disable-next-line no-unused-vars
 export default function Home({ token, userId, username }) {
-  console.log(token);
-  console.log(userId);
-  console.log(username);
-
   return (
     <div
       style={{
@@ -200,11 +198,12 @@ export default function Home({ token, userId, username }) {
       }}
     >
       <Sun />
+
       <div className={styles.wrapper}>
         <CardTemplate
-          // backgroundStyle={{
-          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-          // }}
+          backgroundStyle={{
+            backgroundColor: "#0f0f15",
+          }}
           style={{
             display: "flex",
             background: "linear-gradient(to bottom right, #fff, #acb5c2)",
@@ -251,11 +250,12 @@ export default function Home({ token, userId, username }) {
           }
         `}
         </style>
-
+        <Water />
         <CardTemplate
-          // backgroundStyle={{
-          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-          // }}
+          backgroundStyle={{
+            backgroundColor: "#0f0f15",
+            zIndex: "-2",
+          }}
           style={{
             display: "flex",
             gap: "2rem",
@@ -269,9 +269,9 @@ export default function Home({ token, userId, username }) {
         </CardTemplate>
 
         <CardTemplate
-          // backgroundStyle={{
-          //   background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
-          // }}
+          backgroundStyle={{
+            backgroundColor: "#0f0f15",
+          }}
           style={{
             display: "flex",
             background: "linear-gradient(to bottom right, #fff, #acb5c2)",

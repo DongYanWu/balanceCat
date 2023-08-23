@@ -54,7 +54,8 @@ export default function AccountsBox({
           <SelectAccount setSubjectId={setSubjectId} subjectId={subjectId} />
 
           {["1201", "1202", "1203", "1204", "1205", "1206"].includes(
-            subjectId,
+            // eslint-disable-next-line prettier/prettier
+            subjectId
           ) && (
             <TextField
               id="register"
@@ -148,7 +149,7 @@ export default function AccountsBox({
           <input
             type="text"
             id="amount"
-            defaultValue={data.amoutInput || ""}
+            // defaultValue={data.amoutInput || ""}
             // value={data.amoutInput || ""}
             onChange={handleInputChange}
           />

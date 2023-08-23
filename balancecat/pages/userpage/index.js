@@ -11,6 +11,7 @@ import SwitchBar from "@/components/userpage/SwitchBar";
 import PlanCard from "@/components/userpage/PlanCard";
 import Sun from "@/components/Sun";
 import FetchWithToken from "@/components/fetchWithToken";
+import Userloading from "@/components/UserLoading";
 import styles from "../../styles/userpage.module.scss";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -24,7 +25,8 @@ export default function UserPage({ token, userId, username }) {
     mutate,
     // eslint-disable-next-line no-shadow
   } = useSWR([`${API_URL}users`, token], ([url, token]) =>
-    FetchWithToken(url, token),
+    // eslint-disable-next-line prettier/prettier
+    FetchWithToken(url, token)
   );
   // const refreshFriendData = () => {
   //   mutate([`${API_URL}users`, token]);
@@ -32,7 +34,7 @@ export default function UserPage({ token, userId, username }) {
 
   const loading = !data && !error;
   console.log(data?.data?.user);
-  if (loading) return <div>loading...</div>;
+  if (loading) return <Userloading />;
   return (
     <div
       style={{
@@ -103,6 +105,7 @@ export default function UserPage({ token, userId, username }) {
 
 export const getServerSideProps = ({ req, res }) => {
   const cookies = new Cookies(req, res);
+
   const token = cookies.get("token");
   const userId = cookies.get("id");
   const username = cookies.get("username") || null;
