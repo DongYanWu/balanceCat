@@ -1,4 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/require-default-props */
 import * as React from "react";
 import PropTypes from "prop-types";
@@ -7,18 +8,54 @@ import Box from "@mui/material/Box";
 import TreeView from "@mui/lab/TreeView";
 import TreeItem, { treeItemClasses } from "@mui/lab/TreeItem";
 import Typography from "@mui/material/Typography";
-// import MailIcon from "@mui/icons-material/Mail";
-// import DeleteIcon from "@mui/icons-material/Delete";
-
-// import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-// import InfoIcon from "@mui/icons-material/Info";
-// import ForumIcon from "@mui/icons-material/Forum";
-// import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { Button } from "@mui/material";
+import useSWRMutation from "swr/mutation";
+import swal from "sweetalert";
 import UploadButton from "./UploadButton";
 
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}goals/`;
+async function fetcher(url, { arg }) {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${arg.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      subject_id: `${arg.nodeId}`,
+      amount: `${arg.newLabelInfo}`,
+    }),
+  })
+    .then((response) => response)
+    .then((data) => [data, data.json()])
+
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error("Error:", error);
+    });
+}
+async function updateGoal(url, { arg }) {
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${arg.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      subject_id: `${arg.nodeId}`,
+      amount: `${arg.newLabelInfo}`,
+    }),
+  })
+    .then((response) => response)
+    .then((data) => [data, data.json()])
+
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error("Error:", error);
+    });
+}
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
   [`& .${treeItemClasses.content}`]: {
@@ -52,7 +89,14 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
 
 function StyledTreeItem(props) {
   const [isEditMode, setIsEditMode] = React.useState(false);
+  const { trigger } = useSWRMutation(API_URL, fetcher);
   const theme = useTheme();
+  const { nodeId } = props;
+  const { goalId } = props;
+  const { trigger: triggerEdit } = useSWRMutation(
+    `${process.env.NEXT_PUBLIC_API_URL}goals/${goalId}`,
+    updateGoal,
+  );
   const {
     bgColor,
     color,
@@ -62,6 +106,7 @@ function StyledTreeItem(props) {
     colorForDarkMode,
     bgColorForDarkMode,
     isPersonal,
+    token,
     ...other
   } = props;
   const [newLabelInfo, setNewLabelInfo] = React.useState(labelInfo);
@@ -71,12 +116,64 @@ function StyledTreeItem(props) {
     "--tree-view-bg-color":
       theme.palette.mode !== "dark" ? bgColor : bgColorForDarkMode,
   };
-  const handleEditLabelInfo = (event) => {
+  const handleSetGoal = (event) => {
     event.stopPropagation();
-    setIsEditMode(!isEditMode);
+    trigger({ token, nodeId, newLabelInfo }).then(async (data) => {
+      const response = data[0];
+      const responseData = await data[1];
+
+      if (response.status === 403) {
+        swal("Error", "Wrong Token", "error");
+      }
+      if (response.status === 400) {
+        swal("Error", "Client Error Response", "error");
+      }
+      if (response.status === 500) {
+        swal(
+          "Error",
+          "Something's wrong. Please try again later or notify our engineering team",
+          "info",
+        );
+      }
+      if (response.status === 200) {
+        console.log(responseData);
+        swal("Success", "成功設定目標", "success");
+        setIsEditMode(!isEditMode);
+      }
+    });
     // console.log(`Editing label info for ${labelText}`);
   };
+  const handleEditLabelInfo = (event) => {
+    setIsEditMode(!isEditMode);
+    event.stopPropagation();
+  };
+  const handleSaveNewGoal = (event) => {
+    event.stopPropagation();
+    triggerEdit({ token, nodeId, newLabelInfo }).then(async (data) => {
+      const response = data[0];
+      const responseData = await data[1];
 
+      if (response.status === 403) {
+        swal("Error", "Wrong Token", "error");
+      }
+      if (response.status === 400) {
+        swal("Error", "Client Error Response", "error");
+      }
+      if (response.status === 500) {
+        swal(
+          "Error",
+          "Something's wrong. Please try again later or notify our engineering team",
+          "info",
+        );
+      }
+      if (response.status === 200) {
+        console.log(responseData);
+        swal("Success", "成功編輯目標或支出", "success");
+        setIsEditMode(!isEditMode);
+      }
+    });
+    // console.log(`Editing label info for ${labelText}`);
+  };
   return (
     <StyledTreeItemRoot
       label={
@@ -97,7 +194,8 @@ function StyledTreeItem(props) {
             {labelText}
           </Typography>
           {labelText === "設定大頭貼" && <UploadButton token={props.token} />}
-          {labelInfo == null ? null : (
+          {labelInfo == null ? null : labelInfo === "尚無目標" ||
+            labelInfo === "尚無限制" ? (
             <>
               {isEditMode ? (
                 <>
@@ -115,8 +213,46 @@ function StyledTreeItem(props) {
                       textAlign: "end",
                     }}
                   />
-                  <Button variant="outlined" onClick={handleEditLabelInfo}>
-                    儲存目標
+                  <Button variant="outlined" onClick={handleSetGoal}>
+                    儲存
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Typography
+                    variant="caption"
+                    color="inherit"
+                    sx={{ marginRight: "1rem" }}
+                  >
+                    {labelInfo}
+                  </Typography>
+                  <Button onClick={handleEditLabelInfo} variant="outlined">
+                    設定
+                  </Button>
+                </>
+              )}
+              {/** */}
+            </>
+          ) : (
+            <>
+              {isEditMode ? (
+                <>
+                  <input
+                    value={newLabelInfo}
+                    onChange={(e) => {
+                      setNewLabelInfo(e.target.value);
+                    }}
+                    onClick={(event) => event.stopPropagation()}
+                    style={{
+                      marginRight: "1rem",
+                      width: "3rem",
+                      borderRadius: "5px",
+                      border: "none",
+                      textAlign: "end",
+                    }}
+                  />
+                  <Button variant="outlined" onClick={handleSaveNewGoal}>
+                    儲存
                   </Button>
                 </>
               ) : (
@@ -150,6 +286,8 @@ StyledTreeItem.propTypes = {
   bgColorForDarkMode: PropTypes.string,
   color: PropTypes.string,
   colorForDarkMode: PropTypes.string,
+  nodeId: PropTypes.string,
+  goalId: PropTypes.string,
   labelIcon: PropTypes.elementType.isRequired,
   labelInfo: PropTypes.string,
   labelText: PropTypes.string.isRequired,
@@ -170,6 +308,7 @@ export default function GmailTreeView({ isPersonal, data, token }) {
       colorForDarkMode={nodes.colorForDarkMode}
       bgColorForDarkMode={nodes.bgColorForDarkMode}
       isPersonal={isPersonal}
+      goalId={nodes.goalId}
     >
       {Array.isArray(nodes.children)
         ? nodes.children.map((node) => renderTree(node))
@@ -198,7 +337,7 @@ export default function GmailTreeView({ isPersonal, data, token }) {
         },
       }}
     >
-      {data.map((node) => renderTree(node))}
+      {data?.map((node) => renderTree(node))}
     </TreeView>
   );
 }

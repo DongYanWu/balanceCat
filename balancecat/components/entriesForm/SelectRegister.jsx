@@ -1,9 +1,8 @@
 import * as React from "react";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import ListSubheader from "@mui/material/ListSubheader";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+// eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
 import { useState } from "react";
 import FetchWithToken from "../fetchWithToken";
@@ -16,8 +15,10 @@ export default function SelectRegister({
   setParent_id,
 }) {
   const [selectedValue, setSelectedValue] = useState(""); // Step 1
+  // eslint-disable-next-line no-unused-vars
   const { data, error, mutate } = useSWR(
     [`${API_URL}registers?type=${urlType}`, token],
+    // eslint-disable-next-line no-shadow
     ([url, token]) => FetchWithToken(url, token),
   );
   const handleChange = (event) => {
@@ -59,8 +60,9 @@ export default function SelectRegister({
   //     mutate([`${API_URL}/friends`, token]);
   //   };
 
+  // eslint-disable-next-line no-unused-vars
   const loading = !data && !error;
-  console.log(data?.data.registers);
+
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>

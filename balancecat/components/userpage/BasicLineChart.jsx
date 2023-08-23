@@ -59,6 +59,7 @@ export default function BasicLineChart({
   name,
   total,
   wish,
+  // eslint-disable-next-line no-unused-vars
   achievement,
   setStartYear,
   setEndYear,
@@ -73,7 +74,7 @@ export default function BasicLineChart({
 
   // const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(hisData);
+
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);

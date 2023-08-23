@@ -62,13 +62,14 @@ export default function DataCard({ isDebitCard, color, token }) {
     data: userData,
     // eslint-disable-next-line no-unused-vars
     error,
+    // eslint-disable-next-line no-unused-vars
     isLoading,
     // eslint-disable-next-line no-shadow
   } = useSWR([api, token], ([url, token]) => FetchWithToken(url, token));
   // const refreshFriendData = () => {
   //   mutate([`${API_URL}/frie`, token]);
   // };
-  console.log(userData);
+
   const data = [
     {
       label: userData?.data?.charts[0]?.name,

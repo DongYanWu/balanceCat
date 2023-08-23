@@ -36,6 +36,7 @@ async function sendRequest(url, { arg }) {
 
 export default function UploadButton({ token }) {
   const fileInputRef = useRef();
+  // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/picture`,
     sendRequest,
@@ -55,6 +56,7 @@ export default function UploadButton({ token }) {
 
       formData.append("picture", file);
 
+      // eslint-disable-next-line no-unused-vars
       trigger({ formData, token }).then(async (response) => {
         mutate([`${API_URL}users`, token]);
       });
@@ -90,7 +92,7 @@ export default function UploadButton({ token }) {
         <VisuallyHiddenInput
           type="file"
           ref={fileInputRef}
-          onChange={fileChangedHandler}
+          onChange={() => fileChangedHandler()}
         />
       </Button>
     </ThemeProvider>

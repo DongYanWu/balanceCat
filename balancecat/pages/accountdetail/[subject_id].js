@@ -28,12 +28,18 @@ export default function DetailPage({ token, userId, username }) {
   console.log(token);
   console.log(userId);
   console.log(username);
-  const [data, setData] = useState(null);
+  const [entriesData, setEntriesData] = useState(null);
   const [endDate, setEndDate] = useState(dayjs());
   const [startDate, setStartDate] = useState(dayjs().subtract(7, "day"));
   const router = useRouter();
   const { subject_id } = router.query;
-  useGetEntryHistory({ setData, startDate, endDate, token, subject_id });
+  useGetEntryHistory({
+    setData: setEntriesData,
+    startDate,
+    endDate,
+    token,
+    subject_id,
+  });
   const [subject_name, subject_name_en] = idNameConverter({ subject_id });
   return (
     <CardTemplate
@@ -67,7 +73,7 @@ export default function DetailPage({ token, userId, username }) {
               />
             </div>
           </div>
-          <SubjectDetail data={data} />
+          <SubjectDetail entriesData={entriesData} token={token} />
         </div>
       </div>
     </CardTemplate>

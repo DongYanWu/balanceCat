@@ -2,6 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import React from "react";
 // import YearPicker from "@/components/YearPicker";
 import Cookies from "cookies";
+// eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
 import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import DataCard from "@/components/userpage/DataCard";
@@ -13,19 +14,21 @@ import FetchWithToken from "@/components/fetchWithToken";
 import styles from "../../styles/userpage.module.scss";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// eslint-disable-next-line no-unused-vars
 export default function UserPage({ token, userId, username }) {
   const {
     data,
     // eslint-disable-next-line no-unused-vars
     error,
+    // eslint-disable-next-line no-unused-vars
     mutate,
     // eslint-disable-next-line no-shadow
   } = useSWR([`${API_URL}users`, token], ([url, token]) =>
     FetchWithToken(url, token),
   );
-  const refreshFriendData = () => {
-    mutate([`${API_URL}users`, token]);
-  };
+  // const refreshFriendData = () => {
+  //   mutate([`${API_URL}users`, token]);
+  // };
 
   const loading = !data && !error;
   console.log(data?.data?.user);
@@ -47,7 +50,7 @@ export default function UserPage({ token, userId, username }) {
           border: "none",
         }}
       >
-        <SideBar token={token}/>
+        <SideBar token={token} />
         <div className={styles.container}>
           <div className={styles.topcontainer}>
             <div className={styles.personalinfo}>

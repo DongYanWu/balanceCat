@@ -13,6 +13,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import YearPicker from "./YearPicker";
 import styles from "../styles/BasicLineChart.module.scss";
 
+// prev
+
 const DynamicLineChart = dynamic(
   () => import("@mui/x-charts").then((mod) => mod.LineChart),
   {

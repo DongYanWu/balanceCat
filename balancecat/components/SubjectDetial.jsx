@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -12,6 +13,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
+import createData from "@/createData";
+import useSWRMutation from "swr/mutation";
+import swal from "sweetalert";
+// import swal from "sweetalert";
 
 const dot = DotGothic16({
   weight: "400",
@@ -24,133 +29,73 @@ const columns = [
   { id: "day", label: "曜日", minWidth: 100 },
 ];
 
-function createData(date, amount, description, debit, credit) {
-  const parsedDate = new Date(date); // 將字串轉換成 Date 物件
-  const dayNum = parsedDate.getDay(); // 取得星期幾的數字
-  let day = "還沒";
-  switch (dayNum) {
-    case 0:
-      day = "星期天";
-      break;
-    case 1:
-      day = "星期一";
-      break;
-    case 2:
-      day = "星期二";
-      break;
-    case 3:
-      day = "星期三";
-      break;
-    case 4:
-      day = "星期四";
-      break;
-    case 5:
-      day = "星期五";
-      break;
-    case 6:
-      day = "星期六";
-      break;
-    default:
-      day = "錯誤";
-      break;
-  }
-  const parts = date.split("-");
-  const formattedDate = `${parts[0]}/${parts[1]}/${parts[2]}`;
-  return { date: formattedDate, amount, description, day, debit, credit };
-}
-
-const rows = [
-  createData(
-    "2023-8-17",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-17",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-16",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-13",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-12",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-11",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-10",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-9",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-9",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-  createData(
-    "2023-8-9",
-    "$ 100,000",
-    "小明在國小同學會的時候跟我借了１０萬元，他說8/13時會回我部分現金，約在台北車站面交",
-    "負債",
-    "資產",
-  ),
-];
-
-export default function SubjectDetail() {
+export default function SubjectDetail({ entriesData, token }) {
+  const rows = entriesData?.map((object) =>
+    createData({
+      id: object.id,
+      timestamp: object.timestamp,
+      details: object.details,
+    }),
+  );
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const [entryID, setEntryID] = React.useState(-1);
+  const [entryDetailData, setEntryDetailData] = React.useState(null);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [selectedRow, setSelectedRow] = React.useState(null);
+  const API_URL = `${process.env.NEXT_PUBLIC_API_URL}entries/${entryID}`;
 
-  const handleClickOpen = (row) => {
-    setSelectedRow(row);
+  async function fetcher(url, { arg }) {
+    return fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${arg.token}`,
+      },
+    })
+      .then((response) => response)
+      .then((data) => [data, data.json()])
+
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error("Error:", error);
+      });
+  }
+  const { trigger } = useSWRMutation(API_URL, fetcher);
+  async function deleteEntry(url, { arg }) {
+    return fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${arg.token}`,
+      },
+    })
+      .then((response) => response)
+
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error("Error:", error);
+      });
+  }
+  const { trigger: triggerDelete } = useSWRMutation(API_URL, deleteEntry);
+
+  const handleClickOpen = async (row) => {
+    await setSelectedRow(row);
+    console.log(row.id);
+    await setEntryID(row.id);
     setOpenDialog(true);
+    trigger({ token }).then(async (data) => {
+      const response = data[0];
+      const responseData = await data[1];
+      if (response.status === 200) {
+        setEntryDetailData(responseData.data.entry);
+      }
+    });
   };
-
+  const handleClickDelete = () => {
+    triggerDelete({ token }).then(async (data) => {
+      await console.log(data);
+      swal("Success", `成功刪除分錄`, "success");
+    });
+  };
   const handleClose = () => {
     setOpenDialog(false);
   };
@@ -226,7 +171,8 @@ export default function SubjectDetail() {
             }}
           >
             {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              ?.flat()
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow
                   role="checkbox"
@@ -236,15 +182,20 @@ export default function SubjectDetail() {
                 >
                   {columns.map((column) => {
                     const value = row[column.id];
+                    let renderedValue = value;
+
+                    if (column.id === "description" && value?.length > 30) {
+                      renderedValue = `${value.slice(0, 30)}...`;
+                    } else if (column.id === "amount") {
+                      renderedValue = `$ ${value}`;
+                    }
                     return (
                       <TableCell
                         key={column.id}
                         align={column.align}
                         // style={{ color: "white" }}
                       >
-                        {column.id === "description" && value.length > 30
-                          ? `${value.slice(0, 30)}...`
-                          : value}
+                        {renderedValue}
                       </TableCell>
                     );
                   })}
@@ -257,20 +208,48 @@ export default function SubjectDetail() {
               <Button
                 variant="contained"
                 sx={{ cursor: "pointer", margin: "1rem 1rem 0 0" }}
+                onClick={handleClickDelete}
               >
                 刪除分錄
               </Button>
             </div>
-
             <DialogContent sx={{ paddingTop: "0" }}>
               {selectedRow && (
                 <div>
                   <p>日期： {selectedRow.date}</p>
-                  <p>金額： {selectedRow.amount}</p>
+                  <p>金額： $ {selectedRow.amount}</p>
                   <p>註解： {selectedRow.description}</p>
                   <p>曜日： {selectedRow.day}</p>
-                  <p>借方： {selectedRow.debit}</p>
-                  <p>貸方： {selectedRow.credit}</p>
+                  {entryDetailData?.details.some(
+                    (detail) => detail.amount > 0,
+                  ) && (
+                    <p>
+                      借方：{" "}
+                      {entryDetailData.details.map((detail, index) => (
+                        <span key={index}>
+                          {detail.amount > 0
+                            ? `${detail.subject.name} (金額：$ ${detail.amount})`
+                            : ""}
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                  {entryDetailData?.details.some(
+                    (detail) => detail.amount < 0,
+                  ) && (
+                    <p>
+                      貸方：{" "}
+                      {entryDetailData.details.map((detail, index) => (
+                        <span key={index}>
+                          {detail.amount < 0
+                            ? `${detail.subject.name} (金額：$ ${
+                                -1 * detail.amount
+                              })`
+                            : ""}
+                        </span>
+                      ))}
+                    </p>
+                  )}
                 </div>
               )}
             </DialogContent>
@@ -280,7 +259,7 @@ export default function SubjectDetail() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={rows?.flat()?.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

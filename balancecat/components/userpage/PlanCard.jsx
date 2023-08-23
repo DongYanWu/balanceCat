@@ -12,7 +12,6 @@ import { mutate } from "swr";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 async function sendRequest(url, { arg }) {
-  console.log(arg);
   return fetch(url, {
     method: "PUt",
     headers: {
@@ -34,6 +33,7 @@ export default function PlanCard({ title, content, token }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const [isEditing, setIsEditing] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/memo`,
     sendRequest,
@@ -42,14 +42,14 @@ export default function PlanCard({ title, content, token }) {
   const handleSendMemo = () => {
     const titleValue = titleRef.current.value;
     const contentValue = contentRef.current.value;
-    console.log(titleRef.current);
+
     const Mergedata = {
       title: titleValue,
       content: contentValue,
     };
 
+    // eslint-disable-next-line no-unused-vars
     trigger({ token, Mergedata }).then(async (data) => {
-      console.log(data);
       mutate([`${API_URL}users`, token]);
     });
     // mutate([`${API_URL}users`, token]);

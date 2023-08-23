@@ -264,7 +264,7 @@ export default function Home({ token, userId, username }) {
             border: "none",
           }}
         >
-          <SideBar />
+          <SideBar token={token} />
           <AssetsOverview token={token} />
         </CardTemplate>
 
