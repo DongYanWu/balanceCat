@@ -86,7 +86,14 @@ export default function Sheet({ data }) {
   const handleToggle = (name) => {
     setOpen((prev) => ({ ...prev, [name]: !prev[name] }));
   };
-
+  const excludedIds = [
+    1000, 1100, 1200, 2000, 2100, 2200, 3000, 3100, 3200, 4000, 4100, 4200,
+    5000, 5100, 5200,
+  ];
+  const absolute = (value) => {
+    if (value < 0) return value * -1;
+    return value;
+  };
   const renderRows = (items, depth = 0) =>
     items?.map((item) => (
       <React.Fragment key={item.name}>
@@ -112,16 +119,29 @@ export default function Sheet({ data }) {
               <p className={styles.subtitle}>{item.subtitle}</p>
             </div>
           </TableCell>
-
           <TableCell align="right">
-            <Link href={`/accountdetail/${item.subject_id}`}>{item.value}</Link>
+            {excludedIds.includes(item.subject_id) ? (
+              absolute(item.value)
+            ) : (
+              <Link
+                href={`/accountdetail/${item.subject_id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {absolute(item.value)}
+              </Link>
+            )}
           </TableCell>
-
           <TableCell align="right" className={styles.lastvalue}>
-            {" "}
-            <Link href={`/accountdetail/${item.subject_id}`}>
-              {item.lastMonthValue}
-            </Link>
+            {excludedIds.includes(item.subject_id) ? (
+              absolute(item.lastMonthValue)
+            ) : (
+              <Link
+                href={`/accountdetail/${item.subject_id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {absolute(item.lastMonthValue)}
+              </Link>
+            )}
           </TableCell>
         </TableRow>
         {item.children &&
