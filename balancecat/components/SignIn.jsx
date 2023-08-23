@@ -65,7 +65,6 @@ export default function SignIn({ setIsLogIn }) {
       }
       if (response.status === 200) {
         // setIsLoginPage(true);
-        router.push("/");
 
         // Cookies.set('token', userData.data.access_token, { secure: true, httpOnly: true });
 
@@ -76,6 +75,7 @@ export default function SignIn({ setIsLogIn }) {
         cookieCutter.set("username", userData.data.user.name, {
           sameSite: "lax",
         });
+        router.push("/");
       }
     });
   };
