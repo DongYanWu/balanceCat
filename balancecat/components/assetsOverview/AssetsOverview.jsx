@@ -29,7 +29,7 @@ export default function AssetsOverview({ token }) {
         console.error("Error:", error);
       });
   }
-  const { trigger } = useSWRMutation(API_URL, fetcher);
+  const { trigger, isMutating } = useSWRMutation(API_URL, fetcher);
 
   const handleButtonOnClick = async (clickedType) => {
     await setType(clickedType);
@@ -63,6 +63,7 @@ export default function AssetsOverview({ token }) {
       <p className={styles.title}>資產概況</p>
       <div className={styles.buttons}>
         <button
+          disabled={isMutating}
           type="submit"
           className={type === "assets" && styles.blueButton}
           onClick={() => {
@@ -72,6 +73,7 @@ export default function AssetsOverview({ token }) {
           資產
         </button>
         <button
+          disabled={isMutating}
           type="submit"
           className={type === "liabilities" && styles.blueButton}
           onClick={() => {
@@ -81,6 +83,7 @@ export default function AssetsOverview({ token }) {
           負債
         </button>
         <button
+          disabled={isMutating}
           type="submit"
           className={type === "ar" && styles.blueButton}
           onClick={() => {
@@ -90,6 +93,7 @@ export default function AssetsOverview({ token }) {
           應收
         </button>
         <button
+          disabled={isMutating}
           type="submit"
           className={type === "ap" && styles.blueButton}
           onClick={() => {
@@ -115,7 +119,7 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((asset) => (
             <div key={asset.id}>
-              <AssetsBar asset={asset} />
+              <AssetsBar asset={asset} isMutating={isMutating} />
               <hr />
             </div>
           ))}
@@ -159,7 +163,7 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((liability) => (
             <div key={liability.id}>
-              <LiabilityBar liability={liability} />
+              <LiabilityBar liability={liability} isMutating={isMutating} />
               <hr />
             </div>
           ))}
@@ -203,7 +207,7 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((asset) => (
             <div key={asset.id}>
-              <AssetsBar asset={asset} />
+              <AssetsBar asset={asset} isMutating={isMutating} />
               <hr />
             </div>
           ))}
@@ -247,7 +251,7 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((liability) => (
             <div key={liability.id}>
-              <LiabilityBar liability={liability} />
+              <LiabilityBar liability={liability} isMutating={isMutating} />
               <hr />
             </div>
           ))}

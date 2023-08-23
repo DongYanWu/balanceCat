@@ -60,7 +60,7 @@ const FireNav = styled(List)({
   },
 });
 
-export default function SideBar({ token }) {
+export default function SideBar({ token, shadow }) {
   const router = useRouter();
 
   const [isHovering, setIsHovering] = React.useState(false);
@@ -88,6 +88,7 @@ export default function SideBar({ token }) {
         position: "sticky",
         top: 0,
         minHeight: "100%",
+        boxShadow: shadow && "0 0 40px rgba(255, 255, 255, 0.5)",
         // overflowX: "auto",
         // overflowY: "scroll",
       }}
@@ -164,42 +165,6 @@ export default function SideBar({ token }) {
                       />
                     )}
                   </ListItemButton>
-                  {/* <Tooltip title="設定">
-                  <IconButton
-                    size="large"
-                    sx={{
-                      "& svg": {
-                        color: "rgba(255,255,255,0.8)",
-                        transition: "0.2s",
-                        transform: "translateX(0) rotate(0)",
-                      },
-                      "&:hover, &:focus": {
-                        bgcolor: "unset",
-                        "& svg:first-of-type": {
-                          transform: "translateX(-4px) rotate(-20deg)",
-                        },
-                        "& svg:last-of-type": {
-                          right: 0,
-                          opacity: 1,
-                        },
-                      },
-                      "&:after": {
-                        content: '""',
-                        position: "absolute",
-                        height: "80%",
-                        display: "block",
-                        left: 0,
-                        width: "1px",
-                        bgcolor: "divider",
-                      },
-                    }}
-                  >
-                    <Settings />
-                    <ArrowRight
-                      sx={{ position: "absolute", right: 4, opacity: 0 }}
-                    />
-                  </IconButton>
-                </Tooltip> */}
                 </ListItem>
               </Link>
 
@@ -223,7 +188,6 @@ export default function SideBar({ token }) {
                       },
                     }}
                     onMouseEnter={() => handleSettingsHover(item.label)}
-                    //   onMouseLeave={() => handleSettingsLeave(item.label)}
                     href={getItemLink(item.label)}
                     onClick={index === 4 ? () => logoutHandler() : undefined}
                   >

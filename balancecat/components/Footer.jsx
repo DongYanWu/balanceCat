@@ -35,13 +35,13 @@ export default function Footer() {
               聯絡我們
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              123 Main Street, Anytown, USA
+              10 虛構街道，幻想城市，虛構國家
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Email: info@example.com
+              Email: contact@fictional.com
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Phone: +1 234 567 8901
+              Phone: +886 915378824
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4} sx={{ textAlign: "center" }}>

@@ -112,12 +112,12 @@ export default function DataCard({ isDebitCard, color, token }) {
       {
         label: userData?.data?.charts[7]?.name,
         value: userData?.data?.charts[7]?.amount,
-        color: "#g6d68f",
+        color: "#1ca7ec",
       },
       {
         label: userData?.data?.charts[8]?.name,
         value: userData?.data?.charts[8]?.amount,
-        color: "#h6d68f",
+        color: "#97cadb",
       },
     );
   }
@@ -170,11 +170,14 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {`${Math.round(userData?.data?.stats[0]?.amount / 1000)} K`}
+                  {`${Math.round(userData?.data?.stats[1]?.amount / 1000)} K`}
                 </Box>
                 <Box
                   sx={{
-                    color: "success.dark",
+                    color:
+                      userData?.data?.stats[1]?.percentage_change < 0
+                        ? "#e93171"
+                        : "success.dark",
                     display: "inline",
                     fontWeight: "bold",
                     mx: 0.5,
@@ -183,7 +186,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                 >
                   {`${Math.round(
                     userData?.data?.stats[1]?.percentage_change,
-                  )}%` || "+18.77%"}
+                  )}%` || "-"}
                 </Box>
                 <Box
                   sx={{
@@ -219,11 +222,20 @@ export default function DataCard({ isDebitCard, color, token }) {
                     fontWeight: "medium",
                   }}
                 >
-                  {`${-Math.round(userData?.data?.stats[2]?.amount / 1000)} K`}
+                  {isDebitCard
+                    ? `${-Math.round(
+                        userData?.data?.stats[3]?.amount / 1000,
+                      )} K`
+                    : `${Math.round(
+                        userData?.data?.stats[3]?.amount / 1000,
+                      )} K`}
                 </Box>
                 <Box
                   sx={{
-                    color: "success.dark",
+                    color:
+                      userData?.data?.stats[3]?.percentage_change < 0
+                        ? "#e93171"
+                        : "success.dark",
                     display: "inline",
                     fontWeight: "bold",
                     mx: 0.5,
@@ -232,7 +244,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                 >
                   {`${Math.round(
                     userData?.data?.stats[3]?.percentage_change,
-                  )}%` || "+18.77%"}
+                  )}%` || "-"}
                 </Box>
                 <Box
                   sx={{

@@ -29,7 +29,9 @@ import FlagIcon from "@mui/icons-material/Flag";
 import PersonIcon from "@mui/icons-material/Person";
 import FaceIcon from "@mui/icons-material/Face";
 import { useState } from "react";
-import { CarRental } from "@mui/icons-material";
+import SchoolIcon from "@mui/icons-material/School";
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import AttractionsIcon from "@mui/icons-material/Attractions";
 // import UploadButton from "@/components/UploadButton";
 import useGetGoals from "@/hooks/useGetGoals";
 import GmailTreeView from "./GmailTreeView";
@@ -327,7 +329,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5104",
           labelText: "交通支出",
-          labelIcon: BedIcon,
+          labelIcon: DirectionsCarIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -338,7 +340,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5105",
           labelText: "教育支出",
-          labelIcon: BedIcon,
+          labelIcon: SchoolIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -349,7 +351,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5106",
           labelText: "娛樂支出",
-          labelIcon: BedIcon,
+          labelIcon: AttractionsIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -371,7 +373,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5108",
           labelText: "折舊費用",
-          labelIcon: Face2Icon,
+          labelIcon: ArrowCircleDownIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -435,7 +437,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5204",
           labelText: "交通支出",
-          labelIcon: CarRental,
+          labelIcon: DirectionsCarIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -446,7 +448,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5205",
           labelText: "教育支出",
-          labelIcon: BedIcon,
+          labelIcon: SchoolIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",
@@ -457,7 +459,7 @@ export default function SettingsBars({ token }) {
         {
           nodeId: "5206",
           labelText: "娛樂支出",
-          labelIcon: BedIcon,
+          labelIcon: AttractionsIcon,
           labelInfo: "尚無限制",
           color: "#1a73e8",
           bgColor: "#e8f0fe",

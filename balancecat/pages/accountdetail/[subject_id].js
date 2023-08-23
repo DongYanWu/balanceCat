@@ -44,7 +44,7 @@ export default function DetailPage({ token, userId, username }) {
   return (
     <CardTemplate
       backgroundStyle={{
-        background: "linear-gradient(180deg, #0d0221 0%, #090630 100%)",
+        background: "#0f0f15",
       }}
       style={{
         display: "flex",
