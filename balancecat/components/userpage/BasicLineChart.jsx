@@ -291,7 +291,7 @@ export default function BasicLineChart({
               ]}
               series={hisData.map((item) => ({
                 label: item.label,
-                data: item.data.map((value) => value / 10000),
+                data: item.data.map((value) => Math.abs(value / 10000)),
               }))}
               width={500}
               height={300}
