@@ -216,7 +216,7 @@ export default function Entries({ token }) {
         }
         if (response.status === 422) {
           Swal.fire({
-            title: "同個科目不能出現兩次！",
+            title: "同科目不能出現兩次",
             footer:
               '<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">了解詳細規則</a>',
             width: 450,
@@ -227,7 +227,7 @@ export default function Entries({ token }) {
             // background: "#fff url(/userloading.gif)",
             backdrop: `
           rgba(0, 0, 0, 0.834)
-            url("/boom.gif")
+            url("/mboom.gif")
             left 
             no-repeat
           `,

@@ -69,7 +69,8 @@ export default function SignIn({ setIsLogIn }) {
         // setIsLoginPage(true);
 
         // Cookies.set('token', userData.data.access_token, { secure: true, httpOnly: true });
-
+        router.push("/");
+        finishRouterLoading = true;
         cookieCutter.set("id", userData.data.user.id, { path: "/" });
         cookieCutter.set("token", userData.data.access_token, { path: "/" });
         // cookieCutter.set(
@@ -84,8 +85,6 @@ export default function SignIn({ setIsLogIn }) {
         // );
 
         cookieCutter.set("username", userData.data.user.name, { path: "/" });
-        router.push("/");
-        finishRouterLoading = true;
       }
     });
   };
