@@ -77,11 +77,6 @@ export default function SideBar({ token, shadow }) {
     router.push("/signin");
   }
 
-  //   const handleSettingsLeave = (label) => {
-  //     if (label === "設定") {
-  //       setIsHoveringSettings(true);
-  //     }
-  //   };
   return (
     <div
       style={{
