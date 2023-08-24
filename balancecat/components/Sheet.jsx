@@ -91,10 +91,10 @@ export default function Sheet({ data, isLoading, isPrevLoading }) {
     1000, 1100, 1200, 2000, 2100, 2200, 3000, 3100, 3200, 4000, 4100, 4200,
     5000, 5100, 5200,
   ];
-  const absolute = (value) => {
-    if (value < 0) return -value;
-    return value;
-  };
+  // const absolute = (value) => {
+  //   if (value < 0) return -value;
+  //   return value;
+  // };
   const renderRows = (items, depth = 0) =>
     items?.map((item) => (
       <React.Fragment key={item.name}>
@@ -124,13 +124,13 @@ export default function Sheet({ data, isLoading, isPrevLoading }) {
             {isPrevLoading ? (
               <SheetSkeleton width={60} height={10} />
             ) : excludedIds.includes(item.subject_id) ? (
-              absolute(item.value)
+              item.value
             ) : (
               <Link
                 href={`/accountdetail/${item.subject_id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                {absolute(item.value)}
+                {item.value}
               </Link>
             )}
           </TableCell>
@@ -138,13 +138,13 @@ export default function Sheet({ data, isLoading, isPrevLoading }) {
             {isLoading ? (
               <SheetSkeleton width={60} height={10} />
             ) : excludedIds.includes(item.subject_id) ? (
-              absolute(item.lastMonthValue)
+              item.lastMonthValue
             ) : (
               <Link
                 href={`/accountdetail/${item.subject_id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                {absolute(item.lastMonthValue)}
+                {item.lastMonthValue}
               </Link>
             )}
           </TableCell>

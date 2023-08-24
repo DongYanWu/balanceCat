@@ -90,22 +90,22 @@ export default function DataCard({ isDebitCard, color, token }) {
     {
       label: userData?.data?.charts[0]?.name,
       value: absolute(userData?.data?.charts[0]?.amount),
-      color: "#0277bd",
+      color: "#b0ccd5",
     },
     {
       label: userData?.data?.charts[1]?.name,
       value: absolute(userData?.data?.charts[1]?.amount),
-      color: "#0288d1",
+      color: "#eac3c3",
     },
     {
       label: userData?.data?.charts[2]?.name,
       value: absolute(userData?.data?.charts[2]?.amount),
-      color: "#039be5",
+      color: "#b5c2d5",
     },
     {
       label: userData?.data?.charts[3]?.name,
       value: absolute(userData?.data?.charts[3]?.amount),
-      color: "#03a9f4",
+      color: "#c7c9db",
     },
   ];
   if (!isDebitCard) {
@@ -113,27 +113,27 @@ export default function DataCard({ isDebitCard, color, token }) {
       {
         label: userData?.data?.charts[4]?.name,
         value: userData?.data?.charts[4]?.amount,
-        color: "#29b6f6",
+        color: "#d4e2da",
       },
       {
         label: userData?.data?.charts[5]?.name,
         value: userData?.data?.charts[5]?.amount,
-        color: "#4fc3f7",
+        color: "#d4dbc3",
       },
       {
         label: userData?.data?.charts[6]?.name,
         value: userData?.data?.charts[6]?.amount,
-        color: "#81d4fa",
+        color: "#c5d5cc",
       },
       {
         label: userData?.data?.charts[7]?.name,
         value: userData?.data?.charts[7]?.amount,
-        color: "#b3e5fc",
+        color: "#efe6d1",
       },
       {
         label: userData?.data?.charts[8]?.name,
         value: userData?.data?.charts[8]?.amount,
-        color: "#e1f5fe",
+        color: "#c3bfdb",
       }
     );
   }
