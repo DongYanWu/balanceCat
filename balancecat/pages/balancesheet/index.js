@@ -132,36 +132,49 @@ export default function BalanceSheetPage({ token, userId, username }) {
       name: "負債",
       subtitle: "Liabilities",
       subject_id: 2000,
-      value: `${prevFinancialData?.[1]?.amount}`,
-      lastMonthValue: `${currFinancialData?.[1]?.amount}`,
+      value: -1 * Number(prevFinancialData?.[1]?.amount),
+      lastMonthValue: -1 * Number(currFinancialData?.[1]?.amount),
       children: [
         {
           name: "流動負債",
           subtitle: "Current Liabilities",
           subject_id: 2100,
-          value: `${prevFinancialData?.[1].subjects[0].amount}`,
-          lastMonthValue: `${currFinancialData?.[1].subjects[0].amount}`,
+          value: -1 * Number(prevFinancialData?.[1].subjects[0].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[1].subjects[0].amount),
           children: [
             {
               name: "信用卡費",
               subtitle: "Credit Card",
               subject_id: 2101,
-              value: `${prevFinancialData?.[1].subjects[0].subjects[0].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[0].subjects[0].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[0].subjects[0].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[0].subjects[0].amount),
             },
             {
               name: "應付帳款",
               subtitle: "Accounts Payable",
               subject_id: 2102,
-              value: `${prevFinancialData?.[1].subjects[0].subjects[1].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[0].subjects[1].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[0].subjects[1].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[0].subjects[1].amount),
             },
             {
               name: "其他",
               subtitle: "Others",
               subject_id: 2103,
-              value: `${prevFinancialData?.[1].subjects[0].subjects[2].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[0].subjects[2].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[0].subjects[2].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[0].subjects[2].amount),
             },
           ],
         },
@@ -169,36 +182,53 @@ export default function BalanceSheetPage({ token, userId, username }) {
           name: "非流動負債",
           subtitle: "Non-Current Liabilities",
           subject_id: 2200,
-          value: `${prevFinancialData?.[1].subjects[1].amount}`,
-          lastMonthValue: `${currFinancialData?.[1].subjects[1].amount}`,
+          value: -1 * Number(prevFinancialData?.[1].subjects[1].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[1].subjects[1].amount),
           children: [
             {
               name: "分期付款",
               subtitle: "Installment",
               subject_id: 2201,
-              value: `${prevFinancialData?.[1].subjects[1].subjects[0].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[1].subjects[0].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[1].subjects[0].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[1].subjects[0].amount),
             },
             {
               name: "車貸",
               subtitle: "Car Loan",
               subject_id: 2202,
-              value: `${prevFinancialData?.[1].subjects[1].subjects[1].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[1].subjects[1].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[1].subjects[1].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[1].subjects[1].amount),
             },
             {
               name: "房貸",
               subtitle: "Mortgage",
               subject_id: 2203,
-              value: `${prevFinancialData?.[1].subjects[1].subjects[2].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[1].subjects[2].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[1].subjects[2].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[1].subjects[2].amount),
             },
             {
               name: "其他",
               subtitle: "Others",
               subject_id: 2204,
-              value: `${prevFinancialData?.[1].subjects[1].subjects[3].amount}`,
-              lastMonthValue: `${currFinancialData?.[1].subjects[1].subjects[3].amount}`,
+              value:
+                -1 *
+                Number(prevFinancialData?.[1].subjects[1].subjects[3].amount),
+              lastMonthValue:
+                -1 *
+                Number(currFinancialData?.[1].subjects[1].subjects[3].amount),
             },
           ],
         },
@@ -208,22 +238,24 @@ export default function BalanceSheetPage({ token, userId, username }) {
       name: "權益",
       subtitle: "Equity",
       subject_id: 3000,
-      value: `${prevFinancialData?.[2]?.amount}`,
-      lastMonthValue: `${currFinancialData?.[2]?.amount}`,
+      value: -1 * Number(prevFinancialData?.[2]?.amount),
+      lastMonthValue: -1 * Number(currFinancialData?.[2]?.amount),
       children: [
         {
           name: "保留盈餘",
           subtitle: "Retained Earnings",
           subject_id: 3100,
-          value: `${prevFinancialData?.[2].subjects[0].amount}`,
-          lastMonthValue: `${currFinancialData?.[2].subjects[0].amount}`,
+          value: -1 * Number(prevFinancialData?.[2].subjects[0].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[2].subjects[0].amount),
         },
         {
           name: "當期盈餘",
           subtitle: "Current Earnings",
           subject_id: 3200,
-          value: `${prevFinancialData?.[2].subjects[1].amount}`,
-          lastMonthValue: `${currFinancialData?.[2].subjects[1].amount}`,
+          value: -1 * Number(prevFinancialData?.[2].subjects[1].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[2].subjects[1].amount),
         },
       ],
     },

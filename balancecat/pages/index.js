@@ -217,8 +217,10 @@ export default function Home({ token, userId, username }) {
           <SideBar token={token} />
           <div className={styles.box}>
             <div className={styles.title_entries}>
-              <p className={`${silk.className} ${styles.title}`}>You always</p>
-              <p className={`${silk.className} ${styles.title}`}>are winner</p>
+              <p className={`${silk.className} ${styles.title}`}>Keep track,</p>
+              <p className={`${silk.className} ${styles.title}`}>
+                stay on track
+              </p>
               <Entries token={token} />
             </div>
           </div>

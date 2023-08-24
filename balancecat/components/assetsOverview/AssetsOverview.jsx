@@ -119,7 +119,7 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((asset) => (
             <div key={asset.id}>
-              <AssetsBar asset={asset} isMutating={isMutating} />
+              <AssetsBar asset={asset} isMutating={isMutating} token={token} />
               <hr />
             </div>
           ))}
@@ -163,7 +163,11 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((liability) => (
             <div key={liability.id}>
-              <LiabilityBar liability={liability} isMutating={isMutating} />
+              <LiabilityBar
+                liability={liability}
+                isMutating={isMutating}
+                token={token}
+              />
               <hr />
             </div>
           ))}
@@ -207,7 +211,12 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((asset) => (
             <div key={asset.id}>
-              <AssetsBar asset={asset} isMutating={isMutating} />
+              <AssetsBar
+                asset={asset}
+                isMutating={isMutating}
+                token={token}
+                ar
+              />
               <hr />
             </div>
           ))}
@@ -251,7 +260,12 @@ export default function AssetsOverview({ token }) {
           <hr />
           {registerData?.map((liability) => (
             <div key={liability.id}>
-              <LiabilityBar liability={liability} isMutating={isMutating} />
+              <LiabilityBar
+                liability={liability}
+                isMutating={isMutating}
+                token={token}
+                ap
+              />
               <hr />
             </div>
           ))}

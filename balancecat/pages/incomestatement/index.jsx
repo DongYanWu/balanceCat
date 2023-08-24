@@ -31,39 +31,49 @@ export default function BalanceSheetPage({ token, userId, username }) {
       name: "收入",
       subtitle: "Income",
       subject_id: 4000,
-      value: prevFinancialData?.[0]?.amount,
-      lastMonthValue: currFinancialData?.[0]?.amount,
+      value: -1 * Number(prevFinancialData?.[0]?.amount),
+      lastMonthValue: -1 * Number(currFinancialData?.[0]?.amount),
       children: [
         {
           name: "經常性收入",
           subtitle: "Regular Income",
           subject_id: 4100,
-          value: prevFinancialData?.[0]?.subjects[0].amount,
-          lastMonthValue: currFinancialData?.[0]?.subjects[0].amount,
+          value: -1 * Number(prevFinancialData?.[0]?.subjects[0].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[0]?.subjects[0].amount),
           children: [
             {
               name: "薪資收入",
               subtitle: "Salary",
               subject_id: 4101,
-              value: prevFinancialData?.[0]?.subjects[0].subjects[0].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[0].subjects[0].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[0].subjects[0].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[0].subjects[0].amount),
             },
             {
               name: "利息收入",
               subtitle: "Interest Income",
               subject_id: 4102,
-              value: prevFinancialData?.[0]?.subjects[0].subjects[1].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[0].subjects[1].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[0].subjects[1].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[0].subjects[1].amount),
             },
             {
               name: "其他",
               subtitle: "Others",
               subject_id: 4103,
-              value: prevFinancialData?.[0]?.subjects[0].subjects[2].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[0].subjects[2].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[0].subjects[2].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[0].subjects[2].amount),
             },
           ],
         },
@@ -71,32 +81,42 @@ export default function BalanceSheetPage({ token, userId, username }) {
           name: "非經常性收入",
           subtitle: "Irregular Income",
           subject_id: 4200,
-          value: prevFinancialData?.[0]?.subjects[1].amount,
-          lastMonthValue: currFinancialData?.[0]?.subjects[1].amount,
+          value: -1 * Number(prevFinancialData?.[0]?.subjects[1].amount),
+          lastMonthValue:
+            -1 * Number(currFinancialData?.[0]?.subjects[1].amount),
           children: [
             {
               name: "兼職收入",
               subtitle: "Part-time Income",
               subject_id: 4201,
-              value: prevFinancialData?.[0]?.subjects[1].subjects[0].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[1].subjects[0].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[1].subjects[0].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[1].subjects[0].amount),
             },
             {
               name: "中獎",
               subtitle: "Prize Winnings",
               subject_id: 4202,
-              value: prevFinancialData?.[0]?.subjects[1].subjects[1].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[1].subjects[1].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[1].subjects[1].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[1].subjects[1].amount),
             },
             {
               name: "其他",
               subtitle: "Others",
               subject_id: 4203,
-              value: prevFinancialData?.[0]?.subjects[1].subjects[2].amount,
+              value:
+                -1 *
+                Number(prevFinancialData?.[0]?.subjects[1].subjects[2].amount),
               lastMonthValue:
-                currFinancialData?.[0]?.subjects[1].subjects[2].amount,
+                -1 *
+                Number(currFinancialData?.[0]?.subjects[1].subjects[2].amount),
             },
           ],
         },
@@ -176,17 +196,17 @@ export default function BalanceSheetPage({ token, userId, username }) {
               name: "折舊費用",
               subtitle: "Depreciation",
               subject_id: 5108,
-              value: prevFinancialData?.[1]?.subjects[0].subjects[6].amount,
+              value: prevFinancialData?.[1]?.subjects[0].subjects[7].amount,
               lastMonthValue:
-                currFinancialData?.[1]?.subjects[0].subjects[6].amount,
+                currFinancialData?.[1]?.subjects[0].subjects[7].amount,
             },
             {
               name: "其他",
               subtitle: "Others",
               subject_id: 5109,
-              value: prevFinancialData?.[1]?.subjects[0].subjects[7].amount,
+              value: prevFinancialData?.[1]?.subjects[0].subjects[8].amount,
               lastMonthValue:
-                currFinancialData?.[1]?.subjects[0].subjects[7].amount,
+                currFinancialData?.[1]?.subjects[0].subjects[8].amount,
             },
           ],
         },
@@ -251,7 +271,7 @@ export default function BalanceSheetPage({ token, userId, username }) {
               subject_id: 5207,
               value: prevFinancialData?.[1]?.subjects[1].subjects[6].amount,
               lastMonthValue:
-                currFinancialData?.[41]?.subjects[1].subjects[6].amount,
+                currFinancialData?.[1]?.subjects[1].subjects[6].amount,
             },
             {
               name: "其他",
