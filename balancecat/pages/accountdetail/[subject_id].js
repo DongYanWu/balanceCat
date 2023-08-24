@@ -15,7 +15,7 @@ import useGetEntryHistory from "@/hooks/useGetEntryHistory";
 import idNameConverter from "@/idNameConverter";
 import Rocket from "@/components/Rocket";
 import Image from "next/image";
-import styles from "./detail.module.scss";
+import styles from "@/styles/detail.module.scss";
 
 const dot = DotGothic16({
   weight: "400",

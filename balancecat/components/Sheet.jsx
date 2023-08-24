@@ -92,7 +92,7 @@ export default function Sheet({ data, isLoading, isPrevLoading }) {
     5000, 5100, 5200,
   ];
   const absolute = (value) => {
-    if (value < 0) return value * -1;
+    if (value < 0) return -value;
     return value;
   };
   const renderRows = (items, depth = 0) =>
@@ -165,8 +165,17 @@ export default function Sheet({ data, isLoading, isPrevLoading }) {
         boxShadow: "0 0 40px rgb(255,255,255,1)",
         margin: "50px 0",
         borderRadius: "20px",
+        overflowY: "scroll",
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        "&::-webkit-scrollbar": {
+          width: "0.4em",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#d9d9d9",
+          borderRadius: "20px",
+        },
       }}
-      // className={styles.tableContainer}
     >
       <Table aria-label="nested table">
         <TableHead>

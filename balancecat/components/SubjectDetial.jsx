@@ -16,6 +16,7 @@ import { Button } from "@mui/material";
 import createData from "@/createData";
 import useSWRMutation from "swr/mutation";
 import swal from "sweetalert";
+import SheetSkeleton from "./SheetSkeleton";
 
 const dot = DotGothic16({
   weight: "400",
@@ -78,7 +79,6 @@ export default function SubjectDetail({ entriesData, token }) {
 
   const handleClickOpen = async (row) => {
     await setSelectedRow(row);
-    console.log(row.id);
     await setEntryID(row.id);
     setOpenDialog(true);
     trigger({ token }).then(async (data) => {
@@ -100,8 +100,9 @@ export default function SubjectDetail({ entriesData, token }) {
       }
     });
   };
-  const handleClose = () => {
+  const handleClose = async () => {
     setOpenDialog(false);
+    await setEntryDetailData(null);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -128,6 +129,15 @@ export default function SubjectDetail({ entriesData, token }) {
         sx={{
           minHeight: 300,
           maxHeight: 440,
+          overflowY: "scroll",
+          scrollbarWidth: "none", // 新增這行來隱藏滾動條（for Firefox）
+          msOverflowStyle: "none", // 新增這行來隱藏滾動條（for IE and Edge）
+          "&::-webkit-scrollbar": {
+            width: "0.4em",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#fff",
+          },
           // "&::-webkit-scrollbar-track": {
           //   backgroundColor: "#212131", // 更改滾動條軌道的顏色
           // },
@@ -152,9 +162,13 @@ export default function SubjectDetail({ entriesData, token }) {
                   key={column.id}
                   align={column.align}
                   style={{
-                    minWidth: column.minWidth,
+                    minWidth:
+                      column.label === "description" ? "70px" : column.minWidth,
+                    // minWidth: column.minWidth,
+                    // width: "100px",
                     background:
                       "linear-gradient(to bottom right, #eef0f2, #eee)",
+                    // maxWidth: column.minWidth,
                     // backgroundColor: "#212131",
                     // color: "white",
                   }}
@@ -224,35 +238,49 @@ export default function SubjectDetail({ entriesData, token }) {
                   <p>金額： $ {selectedRow.amount}</p>
                   <p>註解： {selectedRow.description}</p>
                   <p>曜日： {selectedRow.day}</p>
-                  {entryDetailData?.details.some(
-                    (detail) => detail.amount > 0,
-                  ) && (
-                    <p>
-                      借方：{" "}
-                      {entryDetailData.details.map((detail, index) => (
-                        <span key={index}>
-                          {detail.amount > 0
-                            ? `${detail.subject.name} (金額：$ ${detail.amount})`
-                            : ""}
-                        </span>
-                      ))}
-                    </p>
+                  {entryDetailData?.details ? (
+                    entryDetailData?.details.some(
+                      (detail) => detail.amount > 0,
+                    ) && (
+                      <p>
+                        借方：{" "}
+                        {entryDetailData.details.map((detail, index) => (
+                          <span key={index}>
+                            {detail.amount > 0
+                              ? `${detail.subject.name} (金額：$ ${detail.amount})`
+                              : ""}
+                          </span>
+                        ))}
+                      </p>
+                    )
+                  ) : (
+                    <div style={{ display: "flex", margin: "10px 0px" }}>
+                      <SheetSkeleton width={40} height={30} />:
+                      <SheetSkeleton width={160} height={30} />
+                    </div>
                   )}
-                  {entryDetailData?.details.some(
-                    (detail) => detail.amount < 0,
-                  ) && (
-                    <p>
-                      貸方：{" "}
-                      {entryDetailData.details.map((detail, index) => (
-                        <span key={index}>
-                          {detail.amount < 0
-                            ? `${detail.subject.name} (金額：$ ${
-                                -1 * detail.amount
-                              })`
-                            : ""}
-                        </span>
-                      ))}
-                    </p>
+                  {entryDetailData?.details ? (
+                    entryDetailData?.details.some(
+                      (detail) => detail.amount < 0,
+                    ) && (
+                      <p>
+                        貸方：{" "}
+                        {entryDetailData.details.map((detail, index) => (
+                          <span key={index}>
+                            {detail.amount < 0
+                              ? `${detail.subject.name} (金額：$ ${
+                                  -1 * detail.amount
+                                })`
+                              : ""}
+                          </span>
+                        ))}
+                      </p>
+                    )
+                  ) : (
+                    <div style={{ display: "flex" }}>
+                      <SheetSkeleton width={40} height={30} />:
+                      <SheetSkeleton width={160} height={30} />
+                    </div>
                   )}
                 </div>
               )}
