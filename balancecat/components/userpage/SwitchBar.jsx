@@ -43,13 +43,14 @@ export default function SwitchBar({ token }) {
   //   // createData("Cupcake", 305, 159, "24%"),
   //   // createData("Gingerbread", 356, 159, "24%"),
   // ];
+  const excludedIds = [4000, 4100, 4101, 4102, 4103, 4200, 4201, 4202, 4203];
   const totalRows =
     data?.data?.goals.map((item) =>
       createData(
         item.name,
-        absolute(item.current_amount).toLocaleString(),
+        ((excludedIds.includes(item.subject_id) ? -1 : 1) * (item.current_amount)).toLocaleString(),
         item.amount.toLocaleString(),
-        (absolute(item.current_amount * 100) / item.amount).toFixed(2),
+        ((excludedIds.includes(item.subject_id) ? -1 : 1) * (item.current_amount * 100 / item.amount).toFixed(2)).toLocaleString(),
         item.history_amount
       )
     ) || [];
@@ -59,15 +60,15 @@ export default function SwitchBar({ token }) {
       .filter((item) =>
         [
           1000, 1100, 1101, 1102, 1103, 1104, 1200, 1201, 1202, 1203, 1204,
-          1205, 1206, 4000, 4100, 4101, 4102, 4103, 4200, 4201, 4202, 4203,
+          1205, 1206
         ].includes(item.subject_id)
       )
       .map((item) =>
         createData(
           item.name,
-          absolute(item.current_amount).toLocaleString(),
+          item.current_amount.toLocaleString(),
           item.amount.toLocaleString(),
-          (absolute(item.current_amount * 100) / item.amount).toFixed(2),
+          (item.current_amount * 100 / item.amount).toFixed(2),
           item.history_amount
         )
       ) || [];
@@ -118,8 +119,8 @@ export default function SwitchBar({ token }) {
           alignItems: "center",
         }}
       >
-        {/* <p>努力加載中</p> */}
-        <Image src="/gifcat.gif" alt="Loading..." width={280} height={100} />
+        <p>努力加載中</p>
+        <Image src="/gifcat.gif" alt="Loading..." width={100} height={100} />
       </div>
     );
   }
