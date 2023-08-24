@@ -142,6 +142,7 @@ export default function AccountsBox({
               urlType="ap"
               handleInputChange={handleInputChange}
               setParent_id={setParent_id}
+              isDebit={isDebit}
             />
           )}
         </div>

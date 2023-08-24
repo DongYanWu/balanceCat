@@ -181,6 +181,7 @@ import SideBar from "@/components/SideBar";
 import Sun from "@/components/Sun";
 // import Water from "@/components/water";
 import Water from "@/components/Water";
+import RedSun from "@/components/RedSun";
 
 const silk = Silkscreen({
   weight: ["400"],
@@ -199,6 +200,7 @@ export default function Home({ token, userId, username }) {
     >
       <Sun />
       <Water />
+      <RedSun />
 
       <div className={styles.wrapper}>
         <CardTemplate

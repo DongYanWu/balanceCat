@@ -118,8 +118,8 @@ export default function SwitchBar({ token }) {
           alignItems: "center",
         }}
       >
-        <p>努力加載中</p>
-        <Image src="/gifcat.gif" alt="Loading..." width={100} height={100} />
+        {/* <p>努力加載中</p> */}
+        <Image src="/gifcat.gif" alt="Loading..." width={280} height={100} />
       </div>
     );
   }
