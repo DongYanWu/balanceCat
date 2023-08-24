@@ -82,27 +82,30 @@ export default function DataCard({ isDebitCard, color, token }) {
   // const refreshFriendData = () => {
   //   mutate([`${API_URL}/frie`, token]);
   // };
-
+  const absolute = (value) => {
+    if (value < 0) return -value;
+    return value;
+  };
   const data = [
     {
       label: userData?.data?.charts[0]?.name,
-      value: userData?.data?.charts[0]?.amount,
-      color: "#9bbfe0",
+      value: absolute(userData?.data?.charts[0]?.amount),
+      color: "#0277bd",
     },
     {
       label: userData?.data?.charts[1]?.name,
-      value: userData?.data?.charts[1]?.amount,
-      color: "#e8a09a",
+      value: absolute(userData?.data?.charts[1]?.amount),
+      color: "#0288d1",
     },
     {
       label: userData?.data?.charts[2]?.name,
-      value: userData?.data?.charts[2]?.amount,
-      color: "#fbe29f",
+      value: absolute(userData?.data?.charts[2]?.amount),
+      color: "#039be5",
     },
     {
       label: userData?.data?.charts[3]?.name,
-      value: userData?.data?.charts[3]?.amount,
-      color: "#c6d68f",
+      value: absolute(userData?.data?.charts[3]?.amount),
+      color: "#03a9f4",
     },
   ];
   if (!isDebitCard) {
@@ -110,27 +113,27 @@ export default function DataCard({ isDebitCard, color, token }) {
       {
         label: userData?.data?.charts[4]?.name,
         value: userData?.data?.charts[4]?.amount,
-        color: "#d6d68f",
+        color: "#29b6f6",
       },
       {
         label: userData?.data?.charts[5]?.name,
         value: userData?.data?.charts[5]?.amount,
-        color: "#e6d68f",
+        color: "#4fc3f7",
       },
       {
         label: userData?.data?.charts[6]?.name,
         value: userData?.data?.charts[6]?.amount,
-        color: "#f6d68f",
+        color: "#81d4fa",
       },
       {
         label: userData?.data?.charts[7]?.name,
         value: userData?.data?.charts[7]?.amount,
-        color: "#1ca7ec",
+        color: "#b3e5fc",
       },
       {
         label: userData?.data?.charts[8]?.name,
         value: userData?.data?.charts[8]?.amount,
-        color: "#97cadb",
+        color: "#e1f5fe",
       }
     );
   }
@@ -159,6 +162,176 @@ export default function DataCard({ isDebitCard, color, token }) {
           <CardOverflow variant="solid" color="warning" />
 
           <CardContent sx={{ maxWidth: "40ch" }}>
+            <div className={styles.datacontent}>
+              <ThemeProvider theme={theme}>
+                <Box
+                  sx={{
+                    bgcolor: "background.paper",
+                    boxShadow: 0,
+                    borderRadius: 2,
+                    p: 2,
+                    minWidth: 120,
+                    paddingRight: "0px",
+                    padding: "0px",
+
+                    textAlign: "left",
+                  }}
+                >
+                  <Box sx={{ color: "text.secondary" }}>
+                    {isDebitCard ? "資產" : "經常性支出"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 24,
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {`${Math.round(userData?.data?.stats[0]?.amount / 1000)} K`}
+                  </Box>
+                  <Box
+                    sx={{
+                      color:
+                        userData?.data?.stats[0]?.percentage_change < 0
+                          ? "#e93171"
+                          : "success.dark",
+                      display: "inline",
+                      fontWeight: "bold",
+                      mx: 0.5,
+                      fontSize: 10,
+                    }}
+                  >
+                    {`${Math.round(
+                      userData?.data?.stats[0]?.percentage_change
+                    )}%` || "-"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.secondary",
+                      display: "inline",
+                      fontSize: 10,
+                    }}
+                  >
+                    vs. last month
+                  </Box>
+                </Box>
+              </ThemeProvider>
+              <ThemeProvider theme={theme}>
+                <Box
+                  sx={{
+                    bgcolor: "background.paper",
+                    boxShadow: 0,
+                    borderRadius: 2,
+                    p: 2,
+                    minWidth: 120,
+                    paddingLeft: "0px",
+                    padding: "0px",
+                    textAlign: "left",
+                  }}
+                >
+                  <Box sx={{ color: "text.secondary" }}>
+                    {isDebitCard ? "負債" : "非經常性支出"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 24,
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {absolute(
+                      Math.round(userData?.data?.stats[1]?.amount / 1000)
+                    )}
+                    K
+                  </Box>
+                  <Box
+                    sx={{
+                      color:
+                        userData?.data?.stats[1]?.percentage_change < 0
+                          ? "#e93171"
+                          : "success.dark",
+                      display: "inline",
+                      fontWeight: "bold",
+                      mx: 0.5,
+                      fontSize: 10,
+                    }}
+                  >
+                    {`${Math.round(
+                      userData?.data?.stats[1]?.percentage_change
+                    )}%` || "-"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.secondary",
+                      display: "inline",
+                      fontSize: 10,
+                    }}
+                  >
+                    vs. last week
+                  </Box>
+                </Box>
+              </ThemeProvider>
+            </div>
+
+            <Stack direction="row">
+              <PieChart
+                series={[
+                  {
+                    paddingAngle: 5,
+                    innerRadius: 40,
+                    outerRadius: 60,
+                    // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
+                    arcLabelMinAngle: 15,
+                    highlightScope: { faded: "global", highlighted: "item" },
+                    faded: { innerRadius: 20, additionalRadius: -20 },
+                    data,
+                  },
+                ]}
+                // width={100}
+                height={130}
+                // legend={{ hidden: true }}  //hide the color stand for
+                sx={{
+                  marginTop: "20px",
+                  marginRight: "10px",
+                  [`& .${pieArcClasses.faded}`]: {
+                    fill: "gray",
+                  },
+                  "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                    // display: "none",
+                    height: "30px",
+                    margin: "20px",
+                    overflowY: "scroll",
+                  },
+                  // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                  //   height: "80px",
+                  //   overflow: "scroll",
+                  // },
+                }}
+              />
+            </Stack>
+          </CardContent>
+          {/* <CardActions
+          orientation="vertical"
+          buttonFlex={1}
+          sx={{
+            textAlign: "center",
+            alignItems: "center",
+            width: 280,
+            // height: 240,
+            height: 263,
+            // to make the demo resizable
+            // overflow: "auto",
+            resize: "horizontal",
+            "--icon-size": "100px",
+            borderRadius: "30px",
+            backgroundColor: color,
+            boxShadow: "0 0 20px rgb(0,0,0,0.2)",
+            // backgroundImage: color,
+          }}
+        >
+          <CardOverflow variant="solid" color="warning" /> */}
+
+          {/* <CardContent sx={{ maxWidth: "40ch" }}>
             <div className={styles.datacontent}>
               <ThemeProvider theme={theme}>
                 <Box
@@ -325,7 +498,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                 }}
               />
             </Stack>
-          </CardContent>
+          </CardContent> */}
           <CardActions
             orientation="vertical"
             buttonFlex={1}

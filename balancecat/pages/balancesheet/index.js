@@ -273,18 +273,18 @@ export default function BalanceSheetPage({ token, userId, username }) {
       <div
         style={{
           position: "absolute",
-          top: "20vw",
+          top: "50%",
           left: "10vw",
           zIndex: -1,
         }}
       >
-        <Image src="/typing.gif" width={500} height={500} />
+        <Image src="/typing.gif" width={300} height={300} />
       </div>
       <div
         style={{
           position: "absolute",
-          top: "35vw",
-          left: "75vw",
+          top: "60%",
+          left: "75%",
           // width: "100%",
           // height: "100%",
           zIndex: -1,

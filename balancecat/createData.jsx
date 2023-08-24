@@ -25,9 +25,9 @@ export default function createData({ id, timestamp, details }) {
     }
     let amount;
     if (detail.amount < 0) {
-      amount = -1 * detail.amount;
+      amount = (-1 * detail.amount).toLocaleString();
     } else {
-      amount = detail.amount;
+      amount = detail.amount.toLocaleString();
     }
     return {
       id,

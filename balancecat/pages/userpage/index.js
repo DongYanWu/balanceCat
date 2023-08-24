@@ -48,7 +48,7 @@ export default function UserPage({ token, userId, username }) {
         style={{
           display: "flex",
           background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-          boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+          boxShadow: "0 0 40px rgba(255, 255, 255, 0.8)",
           border: "none",
         }}
       >
@@ -77,11 +77,11 @@ export default function UserPage({ token, userId, username }) {
                 isDebitCard
                 token={token}
                 // color="linear-gradient(to bottom, #d0eed7, #e0f8fc)"
-                color="#fffcf7"
+                color="#e6f0f2"
               />
               <DataCard
                 token={token}
-                color="#e6f0f2"
+                color="#FFFDE7"
                 // color="linear-gradient(to bottom, #e3f2ff, #dbe9ff)"
               />
             </div>

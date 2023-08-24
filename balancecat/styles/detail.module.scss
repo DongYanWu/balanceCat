@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // background-color: #171721;
-    // height: 100vh;
+    width: 100%;
+    align-self: center;
+
     .content {
         .title_calender {
             display: flex;
@@ -13,12 +14,13 @@
                 // margin-left: 2rem;
                 .title{
                     font-size: 4rem;
-                    // color: #d9d9d9;
+                    color: #fff;
                     margin: 0;
+
                 }
                 .subtitle {
                     font-size: 2rem;
-                    // color: #d9d9d9;
+                    color: #fff;
                     margin: 0;
                 }
             }

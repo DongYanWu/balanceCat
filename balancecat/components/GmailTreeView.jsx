@@ -137,8 +137,10 @@ function StyledTreeItem(props) {
       }
       if (response.status === 200) {
         console.log(responseData);
-        swal("Success", "成功設定目標", "success");
-        setIsEditMode(!isEditMode);
+        swal("Success", "成功設定目標", "success").then(() => {
+          setIsEditMode(!isEditMode);
+          window.location.reload();
+        });
       }
     });
     // console.log(`Editing label info for ${labelText}`);
@@ -168,7 +170,10 @@ function StyledTreeItem(props) {
       }
       if (response.status === 200) {
         console.log(responseData);
-        swal("Success", "成功編輯目標或支出", "success");
+        swal("Success", "成功編輯目標或支出", "success").then(() => {
+          setIsEditMode(!isEditMode);
+          window.location.reload();
+        });
         setIsEditMode(!isEditMode);
       }
     });

@@ -13,7 +13,9 @@ import CardTemplate from "@/components/cardTemplate/CardTemplate";
 import SideBar from "@/components/SideBar";
 import useGetEntryHistory from "@/hooks/useGetEntryHistory";
 import idNameConverter from "@/idNameConverter";
-import styles from "./detail.module.scss";
+import Rocket from "@/components/Rocket";
+import Image from "next/image";
+import styles from "@/styles/detail.module.scss";
 
 const dot = DotGothic16({
   weight: "400",
@@ -45,16 +47,22 @@ export default function DetailPage({ token, userId, username }) {
     <CardTemplate
       backgroundStyle={{
         background: "#0f0f15",
+        zIndex: "-1",
       }}
       style={{
         display: "flex",
-        gap: "15%",
-        background: "linear-gradient(to bottom right, #fff, #acb5c2)",
-        boxShadow: "0 0 40px rgba(255, 255, 255, 1)",
+        // gap: "15%",
+        background: "#0f0f15",
+        // background: "linear-gradient(to bottom right, #fff, #acb5c2)",
+        boxShadow: "0 0 40px rgb(255, 255, 255, 1)",
         border: "none",
+        zIndex: "0",
       }}
     >
-      <SideBar token={token} />
+      <SideBar token={token} shadow />
+      <Rocket />
+      <Rocket />
+      <Rocket />
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.title_calender}>
@@ -76,6 +84,31 @@ export default function DetailPage({ token, userId, username }) {
           <SubjectDetail entriesData={entriesData} token={token} />
         </div>
       </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "15%",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/typing.gif" width={300} height={300} />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "60%",
+          left: "75%",
+          // width: "100%",
+          // height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <Image src="/ufo.gif" width={200} height={200} />
+      </div>
+      <Rocket />
+      <Rocket />
+      <Rocket />
     </CardTemplate>
   );
 }
