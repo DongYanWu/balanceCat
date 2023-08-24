@@ -54,7 +54,7 @@ export default function TargetList({
               {display === "limit" ? "限制金額" : "目標金額"}
             </TableCell>
             <TableCell align="right" sx={{ borderBottom: "none" }}>
-              達成率
+              {display === "asset" ? "達成率" : "比率"}
             </TableCell>
             <TableCell align="right" sx={{ borderBottom: "none" }} />
           </TableRow>

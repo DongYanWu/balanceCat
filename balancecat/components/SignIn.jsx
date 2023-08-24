@@ -97,7 +97,7 @@ export default function SignIn({ setIsLogIn }) {
           <p className={styles.title}>Balance Cat</p>
         </div>
 
-        <p className={styles.free}>CONTINUE YOUT JOURNEY</p>
+        <p className={styles.free}>CONTINUE YOUR JOURNEY</p>
         <div className={styles.sentence}>
           <p className={styles.new}>Member Sign In</p>
           <p className={styles.period}>.</p>
