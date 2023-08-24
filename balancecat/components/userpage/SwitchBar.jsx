@@ -65,9 +65,9 @@ export default function SwitchBar({ token }) {
       .map((item) =>
         createData(
           item.name,
-          absolute(item.current_amount).toLocaleString(),
+          item.current_amount.toLocaleString(),
           item.amount.toLocaleString(),
-          (absolute(item.current_amount * 100) / item.amount).toFixed(2),
+          (item.current_amount * 100 / item.amount).toFixed(2),
           item.history_amount
         )
       ) || [];
@@ -83,9 +83,9 @@ export default function SwitchBar({ token }) {
       .map((item) =>
         createData(
           item.name,
-          absolute(item.current_amount).toLocaleString(),
+          item.current_amount.toLocaleString(),
           item.amount.toLocaleString(),
-          (absolute(item.current_amount * 100) / item.amount).toFixed(2),
+          (item.current_amount * 100 / item.amount).toFixed(2),
           item.history_amount
         )
       ) || [];
