@@ -2,6 +2,10 @@ body {
   margin: 10;
 }
 div[role="tooltip"] {
-  background-color: red;
   z-index: 9999;
 }
+
+/* .MuiChartsLegend-root.MuiChartsLegend-column.MuiChartsLegend-root {
+  overflow-y: auto;
+  background-color: red;
+} */

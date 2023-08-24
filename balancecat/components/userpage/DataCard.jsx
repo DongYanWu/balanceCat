@@ -9,8 +9,10 @@ import { ThemeProvider } from "@mui/joy/styles";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import { Box, createTheme } from "@mui/system";
+import { Skeleton } from "@mui/joy";
 // eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
+
 import styles from "../../styles/DataCard.module.scss";
 import FetchWithToken from "../fetchWithToken";
 
@@ -187,7 +189,18 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontWeight: "medium",
                     }}
                   >
-                    {`${Math.round(userData?.data?.stats[0]?.amount / 1000)} K`}
+                    {isLoading ? (
+                      /* <Skeleton /> */
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={70}
+                        height="0.8em"
+                        sx={{ marginTop: "10px" }}
+                      />
+                    ) : (
+                      `${Math.round(userData?.data?.stats[0]?.amount / 1000)} K`
+                    )}
                   </Box>
                   <Box
                     sx={{
@@ -201,9 +214,18 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontSize: 10,
                     }}
                   >
-                    {`${Math.round(
-                      userData?.data?.stats[0]?.percentage_change
-                    )}%` || "-"}
+                    {isLoading ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={80}
+                        height="0.8em"
+                      />
+                    ) : (
+                      `${Math.round(
+                        userData?.data?.stats[0]?.percentage_change
+                      )}%` || "-"
+                    )}
                   </Box>
                   <Box
                     sx={{
@@ -212,7 +234,7 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontSize: 10,
                     }}
                   >
-                    vs. last month
+                    {!isLoading && " vs. last month"}
                   </Box>
                 </Box>
               </ThemeProvider>
@@ -239,10 +261,20 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontWeight: "medium",
                     }}
                   >
-                    {absolute(
-                      Math.round(userData?.data?.stats[1]?.amount / 1000)
+                    {isLoading ? (
+                      /* <Skeleton /> */
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={70}
+                        height="0.8em"
+                        sx={{ marginTop: "10px" }}
+                      />
+                    ) : (
+                      `${absolute(
+                        Math.round(userData?.data?.stats[1]?.amount / 1000)
+                      )} K`
                     )}
-                    K
                   </Box>
                   <Box
                     sx={{
@@ -256,9 +288,18 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontSize: 10,
                     }}
                   >
-                    {`${Math.round(
-                      userData?.data?.stats[1]?.percentage_change
-                    )}%` || "-"}
+                    {isLoading ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={80}
+                        height="0.8em"
+                      />
+                    ) : (
+                      `${Math.round(
+                        userData?.data?.stats[1]?.percentage_change
+                      )}%` || "-"
+                    )}
                   </Box>
                   <Box
                     sx={{
@@ -267,48 +308,56 @@ export default function DataCard({ isDebitCard, color, token }) {
                       fontSize: 10,
                     }}
                   >
-                    vs. last week
+                    {!isLoading && "vs. last month"}
                   </Box>
                 </Box>
               </ThemeProvider>
             </div>
-
-            <Stack direction="row">
-              <PieChart
-                series={[
-                  {
-                    paddingAngle: 5,
-                    innerRadius: 40,
-                    outerRadius: 60,
-                    // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
-                    arcLabelMinAngle: 15,
-                    highlightScope: { faded: "global", highlighted: "item" },
-                    faded: { innerRadius: 20, additionalRadius: -20 },
-                    data,
-                  },
-                ]}
-                // width={100}
-                height={130}
-                // legend={{ hidden: true }}  //hide the color stand for
-                sx={{
-                  marginTop: "20px",
-                  marginRight: "10px",
-                  [`& .${pieArcClasses.faded}`]: {
-                    fill: "gray",
-                  },
-                  "& .MuiChartsLegend-root.MuiChartsLegend-column": {
-                    // display: "none",
-                    height: "30px",
-                    margin: "20px",
-                    overflowY: "scroll",
-                  },
-                  // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
-                  //   height: "80px",
-                  //   overflow: "scroll",
-                  // },
-                }}
+            {isLoading ? (
+              <Skeleton
+                variant="circular"
+                width={120}
+                height={120}
+                sx={{ marginLeft: "30px" }}
               />
-            </Stack>
+            ) : (
+              <Stack direction="row">
+                <PieChart
+                  series={[
+                    {
+                      paddingAngle: 5,
+                      innerRadius: 40,
+                      outerRadius: 60,
+                      // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
+                      arcLabelMinAngle: 15,
+                      highlightScope: { faded: "global", highlighted: "item" },
+                      faded: { innerRadius: 20, additionalRadius: -20 },
+                      data,
+                    },
+                  ]}
+                  // width={100}
+                  height={130}
+                  // legend={{ hidden: true }}  //hide the color stand for
+                  sx={{
+                    marginTop: "20px",
+                    marginRight: "10px",
+                    [`& .${pieArcClasses.faded}`]: {
+                      fill: "gray",
+                    },
+                    "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                      // display: "none",
+                      height: "50px", // Set fixed height
+                      margin: "20px",
+                      overflowY: "auto", // Set overflow-y to 'auto' or 'scroll'
+                    },
+                    // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                    //   height: "80px",
+                    //   overflow: "scroll",
+                    // },
+                  }}
+                />
+              </Stack>
+            )}
           </CardContent>
           {/* <CardActions
           orientation="vertical"

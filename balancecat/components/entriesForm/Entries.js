@@ -214,15 +214,38 @@ export default function Entries({ token }) {
             This is a success alert — check it out!
           </Alert>;
         }
-        if (response.status === 400) {
+        if (response.status === 422) {
           Swal.fire({
-            title: "兩邊科目不能有相同科目ㄛ",
+            title: "同個科目不能出現兩次！",
+            footer:
+              '<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">了解詳細規則</a>',
             width: 450,
             padding: "3em",
             // color: "#716add",
             // color: "rgba(0, 0, 0, 0.834)",
             confirmButtonText: "OK",
-            // background: "#fff url(/cat.png)",
+            // background: "#fff url(/userloading.gif)",
+            backdrop: `
+          rgba(0, 0, 0, 0.834)
+            url("/boom.gif")
+            left 
+            no-repeat
+          `,
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+        if (response.status === 400) {
+          Swal.fire({
+            title: "指定沖銷超過原始金額",
+            footer:
+              '<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">了解詳細規則</a>',
+            width: 450,
+            padding: "3em",
+            // color: "#716add",
+            // color: "rgba(0, 0, 0, 0.834)",
+            confirmButtonText: "OK",
+            background: "#fff url(/buttomloading.gif)",
             backdrop: `
           rgba(0, 0, 0, 0.834)
             url("/boom.gif")
@@ -261,6 +284,8 @@ export default function Entries({ token }) {
     } else {
       Swal.fire({
         title: "你沒有平衡= =",
+        footer:
+          '<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Why do I have this issue?</a>',
         width: 450,
         padding: "3em",
         // color: "#716add",

@@ -14,6 +14,7 @@ export default function SelectRegister({
   urlType,
   handleInputChange,
   setParent_id,
+  isDebit,
 }) {
   const [selectedValue, setSelectedValue] = useState(""); // Step 1
   // eslint-disable-next-line no-unused-vars
@@ -94,7 +95,9 @@ export default function SelectRegister({
                   value: item?.book_value,
                   entry_id: item?.entry_id,
                 })}
-              >{`${item?.initial_value}`}</option>
+              >
+                {isDebit ? -1 * item?.book_value : item?.book_value}
+              </option>
             </optgroup>
           ))}
         </Select>
