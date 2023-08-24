@@ -283,7 +283,7 @@ export default function Home({ token, userId, username }) {
             border: "none",
           }}
         >
-          <SideBar />
+          <SideBar token={token} />
           <div style={{ alignSelf: "center", width: "100%" }}>
             <FrequentlyAskedQuestions />
           </div>
