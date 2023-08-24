@@ -48,9 +48,14 @@ export default function SwitchBar({ token }) {
     data?.data?.goals.map((item) =>
       createData(
         item.name,
-        ((excludedIds.includes(item.subject_id) ? -1 : 1) * (item.current_amount)).toLocaleString(),
+        (
+          (excludedIds.includes(item.subject_id) ? -1 : 1) * item.current_amount
+        ).toLocaleString(),
         item.amount.toLocaleString(),
-        ((excludedIds.includes(item.subject_id) ? -1 : 1) * (item.current_amount * 100 / item.amount).toFixed(2)).toLocaleString(),
+        (
+          (excludedIds.includes(item.subject_id) ? -1 : 1) *
+          ((item.current_amount * 100) / item.amount).toFixed(2)
+        ).toLocaleString(),
         item.history_amount
       )
     ) || [];
@@ -60,7 +65,7 @@ export default function SwitchBar({ token }) {
       .filter((item) =>
         [
           1000, 1100, 1101, 1102, 1103, 1104, 1200, 1201, 1202, 1203, 1204,
-          1205, 1206
+          1205, 1206,
         ].includes(item.subject_id)
       )
       .map((item) =>
@@ -68,7 +73,7 @@ export default function SwitchBar({ token }) {
           item.name,
           item.current_amount.toLocaleString(),
           item.amount.toLocaleString(),
-          (item.current_amount * 100 / item.amount).toFixed(2),
+          ((item.current_amount * 100) / item.amount).toFixed(2),
           item.history_amount
         )
       ) || [];
@@ -119,8 +124,8 @@ export default function SwitchBar({ token }) {
           alignItems: "center",
         }}
       >
-        <p>努力加載中</p>
-        <Image src="/gifcat.gif" alt="Loading..." width={100} height={100} />
+        {/* <p>努力加載中</p> */}
+        <Image src="/gifcat.gif" alt="Loading..." width={300} height={100} />
       </div>
     );
   }
