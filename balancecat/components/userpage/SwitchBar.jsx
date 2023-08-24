@@ -125,7 +125,7 @@ export default function SwitchBar({ token }) {
         }}
       >
         {/* <p>努力加載中</p> */}
-        <Image src="/gifcat.gif" alt="Loading..." width={300} height={100} />
+        <Image src="/sleepcat.gif" alt="Loading..." width={300} height={150} />
       </div>
     );
   }
