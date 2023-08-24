@@ -96,7 +96,7 @@ export default function SelectRegister({
                   entry_id: item?.entry_id,
                 })}
               >
-                {isDebit ? -1 * item?.book_value : item?.book_value}
+                {isDebit ? -1 * Number(item?.book_value) : item?.book_value}
               </option>
             </optgroup>
           ))}
