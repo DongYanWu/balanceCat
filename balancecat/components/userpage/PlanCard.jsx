@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from "react";
 // import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -36,7 +37,7 @@ export default function PlanCard({ title, content, token }) {
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/memo`,
-    sendRequest,
+    sendRequest
   );
 
   const handleSendMemo = () => {
@@ -61,7 +62,7 @@ export default function PlanCard({ title, content, token }) {
     context = (
       <Card
         sx={{
-          minWidth: 523,
+          minWidth: 430,
           height: 195,
           borderRadius: "20px",
           backgroundColor: "#fff",
@@ -113,7 +114,7 @@ export default function PlanCard({ title, content, token }) {
     context = (
       <Card
         sx={{
-          minWidth: 523,
+          minWidth: 430,
           height: 195,
           borderRadius: "20px",
           backgroundColor: "#fff",

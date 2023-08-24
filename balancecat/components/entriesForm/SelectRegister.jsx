@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -19,7 +20,7 @@ export default function SelectRegister({
   const { data, error, mutate } = useSWR(
     [`${API_URL}registers?type=${urlType}`, token],
     // eslint-disable-next-line no-shadow
-    ([url, token]) => FetchWithToken(url, token),
+    ([url, token]) => FetchWithToken(url, token)
   );
   const handleChange = (event) => {
     const selectedId = event.target.value;
@@ -62,7 +63,7 @@ export default function SelectRegister({
 
   // eslint-disable-next-line no-unused-vars
   const loading = !data && !error;
-
+  console.log(data);
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>

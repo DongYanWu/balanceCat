@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable prettier/prettier */
 import * as React from "react";
 import { styled } from "@mui/system";
@@ -9,53 +10,95 @@ import { Tab, tabClasses } from "@mui/base/Tab";
 // eslint-disable-next-line no-unused-vars
 import useSWR, { mutate as globalMutate } from "swr";
 import { useState } from "react";
+import Image from "next/image";
 import TargetList from "./TargetList";
 import FetchWithToken from "../fetchWithToken";
 
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-
-
-
 function createData(name, total, wish, achievement, hisData) {
-  return { name, total, wish, achievement,  hisData};
+  return { name, total, wish, achievement, hisData };
 }
 
-
-export default function SwitchBar({token}) {
+export default function SwitchBar({ token }) {
   const [startYear, setStartYear] = useState(2022);
   const [endYear, setEndYear] = useState(2023);
   // eslint-disable-next-line no-unused-vars, no-shadow
-  const { data, error, mutate } = useSWR([`${API_URL}goals/?startyear=${startYear}&endyear=${endYear} `, token], ([url, token]) =>
-  FetchWithToken(url, token),
-);
-  
-console.log(data?.data)
-// const totalRows = [
-//   data?.data?.goals.map((item) => { createData(item.name, item.current_amount, item.amout, item.amout/item.current_amount)})
-//   // createData("房子", 159, 159, "24%"),
-//   // createData("Ice cream sandwich", 237, 159, "24%"),
-//   // createData("Eclair", 262, 159, "24%"),
-//   // createData("Cupcake", 305, 159, "24%"),
-//   // createData("Gingerbread", 356, 159, "24%"),
-// ];
-const totalRows = data?.data?.goals.map((item) => 
-  createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
-) || [];
+  const { data, error, mutate } = useSWR(
+    [`${API_URL}goals/?startyear=${startYear}&endyear=${endYear} `, token],
+    ([url, token]) => FetchWithToken(url, token)
+  );
+  const loading = !data && !error;
+  console.log(data?.data);
+  // const totalRows = [
+  //   data?.data?.goals.map((item) => { createData(item.name, item.current_amount, item.amout, item.amout/item.current_amount)})
+  //   // createData("房子", 159, 159, "24%"),
+  //   // createData("Ice cream sandwich", 237, 159, "24%"),
+  //   // createData("Eclair", 262, 159, "24%"),
+  //   // createData("Cupcake", 305, 159, "24%"),
+  //   // createData("Gingerbread", 356, 159, "24%"),
+  // ];
+  const totalRows =
+    data?.data?.goals.map((item) =>
+      createData(
+        item.name,
+        item.current_amount,
+        item.amount,
+        ((item.current_amount * 100) / item.amount).toFixed(2),
+        item.history_amount
+      )
+    ) || [];
 
-const debitRows = data?.data?.goals
-  .filter(item => [1101, 1102, 1103, 1104, 1201, 1202, 1203, 1204, 1205, 1206].includes(item.subject_id))
-  .map((item) => 
-    createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
-  ) || [];
+  const debitRows =
+    data?.data?.goals
+      .filter((item) =>
+        [1101, 1102, 1103, 1104, 1201, 1202, 1203, 1204, 1205, 1206].includes(
+          item.subject_id
+        )
+      )
+      .map((item) =>
+        createData(
+          item.name,
+          item.current_amount,
+          item.amount,
+          ((item.current_amount * 100) / item.amount).toFixed(2),
+          item.history_amount
+        )
+      ) || [];
 
-  const expenseRows = data?.data?.goals
-  .filter(item => [5101, 5102, 5103, 5104, 5105, 5106, 5107, 5108, 5109, 5201, 5202, 5203, 5204, 5205, 5206, 5207, 5208].includes(item.subject_id))
-  .map((item) => 
-    createData(item.name, item.current_amount, item.amount, (item.current_amount * 100 / item.amount).toFixed(2), item.history_amount)
-  ) || [];
-
+  const expenseRows =
+    data?.data?.goals
+      .filter((item) =>
+        [
+          5101, 5102, 5103, 5104, 5105, 5106, 5107, 5108, 5109, 5201, 5202,
+          5203, 5204, 5205, 5206, 5207, 5208,
+        ].includes(item.subject_id)
+      )
+      .map((item) =>
+        createData(
+          item.name,
+          item.current_amount,
+          item.amount,
+          ((item.current_amount * 100) / item.amount).toFixed(2),
+          item.history_amount
+        )
+      ) || [];
+  if (loading) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "322px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p>努力加載中</p>
+        <Image src="/gifcat.gif" alt="Loading..." width={100} height={100} />
+      </div>
+    );
+  }
   return (
     <Tabs defaultValue={0}>
       <StyledTabsList>
@@ -64,13 +107,34 @@ const debitRows = data?.data?.goals
         <StyledTab value={2}>支出限制</StyledTab>
       </StyledTabsList>
       <TabPanel value={0}>
-        <TargetList display="all" rows={totalRows} startYear={startYear} endYear={endYear} setStartYear={setStartYear} setEndYear={setEndYear}/>
+        <TargetList
+          display="all"
+          rows={totalRows}
+          startYear={startYear}
+          endYear={endYear}
+          setStartYear={setStartYear}
+          setEndYear={setEndYear}
+        />
       </TabPanel>
       <TabPanel value={1}>
-        <TargetList display="asset" rows={debitRows} startYear={startYear} endYear={endYear}  setStartYear={setStartYear} setEndYear={setEndYear}/>
+        <TargetList
+          display="asset"
+          rows={debitRows}
+          startYear={startYear}
+          endYear={endYear}
+          setStartYear={setStartYear}
+          setEndYear={setEndYear}
+        />
       </TabPanel>
       <TabPanel value={2}>
-        <TargetList display="limit" rows={expenseRows} startYear={startYear} endYear={endYear}  setStartYear={setStartYear} setEndYear={setEndYear}/>
+        <TargetList
+          display="limit"
+          rows={expenseRows}
+          startYear={startYear}
+          endYear={endYear}
+          setStartYear={setStartYear}
+          setEndYear={setEndYear}
+        />
       </TabPanel>
     </Tabs>
   );

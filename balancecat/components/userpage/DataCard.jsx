@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unsafe-optional-chaining */
 import * as React from "react";
 import Card from "@mui/joy/Card";
@@ -47,6 +48,18 @@ const theme = createTheme({
     },
     success: {
       dark: "#009688",
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          "&.MuiChartsTooltip-table": {
+            zIndex: "1000",
+            backgroundColor: "red",
+          },
+        },
+      },
     },
   },
 });
@@ -118,193 +131,211 @@ export default function DataCard({ isDebitCard, color, token }) {
         label: userData?.data?.charts[8]?.name,
         value: userData?.data?.charts[8]?.amount,
         color: "#97cadb",
-      },
+      }
     );
   }
 
   return (
-    <ThemeProvider>
-      <Card
-        data-resizable
-        sx={{
-          textAlign: "center",
-          alignItems: "center",
-          width: 280,
-          // height: 240,
-          height: 263,
-          // to make the demo resizable
-          // overflow: "auto",
-          resize: "horizontal",
-          "--icon-size": "100px",
-          borderRadius: "30px",
-          backgroundColor: color,
-          boxShadow: "0 0 20px rgb(0,0,0,0.2)",
-          // backgroundImage: color,
-        }}
-      >
-        <CardOverflow variant="solid" color="warning" />
-
-        <CardContent sx={{ maxWidth: "40ch" }}>
-          <div className={styles.datacontent}>
-            <ThemeProvider theme={theme}>
-              <Box
-                sx={{
-                  bgcolor: "background.paper",
-                  boxShadow: 0,
-                  borderRadius: 2,
-                  p: 2,
-                  minWidth: 120,
-                  paddingRight: "0px",
-                  padding: "0px",
-
-                  textAlign: "left",
-                }}
-              >
-                <Box sx={{ color: "text.secondary" }}>
-                  {isDebitCard ? "資產" : "經常性支出"}
-                </Box>
-                <Box
-                  sx={{
-                    color: "text.primary",
-                    fontSize: 24,
-                    fontWeight: "medium",
-                  }}
-                >
-                  {`${Math.round(userData?.data?.stats[1]?.amount / 1000)} K`}
-                </Box>
-                <Box
-                  sx={{
-                    color:
-                      userData?.data?.stats[1]?.percentage_change < 0
-                        ? "#e93171"
-                        : "success.dark",
-                    display: "inline",
-                    fontWeight: "bold",
-                    mx: 0.5,
-                    fontSize: 10,
-                  }}
-                >
-                  {`${Math.round(
-                    userData?.data?.stats[1]?.percentage_change,
-                  )}%` || "-"}
-                </Box>
-                <Box
-                  sx={{
-                    color: "text.secondary",
-                    display: "inline",
-                    fontSize: 10,
-                  }}
-                >
-                  vs. last month
-                </Box>
-              </Box>
-            </ThemeProvider>
-            <ThemeProvider theme={theme}>
-              <Box
-                sx={{
-                  bgcolor: "background.paper",
-                  boxShadow: 0,
-                  borderRadius: 2,
-                  p: 2,
-                  minWidth: 120,
-                  paddingLeft: "0px",
-                  padding: "0px",
-                  textAlign: "left",
-                }}
-              >
-                <Box sx={{ color: "text.secondary" }}>
-                  {isDebitCard ? "負債" : "非經常性支出"}
-                </Box>
-                <Box
-                  sx={{
-                    color: "text.primary",
-                    fontSize: 24,
-                    fontWeight: "medium",
-                  }}
-                >
-                  {isDebitCard
-                    ? `${-Math.round(
-                        userData?.data?.stats[3]?.amount / 1000,
-                      )} K`
-                    : `${Math.round(
-                        userData?.data?.stats[3]?.amount / 1000,
-                      )} K`}
-                </Box>
-                <Box
-                  sx={{
-                    color:
-                      userData?.data?.stats[3]?.percentage_change < 0
-                        ? "#e93171"
-                        : "success.dark",
-                    display: "inline",
-                    fontWeight: "bold",
-                    mx: 0.5,
-                    fontSize: 10,
-                  }}
-                >
-                  {`${Math.round(
-                    userData?.data?.stats[3]?.percentage_change,
-                  )}%` || "-"}
-                </Box>
-                <Box
-                  sx={{
-                    color: "text.secondary",
-                    display: "inline",
-                    fontSize: 10,
-                  }}
-                >
-                  vs. last week
-                </Box>
-              </Box>
-            </ThemeProvider>
-          </div>
-
-          <Stack direction="row">
-            <PieChart
-              series={[
-                {
-                  paddingAngle: 5,
-                  innerRadius: 40,
-                  outerRadius: 60,
-                  // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
-                  arcLabelMinAngle: 15,
-                  highlightScope: { faded: "global", highlighted: "item" },
-                  faded: { innerRadius: 20, additionalRadius: -20 },
-                  data,
-                },
-              ]}
-              // width={100}
-              height={130}
-              // legend={{ hidden: true }}  //hide the color stand for
-              sx={{
-                marginTop: "20px",
-                marginRight: "10px",
-                [`& .${pieArcClasses.faded}`]: {
-                  fill: "gray",
-                },
-                "& .MuiChartsLegend-root.MuiChartsLegend-column": {
-                  // display: "none",
-                  height: "50px",
-                  margin: "20px",
-                  overflow: "scroll",
-                },
-                // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
-                //   height: "80px",
-                //   overflow: "scroll",
-                // },
-              }}
-            />
-          </Stack>
-        </CardContent>
-        <CardActions
-          orientation="vertical"
-          buttonFlex={1}
+    <div className={styles.container}>
+      <ThemeProvider>
+        <Card
+          data-resizable
           sx={{
-            "--Button-radius": "40px",
-            width: "clamp(min(100%, 160px), 50%, min(100%, 200px))",
+            textAlign: "center",
+            alignItems: "center",
+            width: 280,
+            // height: 240,
+            height: 263,
+            // to make the demo resizable
+            // overflow: "auto",
+            resize: "horizontal",
+            "--icon-size": "100px",
+            borderRadius: "30px",
+            backgroundColor: color,
+            boxShadow: "0 0 20px rgb(0,0,0,0.2)",
+            // backgroundImage: color,
           }}
-        />
-      </Card>
-    </ThemeProvider>
+        >
+          <CardOverflow variant="solid" color="warning" />
+
+          <CardContent sx={{ maxWidth: "40ch" }}>
+            <div className={styles.datacontent}>
+              <ThemeProvider theme={theme}>
+                <Box
+                  sx={{
+                    bgcolor: "background.paper",
+                    boxShadow: 0,
+                    borderRadius: 2,
+                    p: 2,
+                    minWidth: 120,
+                    paddingRight: "0px",
+                    padding: "0px",
+
+                    textAlign: "left",
+                  }}
+                >
+                  <Box sx={{ color: "text.secondary" }}>
+                    {isDebitCard ? "資產" : "經常性支出"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 24,
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {`${Math.round(userData?.data?.stats[1]?.amount / 1000)} K`}
+                  </Box>
+                  <Box
+                    sx={{
+                      color:
+                        userData?.data?.stats[1]?.percentage_change < 0
+                          ? "#e93171"
+                          : "success.dark",
+                      display: "inline",
+                      fontWeight: "bold",
+                      mx: 0.5,
+                      fontSize: 10,
+                    }}
+                  >
+                    {`${Math.round(
+                      userData?.data?.stats[1]?.percentage_change
+                    )}%` || "-"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.secondary",
+                      display: "inline",
+                      fontSize: 10,
+                    }}
+                  >
+                    vs. last month
+                  </Box>
+                </Box>
+              </ThemeProvider>
+              <ThemeProvider theme={theme}>
+                <Box
+                  sx={{
+                    bgcolor: "background.paper",
+                    boxShadow: 0,
+                    borderRadius: 2,
+                    p: 2,
+                    minWidth: 120,
+                    paddingLeft: "0px",
+                    padding: "0px",
+                    textAlign: "left",
+                  }}
+                >
+                  <Box sx={{ color: "text.secondary" }}>
+                    {isDebitCard ? "負債" : "非經常性支出"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.primary",
+                      fontSize: 24,
+                      fontWeight: "medium",
+                    }}
+                  >
+                    {isDebitCard
+                      ? `${-Math.round(
+                          userData?.data?.stats[3]?.amount / 1000
+                        )} K`
+                      : `${Math.round(
+                          userData?.data?.stats[3]?.amount / 1000
+                        )} K`}
+                  </Box>
+                  <Box
+                    sx={{
+                      color:
+                        userData?.data?.stats[3]?.percentage_change < 0
+                          ? "#e93171"
+                          : "success.dark",
+                      display: "inline",
+                      fontWeight: "bold",
+                      mx: 0.5,
+                      fontSize: 10,
+                    }}
+                  >
+                    {`${Math.round(
+                      userData?.data?.stats[3]?.percentage_change
+                    )}%` || "-"}
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "text.secondary",
+                      display: "inline",
+                      fontSize: 10,
+                    }}
+                  >
+                    vs. last week
+                  </Box>
+                </Box>
+              </ThemeProvider>
+            </div>
+
+            <Stack direction="row">
+              <PieChart
+                series={[
+                  {
+                    paddingAngle: 5,
+                    innerRadius: 40,
+                    outerRadius: 60,
+                    // arcLabel: (item) => `${item.label} (${item.value})`, //show the inner data
+                    arcLabelMinAngle: 15,
+                    highlightScope: { faded: "global", highlighted: "item" },
+                    faded: { innerRadius: 20, additionalRadius: -20 },
+                    data,
+                  },
+                ]}
+                // width={100}
+                height={130}
+                // legend={{ hidden: true }}  //hide the color stand for
+                sx={{
+                  marginTop: "20px",
+                  marginRight: "10px",
+
+                  [`& .${pieArcClasses.faded}`]: {
+                    fill: "gray",
+                  },
+                  "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                    // display: "none",
+                    height: "50px",
+                    margin: "20px",
+                    overflow: "scroll",
+                  },
+                  "& .MuiPaper-root.MuiChartsTooltip-table": {
+                    zIndex: "1000",
+                    color: "red",
+                  },
+                  "& div[role='tooltip']": {
+                    zIndex: 1000,
+                    backgroundColor: "red !important",
+                    "& .MuiPaper-root.MuiChartsTooltip-table": {
+                      backgroundColor: "red !important",
+                    },
+                  },
+                  "&& .MuiPaper-root.MuiChartsTooltip-table": {
+                    zIndex: "1000",
+                    backgroundColor: "red !important",
+                  },
+                  // "& .MuiChartsLegend-root.MuiChartsLegend-column": {
+                  //   height: "80px",
+                  //   overflow: "scroll",
+                  // },
+                }}
+              />
+            </Stack>
+          </CardContent>
+          <CardActions
+            orientation="vertical"
+            buttonFlex={1}
+            sx={{
+              "--Button-radius": "40px",
+              width: "clamp(min(100%, 160px), 50%, min(100%, 200px))",
+            }}
+          />
+        </Card>
+      </ThemeProvider>
+    </div>
   );
 }

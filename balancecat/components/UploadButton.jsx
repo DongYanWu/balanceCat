@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from "react";
 import Button from "@mui/joy/Button";
 import SvgIcon from "@mui/joy/SvgIcon";
@@ -39,7 +40,7 @@ export default function UploadButton({ token }) {
   // eslint-disable-next-line no-unused-vars
   const { trigger, isMutating } = useSWRMutation(
     `${API_URL}users/picture`,
-    sendRequest,
+    sendRequest
   );
 
   function fileChangedHandler(event) {
@@ -49,7 +50,7 @@ export default function UploadButton({ token }) {
       swal(
         "Error",
         "Invalid file format. Only jpg, jpeg, and png files are allowed.",
-        "error",
+        "error"
       );
     } else {
       const formData = new FormData();
@@ -90,8 +91,9 @@ export default function UploadButton({ token }) {
       >
         上傳
         <VisuallyHiddenInput
+          inputRef={fileInputRef}
           type="file"
-          ref={fileInputRef}
+          // ref={fileInputRef}
           onChange={(e) => fileChangedHandler(e)}
         />
       </Button>

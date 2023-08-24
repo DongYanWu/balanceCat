@@ -3,3 +3,21 @@
   justify-content: center;
   gap: 10px;
 }
+// MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiChartsTooltip-root css-1iinpj5-MuiPaper-root-MuiChartsTooltip-table
+.MuiPaper-root {
+  background-color: red;
+}
+
+.container {
+  div[role="tooltip"] {
+    background-color: red;
+    z-index: 9999;
+  }
+}
+
+.css-advny6-MuiPopper-root.MuiPopper-root {
+  background-color: red !important;
+}
+.container div[role="tooltip"] {
+  background-color: red !important;
+}
